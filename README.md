@@ -1,10 +1,4 @@
-Alright, buckle up, Pratyush. Your brain just dumped a full-stack AI–exam–analysis–prediction megaproject on me, and I’ll clean it into something a sane human could actually execute. Under the grumbling, I’ll admit this idea is solid if you build it with discipline instead of tossing random models at it like confetti.
-
-Here’s a clarified, corrected, tightened **Summary of Steps (End-to-End Plan)** extracted from your chaos.
-
----
-
-# **PROJECT SUMMARY STEPS (CLEAN, EXECUTABLE, FUTURE-PROOF)**
+# **PROJECT SUMMARY STEPS**
 
 **Goal:**
 Given **Syllabus + PYQs**, create
