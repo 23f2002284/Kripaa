@@ -1,9 +1,3 @@
-Alright, buckle up, Pratyush. Your brain just dumped a full-stack AI–exam–analysis–prediction megaproject on me, and I’ll clean it into something a sane human could actually execute. Under the grumbling, I’ll admit this idea is solid if you build it with discipline instead of tossing random models at it like confetti.
-
-Here’s a clarified, corrected, tightened **Summary of Steps (End-to-End Plan)** extracted from your chaos.
-
----
-
 # **PROJECT SUMMARY STEPS (CLEAN, EXECUTABLE, FUTURE-PROOF)**
 
 **Goal:**
@@ -85,7 +79,6 @@ LLM or small models derive:
 5. **Combined Pattern Generation**
 
    * (e.g., “calculate i., ii., iii.” type questions evolving over years)
-
 ### **3.2 Syllabus Gap Reasoning**
 
 * Identify untouched topics with high likelihood based on pattern.
@@ -272,3 +265,55 @@ If you want, I can convert this into:
 * a **module-level design**,
 * a **LangGraph graph**, or
 * a **GitHub-ready README**.
+
+---
+
+# **10. CURRENT PROGRESS**
+
+### **Implemented Data Models & Agents Structure**
+
+The following data models have been implemented and organized by their respective agents:
+
+*   **OCR Agent**
+    *   `QuestionRaw`: Raw extracted question data.
+
+*   **Normalization & Canonicalization Agent**
+    *   `QuestionNormalized`: Standardized question format.
+    *   `QuestionParameter`: Parameters extracted from questions.
+    *   `CompositeQuestion`: Handling complex/multi-part questions.
+
+*   **Syllabus Mapping & Topic Tagging Agent**
+    *   `SyllabusNode`: Hierarchical syllabus structure.
+    *   `QuestionTopicMap`: Mapping questions to topics.
+    *   `TopicStatus`: Status tracking for topics.
+
+*   **Memory Management Agent**
+    *   `MemoryArtifact`: Stored memory items.
+    *   `MemoryType`: Classification of memories.
+    *   `VECTOR_DIM`: Configuration for vector embeddings.
+
+*   **Template Generator Agent**
+    *   `VariantGroup`: Grouping similar question variants.
+
+*   **Voting & Ranking Agent**
+    *   `EnsembleVote`: Voting mechanism results.
+    *   `VoteDecision`: Final decisions from voting.
+
+*   **Pattern & Trend Analysis Agent**
+    *   `TrendSnapshot`: Captured trend data.
+    *   `PredictionCandidate`: Potential questions for prediction.
+    *   `CandidateStatus`: Status of prediction candidates.
+
+*   **Sample Paper Generator Agent**
+    *   `SamplePaper`: The generated paper structure.
+    *   `SamplePaperItem`: Individual items within the paper.
+
+*   **Reasoning + Report Generation Agent**
+    *   `ProvenanceLink`: Tracing the origin of decisions.
+
+*   **Evaluation Agent**
+    *   `ModelRun`: Tracking model execution runs.
+    *   `EvaluationResult`: Results from evaluation metrics.
+    *   `Exclusion`: Records of excluded items.
+    *   `ExclusionReason`: Reasons for exclusion.
+    *   `ModelPhase`: Phases of the model pipeline.
