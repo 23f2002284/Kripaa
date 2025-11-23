@@ -1,4 +1,4 @@
-# **PROJECT SUMMARY STEPS (CLEAN, EXECUTABLE, FUTURE-PROOF)**
+# **PROJECT SUMMARY STEPS**
 
 **Goal:**
 Given **Syllabus + PYQs**, create
