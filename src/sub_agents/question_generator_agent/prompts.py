@@ -1,45 +1,112 @@
 from langchain_core.prompts import ChatPromptTemplate
 
-# Strategy 2: Variant Generation
-# Takes an existing question and modifies it.
-VARIANT_GENERATION_PROMPT = ChatPromptTemplate.from_template(
-    """
-    You are an expert exam question setter for a university Computer Science course. 
-    Your task is to create a **variant** of an existing question that is strictly aligned with the syllabus.
-    
-    **Original Question:**
-    {original_question}
-    
-    **Instructions:**
-    1. **Strict Adherence**: The new question MUST test the exact same core concept as the original.
-    2. **Style Match**: Maintain the same formal, academic tone and difficulty level. Do not make it conversational or overly scenario-based unless the original is.
-    3. **Modification**: Change specific values, variable names, or the context slightly.
-    4. **No Drift**: Do NOT introduce concepts outside the scope of the original question.
-    5. Output ONLY the new question text.
-    
-    **New Question:**
-    """
-)
+# Section A: Short Answer (2 Marks) - Difficulty 1-2
+SHORT_ANSWER_VARIANT_PROMPT = ChatPromptTemplate.from_template("""
+You are creating a SHORT ANSWER exam question (2 marks) by rewriting the following question.
 
-# Strategy 3: Novel Generation
-# Creates a new question from scratch based on a topic.
-NOVEL_GENERATION_PROMPT = ChatPromptTemplate.from_template(
-    """
-    You are an expert exam question setter for a university Computer Science course.
-    Your task is to create a **brand new** question for a specific topic, strictly based on the syllabus.
-    
-    **Topic:** {topic_name}
-    **Module:** {module_name}
-    **Target Difficulty:** {difficulty} (1-5)
-    **Cognitive Level:** {taxonomy}
-    
-    **Instructions:**
-    1. **Syllabus Focused**: The question must be directly answerable using standard textbooks for this module. Do NOT ask niche or out-of-scope trivia.
-    2. **Exam Pattern**: The question should sound exactly like it belongs in a formal written exam (concise, clear, unambiguous).
-    3. **Cognitive Match**: Ensure the question matches the target cognitive level (e.g., 'Apply' should involve a small problem, 'Recall' should be a definition).
-    4. **Avoid Randomness**: Do not create overly complex or bizarre scenarios. Stick to standard academic examples.
-    5. Output ONLY the question text.
-    
-    **New Question:**
-    """
-)
+ORIGINAL QUESTION:
+{original_question}
+
+REQUIREMENTS:
+- Keep it SHORT (1-3 sentences maximum)
+- Difficulty: EASY (Level 1-2)
+- Bloom's Taxonomy: Remember or Understand
+- Focus: Definitions, basic concepts, simple explanations
+- Maintain the core concept but vary the wording
+- Do NOT add complexity or numerical problems
+
+OUTPUT: Just the rewritten question text (no explanations).
+""")
+
+SHORT_ANSWER_NOVEL_PROMPT = ChatPromptTemplate.from_template("""
+You are creating a NEW SHORT ANSWER exam question (2 marks).
+
+TOPIC: {topic_name}
+MODULE: {module_name}
+
+REQUIREMENTS:
+- Length: 1-3 sentences maximum
+- Difficulty: EASY (Level 1-2)
+- Bloom's Taxonomy: Remember or Understand
+- Question Types: "Define...", "What is...", "List...", "State...", "Explain briefly..."
+- Focus: Core concepts, terminology, basic principles
+- Do NOT create problem-solving or analysis questions
+
+OUTPUT: Just the question text (no explanations).
+""")
+
+# Section B: Medium Answer (5 Marks) - Difficulty 3
+MEDIUM_ANSWER_VARIANT_PROMPT = ChatPromptTemplate.from_template("""
+You are creating a MEDIUM ANSWER exam question (5 marks) by rewriting the following question.
+
+ORIGINAL QUESTION:
+{original_question}
+
+REQUIREMENTS:
+- Length: Problem-solving or detailed explanation question
+- Difficulty: MEDIUM (Level 3)
+- Bloom's Taxonomy: Apply or Analyze
+- Focus: Procedures, comparisons, applications, algorithms
+- Maintain the core concept but vary the scenario or parameters
+- Can include simple numerical values if appropriate
+
+OUTPUT: Just the rewritten question text (no explanations).
+""")
+
+MEDIUM_ANSWER_NOVEL_PROMPT = ChatPromptTemplate.from_template("""
+You are creating a NEW MEDIUM ANSWER exam question (5 marks).
+
+TOPIC: {topic_name}
+MODULE: {module_name}
+
+REQUIREMENTS:
+- Length: Requires explanation or problem-solving (5-8 sentences)
+- Difficulty: MEDIUM (Level 3)
+- Bloom's Taxonomy: Apply or Analyze
+- Question Types: "Explain...", "Describe the process...", "Compare and contrast...", "Solve...", "Analyze..."
+- Focus: Application of concepts, procedures, analysis
+- Can include scenarios, examples, or simple numerical problems
+
+OUTPUT: Just the question text (no explanations).
+""")
+
+# Section C: Long Answer (10 Marks) - Difficulty 4-5
+LONG_ANSWER_VARIANT_PROMPT = ChatPromptTemplate.from_template("""
+You are creating a LONG ANSWER exam question (10 marks) by rewriting the following question.
+
+ORIGINAL QUESTION:
+{original_question}
+
+REQUIREMENTS:
+- Length: Standard long answer (approx. 300-400 words expected answer)
+- Difficulty: Moderate to Hard (Level 3-4)
+- Bloom's Taxonomy: Analyze, Evaluate, or Apply
+- Focus: Clear explanation, discussion, or comparison of concepts
+- Structure: Can be a single detailed question or split into parts (e.g., a) and b))
+- Style: Academic but direct, typical of engineering semester exams
+- Maintain the core concept but vary the approach or scenario
+
+OUTPUT: Just the rewritten question text (no explanations).
+""")
+
+LONG_ANSWER_NOVEL_PROMPT = ChatPromptTemplate.from_template("""
+You are creating a NEW LONG ANSWER exam question (10 marks).
+
+TOPIC: {topic_name}
+MODULE: {module_name}
+
+REQUIREMENTS:
+- Length: Standard long answer (10 marks)
+- Difficulty: Moderate to Hard
+- Bloom's Taxonomy: Analyze, Explain, Discuss
+- Question Types: "Explain in detail...", "Discuss the significance of...", "Compare and contrast...", "Describe the process of..."
+- Focus: Conceptual clarity and detailed understanding
+- Structure: Can be split into sub-parts (e.g., Define X and explain Y)
+- Avoid: Overly complex case studies unless typical for the topic. Keep it solvable within exam time limits.
+
+OUTPUT: Just the question text (no explanations).
+""")
+
+# Legacy prompts (kept for backward compatibility if needed)
+VARIANT_GENERATION_PROMPT = SHORT_ANSWER_VARIANT_PROMPT
+NOVEL_GENERATION_PROMPT = SHORT_ANSWER_NOVEL_PROMPT

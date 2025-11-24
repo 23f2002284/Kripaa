@@ -22,7 +22,7 @@ The content is in Markdown format.
 
 For each question, extract:
 - original_numbering: The question number (e.g., "1", "2(a)", "Q1", "1(i)").
-- raw_text: The full text of the question.
+- raw_text: The full text of the question. **PRESERVE MARKDOWN FORMATTING** (bold, italics, tables, code blocks, math notation, etc.).
 - marks: The marks allocated to the question (as an integer).
 - section: The section name (e.g., "Section A", "Part-I").
 - year: The year of the examination (e.g., 2023). Infer from header.

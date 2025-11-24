@@ -112,27 +112,34 @@ async def generate_sample_paper(snapshot_id: UUID, title: str = "Generated Sampl
             md_lines.append(f"# {title}")
             md_lines.append(f"**Total Marks:** {total_marks} | **Time:** 3 Hours")
             md_lines.append("***")
+            md_lines.append("")  # Blank line
             
             # Section A
             if sections["A"]:
-                md_lines.append("\n## Section A (Short Answer) - 2 Marks Each")
+                md_lines.append("## Section A (Short Answer) - 2 Marks Each")
+                md_lines.append("")  # Blank line after header
                 for idx, cand in enumerate(sections["A"], 1):
                     q = cand.normalized_question
                     md_lines.append(f"**Q{idx}.** {q.base_form}")
+                    md_lines.append("")  # Blank line after each question
             
             # Section B
             if sections["B"]:
-                md_lines.append("\n## Section B (Medium Answer) - 5 Marks Each")
+                md_lines.append("## Section B (Medium Answer) - 5 Marks Each")
+                md_lines.append("")  # Blank line after header
                 for idx, cand in enumerate(sections["B"], 1):
                     q = cand.normalized_question
                     md_lines.append(f"**Q{idx}.** {q.base_form}")
+                    md_lines.append("")  # Blank line after each question
             
             # Section C
             if sections["C"]:
-                md_lines.append("\n## Section C (Long Answer) - 10 Marks Each")
+                md_lines.append("## Section C (Long Answer) - 10 Marks Each")
+                md_lines.append("")  # Blank line after header
                 for idx, cand in enumerate(sections["C"], 1):
                     q = cand.normalized_question
                     md_lines.append(f"**Q{idx}.** {q.base_form}")
+                    md_lines.append("")  # Blank line after each question
             
             final_md = "\n".join(md_lines)
             logger.info(f"Sample Paper {paper.id} (v{new_ver}) generated successfully.")

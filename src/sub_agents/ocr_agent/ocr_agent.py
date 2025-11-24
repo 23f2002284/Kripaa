@@ -58,7 +58,7 @@ async def _extract_via_markdown(pdf_path: str) -> List[QuestionRaw]:
     """Helper to extract via pymupdf4llm -> LLM"""
     try:
         md_text = pymupdf4llm.to_markdown(pdf_path)
-        logger.debug(f"Extracted text/markdown: {md_text[:500]}...")
+
     except Exception as e:
         logger.error(f"Error extracting text with pymupdf4llm: {e}")
         return []

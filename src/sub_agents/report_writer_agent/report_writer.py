@@ -5,9 +5,7 @@ from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 from utils.db import get_session
 from utils.logger import get_logger
-from utils.pdf_generator import markdown_to_pdf
-from utils.llm import get_llm
-from langchain_core.prompts import ChatPromptTemplate
+from utils.simple_pdf_generator import generate_simple_exam_pdf
 from src.data_models.models import (
     QuestionRaw,
     VariantGroup,
@@ -22,286 +20,215 @@ from src.data_models.models import (
 
 logger = get_logger()
 
-NARRATIVE_PROMPT = ChatPromptTemplate.from_template("""
-Generate a professional, insightful narrative for the "{section}" section of an academic report.
-
-Context:
-{context}
-
-Requirements:
-- Write in formal academic tone
-- Highlight key patterns and insights
-- Be specific with numbers and percentages
-- Explain implications and significance
-- Keep it concise (150-200 words)
-""")
-
-async def generate_narrative(section: str, context: str) -> str:
-    llm = get_llm(temperature=0.3)
-    chain = NARRATIVE_PROMPT | llm
-    response = await chain.ainvoke({"section": section, "context": context})
-    return response.content.strip()
-
-async def generate_comprehensive_report(snapshot_id: UUID):
+async def generate_comprehensive_report(snapshot_id: UUID, output_dir: str = "."):
+    """Generate a comprehensive, data-driven report without LLM calls."""
     logger.info("Generating Comprehensive Report...")
     md = []
+    
+    # Convert output_dir to Path
+    from pathlib import Path
+    output_path = Path(output_dir)
     
     async for session in get_session():
         # === DATA COLLECTION ===
         
-        # 1. Raw Questions
+        # Fetch all data
         stmt_raw = select(QuestionRaw)
         raw_questions = (await session.execute(stmt_raw)).scalars().all()
         
-        # 2. Variant Groups
         stmt_vg = select(VariantGroup).options(selectinload(VariantGroup.syllabus_node))
         variant_groups = (await session.execute(stmt_vg)).scalars().all()
         
-        # 3. Normalized Questions
-        stmt_norm = select(QuestionNormalized)
-        norm_questions = (await session.execute(stmt_norm)).scalars().all()
-        
-        # 4. Syllabus Nodes
-        stmt_syll = select(SyllabusNode)
-        syllabus_nodes = (await session.execute(stmt_syll)).scalars().all()
-        
-        # 5. Trend Snapshot
         stmt_snap = select(TrendSnapshot).where(TrendSnapshot.id == snapshot_id)
         snapshot = (await session.execute(stmt_snap)).scalar_one_or_none()
         
-        # 6. Candidates
         stmt_cand = select(PredictionCandidate).options(
             selectinload(PredictionCandidate.normalized_question)
         ).where(PredictionCandidate.trend_snapshot_id == snapshot_id)
         candidates = (await session.execute(stmt_cand)).scalars().all()
         
-        # 7. Sample Paper
         stmt_paper = select(SamplePaper).options(
             selectinload(SamplePaper.items)
         ).order_by(SamplePaper.generation_timestamp.desc()).limit(1)
         paper = (await session.execute(stmt_paper)).scalar_one_or_none()
         
-        # === REPORT GENERATION ===
+        # === REPORT CONSTRUCTION ===
         
-        md.append("# Comprehensive Exam Generation Report")
-        md.append("**Kripaa AI - Automated Question Paper Generation System**\n")
-        md.append("---\n")
+        md.append("# Kripaa - Comprehensive Exam Generation Report")
+        md.append("")
+        md.append(f"**Snapshot ID:** {snapshot_id}")
+        md.append(f"**Generated:** {snapshot.created_at.strftime('%Y-%m-%d %H:%M') if snapshot else 'N/A'}")
+        md.append("")
+        md.append("---")
+        md.append("")
         
         # === EXECUTIVE SUMMARY ===
-        md.append("## Executive Summary\n")
-        exec_context = f"""
-        - Total Raw Questions: {len(raw_questions)}
-        - Unique Concepts (Variant Groups): {len(variant_groups)}
-        - Normalized Questions: {len(norm_questions)}
-        - Syllabus Topics: {len(syllabus_nodes)}
-        - Final Candidates: {len(candidates)}
-        - Selected Questions: {len([c for c in candidates if c.status == CandidateStatus.selected])}
-        """
-        exec_narrative = await generate_narrative("Executive Summary", exec_context)
-        md.append(exec_narrative + "\n")
-        
-        # === CHAPTER 1: DATA INGESTION ===
-        md.append("## Chapter 1: Data Ingestion & Preprocessing\n")
-        md.append("### 1.1 Raw Question Database\n")
-        
-        # Stats by year
-        year_stats = {}
-        for q in raw_questions:
-            year_stats[q.year] = year_stats.get(q.year, 0) + 1
-        
-        md.append("| Year | Question Count | Percentage |")
-        md.append("|------|----------------|------------|")
-        total_raw = len(raw_questions)
-        for year in sorted(year_stats.keys()):
-            count = year_stats[year]
-            pct = (count / total_raw) * 100 if total_raw else 0
-            md.append(f"| {year} | {count} | {pct:.1f}% |")
+        md.append("## Executive Summary")
+        md.append("")
+        md.append(f"- **Total Raw Questions Processed:** {len(raw_questions)}")
+        md.append(f"- **Unique Concept Groups (Variants):** {len(variant_groups)}")
+        md.append(f"- **Compression Ratio:** {len(raw_questions) / len(variant_groups):.2f}:1")
+        md.append(f"- **Total Candidates Generated:** {len(candidates)}")
+        md.append(f"- **Final Questions Selected:** {len([c for c in candidates if c.status == CandidateStatus.selected])}")
+        md.append(f"- **Final Paper Marks:** {paper.total_marks if paper else 0}")
         md.append("")
         
-        ingest_context = f"Processed {len(raw_questions)} questions from {len(year_stats)} years. Average {total_raw / len(year_stats):.0f} questions per year."
-        ingest_narrative = await generate_narrative("Data Ingestion Analysis", ingest_context)
-        md.append(ingest_narrative + "\n")
-
-        # Combined, readable raw question listing
-        md.append("### 1.2 Raw Questions (Chronological, Grouped by Year)\n")
-        for year in sorted(year_stats.keys()):
-            md.append(f"#### Year: {year}\n")
-            year_questions = [q for q in raw_questions if q.year == year]
-            for rq in sorted(year_questions, key=lambda x: (x.marks or 0), reverse=True):
-                md.append(f"- **Marks:** {rq.marks or '-'} | **Source:** {rq.source_pdf or '-'}\n  ")
-                md.append(f"  {rq.raw_text.replace('|', ' ')}\n")
+        # === TREND ANALYSIS OUTPUT ===
+        md.append("## Trend Analysis Results")
         md.append("")
-        
-        # === CHAPTER 2: VARIANT GROUPING ===
-        md.append("## Chapter 2: Variant Detection & Grouping\n")
-        md.append("### 2.1 Concept Clustering\n")
-        
-        md.append(f"**Total Variant Groups:** {len(variant_groups)}\n")
-        md.append(f"**Compression Ratio:** {total_raw / len(variant_groups):.2f}:1\n")
-        
-        recurrence_dist = {}
-        for vg in variant_groups:
-            rec = vg.recurrence_count
-            recurrence_dist[rec] = recurrence_dist.get(rec, 0) + 1
-        
-        md.append("#### Recurrence Distribution\n")
-        md.append("| Recurrence | Groups | Description |")
-        md.append("|------------|--------|-------------|")
-        for rec in sorted(recurrence_dist.keys(), reverse=True):
-            count = recurrence_dist[rec]
-            desc = "Highly repeated" if rec >= 5 else "Moderately repeated" if rec >= 3 else "Rarely repeated"
-            md.append(f"| {rec} times | {count} | {desc} |")
-        md.append("")
-        
-        variant_context = f"Created {len(variant_groups)} concept groups from {total_raw} raw questions, achieving {total_raw / len(variant_groups):.1f}x compression."
-        variant_narrative = await generate_narrative("Variant Grouping Insights", variant_context)
-        md.append(variant_narrative + "\n")
-
-        # Variant groups as readable blocks, sorted by recurrence
-        md.append("### 2.2 Variant Groups (Sorted by Recurrence)\n")
-        for vg in sorted(variant_groups, key=lambda x: x.recurrence_count, reverse=True):
-            mapped_topic = vg.syllabus_node.topic if vg.syllabus_node_id and vg.syllabus_node else "-"
-            md.append(f"- **Recurrence:** {vg.recurrence_count} | **First Year:** {vg.first_year or '-'} | **Last Year:** {vg.last_year or '-'} | **Topic:** {mapped_topic}\n  ")
-            md.append(f"  {vg.canonical_stem.replace('|', ' ')}\n")
-        md.append("")
-        
-        # === CHAPTER 3: SYLLABUS MAPPING ===
-        md.append("## Chapter 3: Syllabus Alignment\n")
-        md.append("### 3.1 Topic Coverage\n")
-        
-        mapped_vgs = [vg for vg in variant_groups if vg.syllabus_node_id]
-        coverage_pct = (len(mapped_vgs) / len(variant_groups)) * 100 if variant_groups else 0
-        
-        md.append(f"**Mapped Variant Groups:** {len(mapped_vgs)} / {len(variant_groups)} ({coverage_pct:.1f}%)\n")
-        
-        # Module breakdown
-        module_stats = {}
-        for node in syllabus_nodes:
-            module_stats[node.module] = module_stats.get(node.module, 0) + 1
-        
-        md.append("#### Syllabus Module Distribution\n")
-        md.append("| Module | Topics | Percentage |")
-        md.append("|--------|--------|------------|")
-        total_topics = len(syllabus_nodes)
-        for module in sorted(module_stats.keys()):
-            count = module_stats[module]
-            pct = (count / total_topics) * 100 if total_topics else 0
-            md.append(f"| {module} | {count} | {pct:.1f}% |")
-        md.append("")
-        
-        syll_context = f"{coverage_pct:.1f}% of questions mapped to {len(syllabus_nodes)} syllabus topics across {len(module_stats)} modules."
-        syll_narrative = await generate_narrative("Syllabus Mapping Analysis", syll_context)
-        md.append(syll_narrative + "\n")
-
-        # Detailed syllabus node listing
-        md.append("### 3.2 Syllabus Node Listing\n")
-        md.append("| ID | Module | Topic | Level | Times Asked | Gap Score | Status |")
-        md.append("|----|--------|-------|------:|-----------:|---------:|--------|")
-        for node in syllabus_nodes:
-            md.append(f"| {str(node.id)[:8]} | {node.module} | {node.topic} | {node.level} | {node.times_asked} | {node.gap_score:.2f} | {node.status.value} |")
-        md.append("")
-        
-        # === CHAPTER 4: TREND ANALYSIS ===
-        md.append("## Chapter 4: Trend Analysis\n")
         
         if snapshot:
-            md.append("### 4.1 Historical Patterns\n")
+            md.append(f"**Year Range:** {snapshot.year_range[0]}-{snapshot.year_range[1]}")
+            md.append(f"**Emerging Topics:** {len(snapshot.emerging_topics or [])}")
+            md.append(f"**Declining Topics:** {len(snapshot.declining_topics or [])}")
+            md.append("")
             
             topic_stats = snapshot.topic_stats_json or {}
-            if "_meta" in topic_stats:
-                meta = topic_stats["_meta"]
-                md.append(f"**LLM Insight:** {meta.get('qualitative_insight', 'N/A')}\n")
             
-            # Emerging topics
-            emerging_count = len(snapshot.emerging_topics or [])
-            declining_count = len(snapshot.declining_topics or [])
-            
-            md.append(f"**Emerging Topics:** {emerging_count}\n")
-            md.append(f"**Declining Topics:** {declining_count}\n")
-            
-            trend_context = f"Identified {emerging_count} emerging and {declining_count} declining topics through multi-year analysis."
-            trend_narrative = await generate_narrative("Trend Analysis Summary", trend_context)
-            md.append(trend_narrative + "\n")
-
-            # Emerging & declining topic details if resolvable
-            md.append("### 4.2 Emerging / Declining Topics Details\n")
-            md.append("| Topic ID | Type |")
-            md.append("|----------|------|")
-            for t in (snapshot.emerging_topics or []):
-                md.append(f"| {str(t)[:8]} | emerging |")
-            for t in (snapshot.declining_topics or []):
-                md.append(f"| {str(t)[:8]} | declining |")
+            # Show sample topics with enhancements
+            md.append("### Topic Analysis (Enhanced with Section-Awareness & Cyclicity)")
             md.append("")
+            
+            non_meta_topics = [(tid, data) for tid, data in topic_stats.items() if tid != "_meta"]
+            
+            for topic_id, data in non_meta_topics[:10]:  # Top 10 topics
+                md.append(f"#### {data.get('name', 'Unknown Topic')}")
+                md.append("")
+                md.append(f"- **Module:** {data.get('module', 'Unknown')}")
+                md.append(f"- **Status:** {data.get('status', 'stable')}")
+                md.append(f"- **Gap Score:** {data.get('gap_score', 0)}")
+                md.append(f"- **Last Asked:** {data.get('last_asked_year', 'N/A')}")
+                md.append("")
+                
+                # Section Distribution
+                section_dist = data.get('section_distribution', {})
+                if section_dist:
+                    a_pct = int(section_dist.get('A', 0) * 100)
+                    b_pct = int(section_dist.get('B', 0) * 100)
+                    c_pct = int(section_dist.get('C', 0) * 100)
+                    md.append(f"- **Section Distribution:** A={a_pct}%, B={b_pct}%, C={c_pct}%")
+                    md.append(f"- **Section Preference:** {data.get('section_preference', 'Unknown')}")
+                    md.append(f"- **Average Difficulty:** {data.get('avg_difficulty', 0)}")
+                    md.append("")
+                
+                # Cyclicity
+                cyclicity = data.get('cyclicity', {})
+                pattern = cyclicity.get('pattern_type', 'unknown')
+                confidence = cyclicity.get('confidence', 0)
+                
+                md.append(f"- **Cyclicity Pattern:** {pattern}")
+                
+                if pattern == 'regular':
+                    cycle = cyclicity.get('cycle_length')
+                    next_year = cyclicity.get('next_expected_year')
+                    md.append(f"  - Appears every {cycle} years")
+                    md.append(f"  - Next expected: {next_year}")
+                elif pattern in ['odd_years', 'even_years']:
+                    next_year = cyclicity.get('next_expected_year')
+                    md.append(f"  - Next expected: {next_year}")
+                elif pattern == 'mostly_regular':
+                    cycle = cyclicity.get('cycle_length')
+                    md.append(f"  - Usually every {cycle} years")
+                
+                md.append(f"  - Confidence: {int(confidence * 100)}%")
+                md.append("")
+            
+            # LLM Insight from Trend Analysis
+            meta = topic_stats.get('_meta', {})
+            insight = meta.get('qualitative_insight', '')
+            if insight:
+                md.append("### LLM Qualitative Insight (from Trend Analysis)")
+                md.append("")
+                md.append(insight)
+                md.append("")
         
-        # === CHAPTER 5: QUESTION GENERATION ===
-        md.append("## Chapter 5: Question Generation Strategy\n")
-        md.append("### 5.1 Candidate Pool Creation\n")
+        # === QUESTION GENERATION ===
+        md.append("## Question Generation Strategy")
+        md.append("")
         
         origin_dist = {}
+        section_dist = {"A": 0, "B": 0, "C": 0}
+        temp_dist = {}
+        
         for c in candidates:
             origin = c.scores_json.get("origin", "unknown")
+            section = c.scores_json.get("section_target", "Unknown")
+            temp = c.scores_json.get("llm_temperature", "N/A")
+            
             origin_dist[origin] = origin_dist.get(origin, 0) + 1
+            if section in section_dist:
+                section_dist[section] += 1
+            temp_dist[temp] = temp_dist.get(temp, 0) + 1
         
-        md.append("| Origin Type | Count | Strategy |")
-        md.append("|-------------|-------|----------|")
-        for origin in sorted(origin_dist.keys()):
-            count = origin_dist[origin]
-            strategy = "Reused from history" if origin == "historical" else "LLM-generated variation" if "variant" in origin else "Novel LLM creation"
-            md.append(f"| {origin} | {count} | {strategy} |")
+        md.append("### Candidate Pool Breakdown")
+        md.append("")
+        md.append("| Origin Type | Count | Description |")
+        md.append("|-------------|-------|-------------|")
+        md.append(f"| Historical | {origin_dist.get('historical', 0)} | Reused from past papers |")
+        md.append(f"| Generated Variant | {origin_dist.get('generated_variant', 0)} | LLM-rewritten variations |")
+        md.append(f"| Generated Novel | {origin_dist.get('generated_novel', 0)} | New LLM-created questions |")
         md.append("")
         
-        gen_context = f"Generated {len(candidates)} candidates: {origin_dist.get('historical', 0)} historical, {origin_dist.get('generated_variant', 0)} variants, {origin_dist.get('generated_novel', 0)} novel."
-        gen_narrative = await generate_narrative("Generation Strategy Analysis", gen_context)
-        md.append(gen_narrative + "\n")
-
-        # Candidate listing as readable blocks, sorted by status and marks
-        md.append("### 5.2 Candidate Questions (Sorted by Status, Marks)\n")
-        for c in sorted(candidates, key=lambda x: (x.status.value, -(x.normalized_question.marks or 0) if x.normalized_question else 0)):
-            nq = c.normalized_question
-            origin = c.scores_json.get("origin", "-")
-            md.append(f"- **Status:** {c.status.value} | **Origin:** {origin} | **Difficulty:** {nq.difficulty if nq and nq.difficulty is not None else '-'} | **Marks:** {nq.marks if nq and nq.marks is not None else '-'}\n  ")
-            md.append(f"  {nq.base_form.replace('|', ' ') if nq else '-'}\n")
+        md.append("### Section Distribution")
+        md.append("")
+        md.append("| Section | Candidates | Target Selection |")
+        md.append("|---------|------------|------------------|")
+        md.append(f"| A (Short) | {section_dist['A']} | 10 questions |")
+        md.append(f"| B (Medium) | {section_dist['B']} | 12 questions |")
+        md.append(f"| C (Long) | {section_dist['C']} | 5 questions |")
         md.append("")
         
-        # === CHAPTER 6: VOTING & SELECTION ===
-        md.append("## Chapter 6: Voting & Selection Process\n")
-        md.append("### 6.1 Quality Control\n")
+        md.append("### Temperature Distribution (Multi-Temperature Ensemble)")
+        md.append("")
+        md.append("| Temperature | Count | Purpose |")
+        md.append("|-------------|-------|---------|")
+        for temp in sorted([t for t in temp_dist.keys() if t != "N/A"]):
+            count = temp_dist[temp]
+            purpose = "Conservative" if temp == 0.2 else "Balanced" if temp == 0.5 else "Creative"
+            md.append(f"| {temp} | {count} | {purpose} |")
+        md.append("")
+        
+        # === VOTING & SELECTION ===
+        md.append("## Voting & Selection Results")
+        md.append("")
         
         selected = [c for c in candidates if c.status == CandidateStatus.selected]
         excluded = [c for c in candidates if c.status == CandidateStatus.excluded]
         
-        md.append(f"**Selected:** {len(selected)}\n")
-        md.append(f"**Excluded:** {len(excluded)}\n")
-        md.append(f"**Selection Rate:** {(len(selected) / len(candidates)) * 100:.1f}%\n")
+        md.append(f"**Selected:** {len(selected)} / {len(candidates)}")
+        md.append(f"**Excluded:** {len(excluded)}")
+        if len(candidates) > 0:
+            md.append(f"**Selection Rate:** {(len(selected) / len(candidates)) * 100:.1f}%")
+        else:
+            md.append(f"**Selection Rate:** N/A (no candidates generated)")
+        md.append("")
         
         # Exclusion reasons
         exclusion_reasons = {}
         for c in excluded:
             reason = c.scores_json.get("exclusion_reason", "Unknown")
-            if "(" in reason:
-                reason = reason.split("(")[0].strip()
-            exclusion_reasons[reason] = exclusion_reasons.get(reason, 0) + 1
+            category = c.scores_json.get("exclusion_category", "Other")
+            exclusion_reasons[category] = exclusion_reasons.get(category, 0) + 1
         
         if exclusion_reasons:
-            md.append("#### Exclusion Breakdown\n")
-            md.append("| Reason | Count | Impact |")
-            md.append("|--------|-------|--------|")
-            for reason, count in sorted(exclusion_reasons.items(), key=lambda x: x[1], reverse=True):
-                impact = f"{(count / len(excluded)) * 100:.1f}% of exclusions" if excluded else "0%"
-                md.append(f"| {reason} | {count} | {impact} |")
+            md.append("### Exclusion Breakdown")
+            md.append("")
+            md.append("| Category | Count | Percentage |")
+            md.append("|----------|-------|------------|")
+            for category, count in sorted(exclusion_reasons.items(), key=lambda x: x[1], reverse=True):
+                pct = (count / len(excluded)) * 100 if excluded else 0
+                md.append(f"| {category} | {count} | {pct:.1f}% |")
             md.append("")
         
-        vote_context = f"Selected {len(selected)} from {len(candidates)} candidates through relevance and diversity filtering."
-        vote_narrative = await generate_narrative("Selection Process Analysis", vote_context)
-        md.append(vote_narrative + "\n")
-        
-        # === CHAPTER 7: FINAL PAPER ===
-        md.append("## Chapter 7: Final Sample Paper\n")
+        # === FINAL PAPER ===
+        md.append("## Final Sample Paper")
+        md.append("")
         
         if paper:
-            md.append(f"**Paper ID:** `{paper.id}`\n")
-            md.append(f"**Total Marks:** {paper.total_marks}\n")
-            md.append(f"**Questions:** {len(paper.items or [])}\n")
+            md.append(f"**Paper ID:** {paper.id}")
+            md.append(f"**Total Marks:** {paper.total_marks}")
+            md.append(f"**Total Questions:** {len(paper.items or [])}")
+            md.append("")
             
             # Section breakdown
             section_stats = {"A": 0, "B": 0, "C": 0}
@@ -314,49 +241,40 @@ async def generate_comprehensive_report(snapshot_id: UUID):
                 elif "Section C" in notes:
                     section_stats["C"] += 1
             
-            md.append("\n#### Paper Structure\n")
+            md.append("### Paper Structure")
+            md.append("")
             md.append("| Section | Questions | Marks Each | Total Marks |")
             md.append("|---------|-----------|------------|-------------|")
             md.append(f"| A (Short) | {section_stats['A']} | 2 | {section_stats['A'] * 2} |")
             md.append(f"| B (Medium) | {section_stats['B']} | 5 | {section_stats['B'] * 5} |")
             md.append(f"| C (Long) | {section_stats['C']} | 10 | {section_stats['C'] * 10} |")
+            md.append(f"| **Total** | **{sum(section_stats.values())}** | - | **{paper.total_marks}** |")
             md.append("")
-            
-            paper_context = f"Assembled {len(paper.items or [])} questions totaling {paper.total_marks} marks."
-            paper_narrative = await generate_narrative("Final Paper Assembly", paper_context)
-            md.append(paper_narrative + "\n")
-
-            # Detailed paper item listing
-            md.append("### 7.1 Paper Item Listing\n")
-            md.append("| Ord | Marks | Origin | Notes | Candidate ID |")
-            md.append("|----:|------:|--------|-------|--------------|")
-            for it in (paper.items or []):
-                md.append(f"| {it.ordering} | {it.marks or ''} | {it.origin_type or ''} | {(it.notes or '')[:40]} | {str(it.candidate_id)[:8] if it.candidate_id else ''} |")
-            md.append("")
-
-        # Normalized questions as readable blocks, sorted by marks
-        md.append("## Appendix A: Normalized Questions (Sorted by Marks)\n")
-        for nq in sorted(norm_questions, key=lambda x: -(x.marks or 0)):
-            md.append(f"- **Marks:** {nq.marks if nq.marks is not None else '-'} | **Difficulty:** {nq.difficulty if nq.difficulty is not None else '-'} | **Variant Group:** {str(nq.variant_group_id)[:8] if nq.variant_group_id else '-'}\n  ")
-            md.append(f"  {nq.base_form.replace('|', ' ')}\n")
-        md.append("")
-
-        md.append("## Appendix B: Data Model Summary\n")
-        md.append("The following appendices enumerate the core entities captured during the pipeline, supporting transparency and reproducibility for academic judging.")
         
         # === CONCLUSION ===
-        md.append("## Conclusion\n")
-        conclusion = await generate_narrative(
-            "Project Conclusion",
-            f"Successfully generated exam paper from {len(raw_questions)} historical questions using AI-driven trend analysis and ensemble generation."
-        )
-        md.append(conclusion + "\n")
+        md.append("## Summary")
+        md.append("")
+        md.append("This report documents the complete pipeline from {len(raw_questions)} historical questions to a {paper.total_marks if paper else 0}-mark predicted exam paper using:")
+        md.append("")
+        md.append("1. **Enhanced Trend Analysis** with section-awareness and cyclicity detection")
+        md.append("2. **Multi-Temperature Ensemble Generation** using gemini-2.5-pro (temps: 0.2, 0.5, 0.9)")
+        md.append("3. **Section-Aware Voting** with detailed exclusion tracking")
+        md.append("4. **Quality-Controlled Selection** ensuring diversity and relevance")
+        md.append("")
+        md.append("All data is stored in PostgreSQL for transparency and reproducibility.")
+        md.append("")
         
         final_md = "\n".join(md)
         
-        # Generate PDF
-        markdown_to_pdf(final_md, "comprehensive_report.pdf", title="Kripaa Comprehensive Report")
-        logger.info("Comprehensive Report Generated: comprehensive_report.pdf")
+        # Save markdown file
+        md_file = output_path / "comprehensive_report.md"
+        with open(md_file, "w", encoding="utf-8") as f:
+            f.write(final_md)
+        
+        # Generate simple PDF
+        pdf_file = output_path / "comprehensive_report.pdf"
+        generate_simple_exam_pdf(str(md_file), str(pdf_file))
+        logger.info(f"Comprehensive Report Generated: {pdf_file}")
         
         break
 

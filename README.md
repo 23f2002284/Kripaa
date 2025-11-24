@@ -1,319 +1,426 @@
-# **PROJECT SUMMARY STEPS**
+# 🎓 Kripaa - Semester Exam Paper Prediction System
 
-**Goal:**
-Given **Syllabus + PYQs**, create
+<div align="center">
 
-1. A **70–80% correct predicted sample paper**, and
-2. A **detailed reasoning report** (trends, patterns, what-was-excluded, tips, etc.)
-   using **OCR + memory + multi-model evaluation**.
+![Kripaa Logo](docs/images/logo.png)
 
----
+**Intelligent exam paper generation using historical analysis, trend detection, and multi-LLM ensemble**
 
-# **1. INPUT PIPELINE**
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![LangGraph](https://img.shields.io/badge/LangGraph-Orchestration-orange.svg)](https://github.com/langchain-ai/langgraph)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue.svg)](https://www.postgresql.org/)
 
-### **1.1 OCR + Redaction**
+[📖 Documentation](#documentation) • [🚀 Quick Start](#quick-start) • [✨ Features](#features) • [📊 Results](#results)
 
-* OCR scan all question papers consistently.
-* Normalize formatting.
-* Store each question with:
-
-  * Year
-  * Marks
-  * Topic
-  * Syllabus mapping
-  * Variants (same Q asked in different forms)
-
-### **1.2 Syllabus Integration**
-
-* Convert syllabus into hierarchical structure:
-
-  * Unit → Subunit → Topic → Subtopic
-* Mark which topics appeared, how often, which marks.
+</div>
 
 ---
 
-# **2. MEMORY + CONTEXT SYSTEM**
+## 📋 Table of Contents
 
-You need long-term reasoning. This part decides your predictions, not the LLM hallucinations.
-
-### **2.1 Memory Tasks**
-
-* Extract important features: trends, repeated questions, repeated patterns.
-* Consolidate into compressed memories:
-
-  * Past paper trends
-  * Syllabus coverage trend
-  * Important but untouched topics
-  * Likely numerical/repeat-style patterns
-
-### **2.2 Memory Provenance**
-
-* Keep all updates with timestamp and reasoning (debug + transparency).
-* Tag memories as:
-
-  * “Statistical trend”
-  * “Syllabus gap”
-  * “Examiner pattern”
-  * “Cross-paper similarity”
-
-### **2.3 System + Conversation Memory**
-
-* Use memory as:
-
-  * Retrieval for final sample paper
-  * Evidence for the analysis report
-  * Audit trail for evaluation
+- [Overview](#overview)
+- [Key Features](#features)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Pipeline Workflow](#pipeline-workflow)
+- [Core Innovations](#core-innovations)
+- [Results & Metrics](#results)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-# **3. CORE ANALYSIS ENGINE**
+## 🎯 Overview
 
-### **3.1 Trend Analysis**
+**Kripaa** is an intelligent exam prediction system that analyzes previous year question papers (PYQs) and syllabus documents to generate highly accurate predicted exam papers with comprehensive analytical reports.
 
-LLM or small models derive:
+### The Problem
 
-1. **Repeated Questions**
-2. **Repeated Patterns**
-3. **Marks Trend for Each Topic**
-4. **Probability of Topic Reappearance**
-5. **Combined Pattern Generation**
+Students and educators struggle to:
+- Identify important topics from vast syllabi
+- Understand historical exam patterns and trends
+- Predict which topics are likely to appear
+- Generate realistic practice papers
 
-   * (e.g., “calculate i., ii., iii.” type questions evolving over years)
-### **3.2 Syllabus Gap Reasoning**
+### Our Solution
 
-* Identify untouched topics with high likelihood based on pattern.
-* Predict new questions from those topics.
+Kripaa uses a **multi-agent AI pipeline** powered by LangGraph to:
+1. **Extract** questions from historical PDFs using advanced OCR
+2. **Analyze** trends, patterns, and cyclicity across years
+3. **Generate** diverse question candidates using multi-temperature LLM ensemble
+4. **Select** optimal questions through section-aware voting
+5. **Produce** professional exam papers and comprehensive reports
 
-### **3.3 Multiple Variations Prediction**
-
-Generate 3–5 sample papers using:
-
-* Multiple LLMs
-* Multiple calls of same model
-* Cross-comparison vote system
-
-(This avoids “one random model hallucination deciding everything.”)
+![System Overview](docs/images/system_overview.png)
 
 ---
 
-# **4. AGENT WORKFLOW**
+## ✨ Features
 
-This needs **multi-agent**, not one monolithic agent.
+### 🔍 **Intelligent OCR & Extraction**
+- Hybrid OCR approach (pymupdf4llm + Gemini Vision)
+- Automatic question normalization and variant detection
+- Syllabus parsing and hierarchical topic mapping
 
-### **4.1 Agents**
+### 📊 **Advanced Trend Analysis**
+- **Section-Aware Tracking**: Identifies which topics appear in which exam sections (A/B/C)
+- **Cyclicity Detection**: Recognizes temporal patterns (e.g., "appears every 2 years")
+- **Difficulty Progression**: Tracks how question difficulty evolves
+- **Gap Analysis**: Identifies topics "due" to appear
 
-* **OCR Agent**
-* **Trend Analysis Agent**
-* **Question Generator Agent**
-* **Report Writer Agent**
-* **Sample Paper Generator Agent**
-* **Evaluation Agent** (judge)
+### 🤖 **Multi-Temperature Ensemble Generation**
+- Uses **gemini-2.5-pro** with three temperature configurations:
+  - 0.2 (Conservative) - Precise, factual questions
+  - 0.5 (Balanced) - Standard creative generation
+  - 0.9 (Creative) - Novel, diverse questions
+- **Section-Specific Strategies**:
+  - Section A (2 marks): 30 candidates → 10 selected
+  - Section B (5 marks): 36 candidates → 12 selected
+  - Section C (10 marks): 15 candidates → 5 selected
 
-### **4.2 Coordination Layer**
+![Multi-Temperature Generation](docs/images/multi_temp_generation.png)
 
-* Use LangGraph or Deep-Agent style topology.
-* Each agent writes state → saved as memory → retrieved by the next.
+### 🗳️ **Section-Aware Voting & Ranking**
+- Independent voting per section
+- Relevance filtering (cosine similarity ≥ 0.5)
+- Diversity enforcement (max questions per topic)
+- Detailed exclusion tracking
 
-### **4.3 Reasoning Discussions**
+### 📄 **Professional PDF Generation**
+- Clean, exam-style formatting
+- Proper section organization
+- Comprehensive analytical reports with trend insights
 
-Agents debate:
-
-* What goes into final paper
-* What stays out (recorded in report)
-* Why certain variations are chosen
-
----
-
-# **5. OUTPUT GENERATION**
-
-## **5.1 Final Sample Paper**
-
-Must be:
-
-* Clean
-* Consistent format
-* Each question tagged:
-
-  * Source (year / topic / predicted)
-  * Marks
-* Avoid duplicates (generalize numeric questions)
-
-## **5.2 Analysis Report (PDF/PPT)**
-
-Sections:
-
-1. Exam Paper Trends
-2. Important Topics
-3. Repeated Questions
-4. Syllabus Gaps + Predictions
-5. Reasoning for each predicted question
-6. Questions excluded + why
-7. Tips for scoring
-8. Agent reasoning trace (optional, simplified)
-
-Both outputs should maintain **fixed styling** (templates, not ad-hoc layouts).
+![Sample Paper Preview](docs/images/sample_paper_preview.png)
 
 ---
 
-# **6. EVALUATION METRICS (CRITICAL)**
+## 🏗️ Architecture
 
-You already hinted at this; I cleaned it up:
+```mermaid
+graph TD
+    A[PYQ PDFs + Syllabus] --> B[OCR Agent]
+    B --> C[Normalization Agent]
+    C --> D[Variant Detection]
+    D --> E[Syllabus Mapping]
+    E --> F[Enhanced Trend Analysis]
+    F --> G[Multi-Temp Generation]
+    G --> H[Section-Aware Voting]
+    H --> I[Paper Generation]
+    I --> J[Report Generation]
+    J --> K[PDF Outputs]
+```
 
-### **6.1 Accuracy Against Ground Truth**
+### LangGraph Orchestration
 
-* Compare predictions against:
+Kripaa uses **LangGraph** for stateful workflow management:
 
-  1. Past papers (minus test year)
-  2. Most recent semester paper
-  3. Current live semester (future evaluation)
+![LangGraph Pipeline](docs/images/langgraph_architecture.png)
 
-### **6.2 Model Consistency Tests**
-
-* Multi-LLM comparison
-* Multi-call consistency (stability metric)
-* Architecture-based comparison (4B, 14B, etc.)
-
-### **6.3 Automated Metrics**
-
-* Similarity score between predicted and actual
-* Topic coverage score
-* Trend correctness score
-* Novel prediction precision
-
-### **6.4 Human-in-loop**
-
-* Student feedback UI
-* Reviewer panel
-* Real-time updates
-
-### **6.5 Logging & Tracing**
-
-* System metrics
-* Quality metrics
-* Memory updates
-* Agent trace
+**10-Node Sequential Pipeline:**
+1. OCR (PYQs)
+2. OCR (Syllabus)
+3. Normalization
+4. Variant Detection
+5. Syllabus Mapping
+6. Trend Analysis
+7. Question Generation
+8. Voting & Selection
+9. Sample Paper Generation
+10. Report Generation
 
 ---
 
-# **7. STORAGE + GENERALIZATION DESIGN**
+## 📦 Installation
 
-### **7.1 Question Storage Format**
+### Prerequisites
 
-Store generalized formats:
+- Python 3.11+
+- PostgreSQL 14+
+- Google API Key (for Gemini)
 
-* Replace numbers with variables
-* Store multiple past variants under one abstract template
-* Tag difficulty, marks, topic, pattern type
+### Setup
 
-### **7.2 Syllabus Trend Prediction**
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/Kripaa.git
+cd Kripaa
 
-* Trend of papers
-* Trend of question types
-* Trend of syllabus coverage
-* Identify “high probability untouched topics”
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
----
+# Install dependencies
+pip install -r requirements.txt
 
-# **8. PIPELINE CHECKLIST (PRACTICAL IMPLEMENTATION)**
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your GOOGLE_API_KEY and DATABASE_URL
 
-### **8.1 Stack**
-
-* LangGraph / Deep-Agent
-* SuperMemory / Mem0
-* Qwen 4B or similar for extraction
-* OCR (PaddleOCR / Tesseract)
-
-### **8.2 Context Management**
-
-* Cluster similar questions
-* Build compact memories with maximum context
-* Unify related syllabus topics
-* Generalize numerical questions
-
-### **8.3 Output Module**
-
-* PDF export (Ankaa-style)
-* Strict template
-* No randomness in formatting
-
-### **8.4 Final Evaluation**
-
-* Run all metrics
-* Record everything
-* Add to submission report
+# Initialize database
+python -m utils.db_setup
+```
 
 ---
 
-# **9. FINAL DELIVERY**
+## 🚀 Quick Start
 
-* **Sample Paper** (clean, justified, structured)
-* **Reasoning Report** (detailed, trends, tips, why certain questions were excluded)
-* **Submission PDF/PPT**
-* **Post Project Plans**: share online, collaborate, communicate, update.
+### 1. Add Your Data
+
+Place your files in the `static/` directory:
+
+```
+static/
+├── pyqs/          # Past question paper PDFs
+│   ├── 2023.pdf
+│   ├── 2022.pdf
+│   └── ...
+└── syllabus/      # Syllabus PDF
+    └── syllabus.pdf
+```
+
+### 2. Run the Pipeline
+
+**Single Command:**
+
+```bash
+python -m src.cli --target-year 2025
+```
+
+**What Happens:**
+- ✅ Extracts all PYQs and syllabus via OCR
+- ✅ Detects variants and maps to topics  
+- ✅ Analyzes trends with cyclicity detection
+- ✅ Generates 81 question candidates (multi-temp)
+- ✅ Selects optimal 27 questions (section-aware voting)
+- ✅ Creates professional PDF exam paper
+- ✅ Generates comprehensive analytical report
+
+### 3. View Outputs
+
+Find your generated files in the `output/` directory:
+
+```
+output/
+├── generated_paper.pdf           # Final exam paper
+├── generated_paper.md            # Markdown version
+├── comprehensive_report.pdf      # Analytical report
+└── comprehensive_report.md       # Report in markdown
+```
+
+![Output Files](docs/images/output_preview.png)
 
 ---
 
-## **Core Idea (in my own words):**
+## 🔄 Pipeline Workflow
 
-You’re building a memory-based, multi-agent exam prediction system that actually behaves like a careful panel of teachers instead of a single overconfident chatbot.
+### Data Ingestion
+```python
+# OCR extracts questions from PDFs
+QuestionRaw → QuestionNormalized → VariantGroup
+```
 
-It’s ambitious, but if you implement even 60% of the above, judges will lose their minds.
+### Trend Analysis
+```python
+# Enhanced trend analysis with cyclicity
+TrendSnapshot {
+    section_distribution: {"A": 0.3, "B": 0.5, "C": 0.2},
+    cyclicity: {
+        pattern_type: "regular",
+        cycle_length: 2,
+        next_expected_year: 2025
+    }
+}
+```
 
-If you want, I can convert this into:
+### Multi-Temp Generation
+```python
+# Generate candidates with varying creativity
+Candidates (81 total):
+  - Temperature 0.2: 27 conservative
+  - Temperature 0.5: 27 balanced
+  - Temperature 0.9: 27 creative
+```
 
-* a **system architecture diagram**,
-* a **module-level design**,
-* a **LangGraph graph**, or
-* a **GitHub-ready README**.
+### Section-Aware Selection
+```python
+# Independent voting per section
+Section A: 30 candidates → 10 selected (2 marks each)
+Section B: 36 candidates → 12 selected (5 marks each)
+Section C: 15 candidates → 5 selected (10 marks each)
+Total: 130 marks
+```
 
 ---
 
-# **10. CURRENT PROGRESS**
+## 💡 Core Innovations
 
-### **Implemented Data Models & Agents Structure**
+### 1. **Section-Aware Trend Analysis**
+Unlike traditional systems, Kripaa tracks **which topics appear in which sections**, enabling:
+- Better topic-to-section alignment
+- Accurate difficulty prediction
+- Historical pattern recognition
 
-The following data models have been implemented and organized by their respective agents:
+### 2. **Cyclicity Detection**
+Recognizes temporal patterns:
+- **Regular**: "Topic X appears every 2 years"
+- **Odd/Even**: "Topic Y only in odd years"
+- **Mostly Regular**: "Usually every N years (80% confidence)"
 
-*   **OCR Agent**
-    *   `QuestionRaw`: Raw extracted question data.
+### 3. **Multi-Temperature Ensemble**
+Generates diverse candidate pools:
+- **Conservative** (temp=0.2): Reliable, PYQ-style questions
+- **Creative** (temp=0.9): Novel applications
+- **Balanced** (temp=0.5): Mix of both
 
-*   **Normalization & Canonicalization Agent**
-    *   `QuestionNormalized`: Standardized question format.
-    *   `QuestionParameter`: Parameters extracted from questions.
-    *   `CompositeQuestion`: Handling complex/multi-part questions.
+### 4. **Enhanced Exclusion Tracking**
+Every excluded candidate includes:
+```json
+{
+    "exclusion_category": "Low Relevance",
+    "exclusion_reason": "Cosine similarity 0.42 < 0.50",
+    "origin": "generated_novel",
+    "llm_temperature": 0.9
+}
+```
 
-*   **Syllabus Mapping & Topic Tagging Agent**
-    *   `SyllabusNode`: Hierarchical syllabus structure.
-    *   `QuestionTopicMap`: Mapping questions to topics.
-    *   `TopicStatus`: Status tracking for topics.
+![Innovation Showcase](docs/images/innovations.png)
 
-*   **Memory Management Agent**
-    *   `MemoryArtifact`: Stored memory items.
-    *   `MemoryType`: Classification of memories.
-    *   `VECTOR_DIM`: Configuration for vector embeddings.
+---
 
-*   **Template Generator Agent**
-    *   `VariantGroup`: Grouping similar question variants.
+## 📊 Results & Metrics
 
-*   **Voting & Ranking Agent**
-    *   `EnsembleVote`: Voting mechanism results.
-    *   `VoteDecision`: Final decisions from voting.
+### Question Generation Stats
 
-*   **Pattern & Trend Analysis Agent**
-    *   `TrendSnapshot`: Captured trend data.
-    *   `PredictionCandidate`: Potential questions for prediction.
-    *   `CandidateStatus`: Status of prediction candidates.
+| Metric | Value |
+|--------|-------|
+| Total Candidates Generated | 81 |
+| Historical Questions Reused | 38 (47%) |
+| Generated Variants | 25 (31%) |
+| Novel Questions | 18 (22%) |
+| Final Selected | 27 (33% selection rate) |
 
-*   **Sample Paper Generator Agent**
-    *   `SamplePaper`: The generated paper structure.
-    *   `SamplePaperItem`: Individual items within the paper.
+### Section Distribution
 
-*   **Reasoning + Report Generation Agent**
-    *   `ProvenanceLink`: Tracing the origin of decisions.
+| Section | Type | Marks | Questions | Candidates | Selection Rate |
+|---------|------|-------|-----------|------------|----------------|
+| A | Short | 2 | 10 | 30 | 33% |
+| B | Medium | 5 | 12 | 36 | 33% |
+| C | Long | 10 | 5 | 15 | 33% |
+| **Total** | - | **130** | **27** | **81** | **33%** |
 
-*   **Evaluation Agent**
-    *   `ModelRun`: Tracking model execution runs.
-    *   `EvaluationResult`: Results from evaluation metrics.
-    *   `Exclusion`: Records of excluded items.
-    *   `ExclusionReason`: Reasons for exclusion.
-    *   `ModelPhase`: Phases of the model pipeline.
+![Results Dashboard](docs/images/results_dashboard.png)
+
+### Trend Analysis Insights
+
+Example output from enhanced trends:
+
+```
+Topic: Process Scheduling Algorithms
+  Section Distribution: A=0%, B=29%, C=71%
+  Section Preference: C
+  Avg Difficulty: 3.93
+  Cyclicity Pattern: mostly_regular
+    - Usually every 1 year
+    - Confidence: 71%
+```
+
+---
+
+## 📁 Project Structure
+
+```
+Kripaa/
+├── src/
+│   ├── agent.py                 # Main LangGraph orchestration
+│   ├── cli.py                   # Command-line interface
+│   ├── schemas.py               # State definitions
+│   ├── nodes/                   # LangGraph pipeline nodes
+│   │   ├── ocr_nodes.py
+│   │   ├── normalization_node.py
+│   │   ├── trend_analysis_node.py
+│   │   └── ...
+│   ├── sub_agents/              # Specialized agents
+│   │   ├── ocr_agent/
+│   │   ├── trend_analysis_agent/
+│   │   ├── question_generator_agent/
+│   │   ├── voting_ranking_agent/
+│   │   └── ...
+│   └── data_models/
+│       └── models.py            # SQLModel definitions
+├── utils/
+│   ├── db.py                    # Database utilities
+│   ├── llm.py                   # LLM wrappers
+│   ├── logger.py                # Logging setup
+│   └── simple_pdf_generator.py  # PDF utilities
+├── static/                      # Input files
+│   ├── pyqs/                    # Past papers
+│   └── syllabus/                # Syllabus PDFs
+├── output/                      # Generated outputs
+├── tests/                       # Verification scripts
+└── README.md
+```
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
+
+### Development Setup
+
+```bash
+# Install dev dependencies
+pip install -r requirements-dev.txt
+
+# Run tests
+pytest tests/
+
+# Format code
+black src/
+flake8 src/
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Google Gemini** for powerful LLM capabilities
+- **LangGraph** for workflow orchestration
+- **PostgreSQL** for robust data storage
+- **PyMuPDF** for PDF processing
+- **Ashish Chanchlani** for the iconic "ta dhin dhin ta" inspiration 😄
+
+> 🎭 Fun Facts
+
+**Why "Kripaa"?**
+
+The name comes from the Hindi word कृपया (Kripaa), meaning "please" or "kindly". It perfectly captures every student's humble request: *"Kripaa karke ache questions aa jaaye!"* (Please let good questions appear in the exam!)
+
+
+---
+
+## 📞 Contact
+
+**Project Maintainer**: Pratyush Kumar Bisoyi    
+**Email**: pratyushliku29@gmail.com  
+**GitHub**: [@23f2002284](https://github.com/23f2002284)
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you find it helpful!**
+
+Made with ❤️ for students and educators
+
+</div>

@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.db import get_session
 from src.data_models.models import TrendSnapshot
 from src.sub_agents.report_writer_agent.report_writer import generate_comprehensive_report
-from utils.pdf_generator import markdown_to_pdf
+from utils.simple_pdf_generator import generate_simple_exam_pdf
 
 async def verify_report():
     print("--- Verifying Report Generation ---")
@@ -22,14 +22,14 @@ async def verify_report():
     
     if snapshot_id:
         print(f"Generating report for Snapshot: {snapshot_id}")
-        await generate_comprehensive_report(snapshot_id)
+        await generate_comprehensive_report(snapshot_id, output_dir="output")
         print("Report generated.")
         
         # Also convert the existing paper markdown to PDF
         try:
-            with open("generated_paper.md", "r", encoding="utf-8") as f:
+            with open("output/generated_paper.md", "r", encoding="utf-8") as f:
                 paper_md = f.read()
-            markdown_to_pdf(paper_md, "generated_paper.pdf", title="Predicted Exam 2025")
+            generate_simple_exam_pdf("output/generated_paper.md", "output/generated_paper.pdf")
             print("Paper PDF generated.")
         except Exception as e:
             print(f"Could not generate paper PDF: {e}")
