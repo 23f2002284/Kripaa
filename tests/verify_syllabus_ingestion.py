@@ -61,5 +61,11 @@ async def verify_syllabus_ingestion(pdf_path: str):
         break
 
 if __name__ == "__main__":
-    pdf_path = os.path.join("static", "syllabus", "CSPC3002.docx.pdf")
+    import glob
+    syllabus_dir = os.path.join("static", "syllabus")
+    pdf_files = glob.glob(os.path.join(syllabus_dir, "*.pdf"))
+    if not pdf_files:
+        print(f"No PDF files found in {syllabus_dir}. Exiting.")
+    pdf_path = pdf_files[0]
+    print(f"Using PDF: {pdf_path}")
     asyncio.run(verify_syllabus_ingestion(pdf_path))

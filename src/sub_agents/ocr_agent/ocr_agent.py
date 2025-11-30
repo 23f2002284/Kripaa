@@ -22,7 +22,7 @@ async def extract_questions_from_pdf(pdf_path: str) -> List[QuestionRaw]:
     """
     Extracts questions from a PDF using a Hybrid Strategy:
     1. Try fast Markdown extraction (pymupdf4llm).
-    2. If question count is low (< 26), fallback to Gemini Multimodal (Native PDF).
+    2. If question count is low (< threshold), fallback to Gemini Multimodal (Native PDF).
     """
     if not os.path.exists(pdf_path):
         raise FileNotFoundError(f"PDF file not found: {pdf_path}")
@@ -32,8 +32,7 @@ async def extract_questions_from_pdf(pdf_path: str) -> List[QuestionRaw]:
     questions = await _extract_via_markdown(pdf_path)
     
     # 2. Check Quality / Quantity
-    # User suggested threshold of 26.
-    if len(questions) < 26:
+    if len(questions) < settings.ocr_fallback_threshold:
         logger.warning(f"Low question count ({len(questions)}) detected. Attempting Multimodal Fallback...")
         try:
             multimodal_questions = await _extract_via_multimodal(pdf_path)
@@ -174,7 +173,7 @@ async def populate_db(extracted_questions: List[QuestionRaw]):
 
 async def extract_syllabus_from_pdf(pdf_path: str) -> List['ExtractedTopic']:
     """
-    Extracts syllabus topics from a PDF using pymupdf4llm and an LLM.
+    Extracts syllabus topics from a PDF using LLM multimodal extraction (Google AI File API).
     Returns a list of ExtractedTopic Pydantic objects.
     """
     from src.sub_agents.ocr_agent.prompts import syllabus_system_prompt, syllabus_user_prompt
@@ -184,21 +183,39 @@ async def extract_syllabus_from_pdf(pdf_path: str) -> List['ExtractedTopic']:
     if not os.path.exists(pdf_path):
         raise FileNotFoundError(f"PDF file not found: {pdf_path}")
 
-    # 1. Extract text/markdown using pymupdf4llm
+    # 1. Upload PDF to Google AI File API
     try:
-        md_text = pymupdf4llm.to_markdown(pdf_path)
-        logger.info(f"Extracted text/markdown from Syllabus PDF: {pdf_path}")
+        api_key = settings.google_api_key.get_secret_value() if settings.google_api_key else None
+        if not api_key:
+            raise ValueError("GOOGLE_API_KEY not found in settings")
+             
+        genai.configure(api_key=api_key)
+        logger.info(f"Uploading Syllabus PDF to Google AI File API: {pdf_path}")
+        uploaded_file = genai.upload_file(pdf_path)
+        logger.info(f"Syllabus file uploaded successfully: {uploaded_file.uri}")
     except Exception as e:
-        logger.error(f"Error extracting text with pymupdf4llm: {e}")
+        logger.error(f"Error uploading syllabus PDF file: {e}")
         raise
 
-    # 2. Construct Prompt for LLM
-    prompt_template = ChatPromptTemplate.from_messages([
-        ("system", syllabus_system_prompt),
-        ("human", syllabus_user_prompt)
-    ])
+    # 2. Construct multimodal message with PDF
+    message = HumanMessage(
+        content=[
+            {
+                "type": "text",
+                "text": syllabus_user_prompt
+            },
+            {
+                "type": "media",
+                "file_uri": uploaded_file.uri,
+                "mime_type": "application/pdf"
+            }
+        ]
+    )
     
-    messages = prompt_template.format_messages(md_text=md_text)
+    messages = [
+        ("system", syllabus_system_prompt),
+        message
+    ]
 
     # 3. Call LLM with structured output
     try:
@@ -212,7 +229,7 @@ async def extract_syllabus_from_pdf(pdf_path: str) -> List['ExtractedTopic']:
             llm=llm,
             output_class=SyllabusExtractionResult,
             messages=messages,
-            context_desc=f"Syllabus Extraction: {os.path.basename(pdf_path)}"
+            context_desc=f"Syllabus Extraction (Multimodal): {os.path.basename(pdf_path)}"
         )
         
         if not extraction_result:

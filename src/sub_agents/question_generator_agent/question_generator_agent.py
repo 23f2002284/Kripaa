@@ -21,6 +21,7 @@ from src.sub_agents.question_generator_agent.prompts import (
     MEDIUM_ANSWER_VARIANT_PROMPT, MEDIUM_ANSWER_NOVEL_PROMPT,
     LONG_ANSWER_VARIANT_PROMPT, LONG_ANSWER_NOVEL_PROMPT
 )
+from src.sub_agents.question_generator_agent.deduplication import deduplicate_candidates
 
 logger = get_logger()
 
@@ -275,7 +276,17 @@ async def generate_candidates_multi_section(snapshot_id: UUID, target_year: int)
                     stats=stats,
                     session=session
                 )
-                section_results[section_name] = candidates
+                
+                # Deduplicate candidates against already selected questions
+                # This ensures we don't generate questions that are too similar to what we already have
+                deduplicated_candidates = await deduplicate_candidates(
+                    candidates=candidates,
+                    snapshot_id=snapshot_id,
+                    session=session,
+                    similarity_threshold=0.92
+                )
+                
+                section_results[section_name] = deduplicated_candidates
             
             await session.commit()
             

@@ -1,156 +1,33 @@
 # Kripaa - Comprehensive Exam Generation Report
 
-**Snapshot ID:** 05e76a8a-2fad-4ae1-8c76-7a3b9e070b54
-**Generated:** 2025-11-24 12:44
+**Snapshot ID:** 1baad9e6-9263-444a-8625-1d4f4045387f
+**Generated:** 2025-11-26 05:38
 
 ---
 
 ## Executive Summary
 
-- **Total Raw Questions Processed:** 145
-- **Unique Concept Groups (Variants):** 115
-- **Compression Ratio:** 1.26:1
-- **Total Candidates Generated:** 162
+- **Total Raw Questions Processed:** 78
+- **Unique Concept Groups (Variants):** 41
+- **Compression Ratio:** 1.90:1
+- **Total Candidates Generated:** 81
 - **Final Questions Selected:** 27
-- **Final Paper Marks:** 115
+- **Final Paper Marks:** 120
 
 ## Trend Analysis Results
 
 **Year Range:** 2015-2024
-**Emerging Topics:** 0
-**Declining Topics:** 0
+**Emerging Topics:** 4
+**Declining Topics:** 1
 
 ### Topic Analysis (Enhanced with Section-Awareness & Cyclicity)
 
-#### View on ethics by Aristotle
+#### Aim of maintenance engineering
 
-- **Module:** MODULE-I
+- **Module:** Module-II
 - **Status:** stable
-- **Gap Score:** 5.0
-- **Last Asked:** 2019
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** regular
-  - Appears every 3 years
-  - Next expected: 2022
-  - Confidence: 70%
-
-#### Basic terms
-
-- **Module:** MODULE-I
-- **Status:** stable
-- **Gap Score:** 6.0
-- **Last Asked:** 2018
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** regular
-  - Appears every 2 years
-  - Next expected: 2020
-  - Confidence: 70%
-
-#### Ethical Theories
-
-- **Module:** MODULE-II
-- **Status:** stable
-- **Gap Score:** 5.0
-- **Last Asked:** 2019
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** mostly_regular
-  - Usually every 2 years
-  - Confidence: 50%
-
-#### Types of inquiry
-
-- **Module:** MODULE-III
-- **Status:** stable
-- **Gap Score:** 5.0
-- **Last Asked:** 2019
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** mostly_regular
-  - Usually every 2 years
-  - Confidence: 50%
-
-#### Governing factors of an individual's value system
-
-- **Module:** MODULE-I
-- **Status:** stable
-- **Gap Score:** 6.0
-- **Last Asked:** 2018
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** regular
-  - Appears every 2 years
-  - Next expected: 2020
-  - Confidence: 70%
-
-#### Engineering as social experimentation
-
-- **Module:** MODULE-III
-- **Status:** stable
-- **Gap Score:** 5.0
-- **Last Asked:** 2019
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** mostly_regular
-  - Usually every 2 years
-  - Confidence: 50%
-
-#### Purpose and concept of Engineering Ethics
-
-- **Module:** MODULE-III
-- **Status:** stable
-- **Gap Score:** 5.0
-- **Last Asked:** 2019
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** mostly_regular
-  - Usually every 2 years
-  - Confidence: 50%
-
-#### Ethical terms
-
-- **Module:** MODULE-II
-- **Status:** stable
-- **Gap Score:** 5.0
-- **Last Asked:** 2019
-
-- **Section Distribution:** A=0%, B=100%, C=0%
-- **Section Preference:** B
-- **Average Difficulty:** 3.0
-
-- **Cyclicity Pattern:** mostly_regular
-  - Usually every 2 years
-  - Confidence: 50%
-
-#### Causes of an accident and identification of the preventive measures to be taken
-
-- **Module:** MODULE-III
-- **Status:** stable
-- **Gap Score:** 6.0
-- **Last Asked:** 2018
+- **Gap Score:** 1.0
+- **Last Asked:** 2023
 
 - **Section Distribution:** A=0%, B=100%, C=0%
 - **Section Preference:** B
@@ -159,49 +36,164 @@
 - **Cyclicity Pattern:** insufficient_data
   - Confidence: 0%
 
-#### Personal and professional ethics
+#### Common troubles of electric motor
 
-- **Module:** MODULE-I
+- **Module:** Module-V
 - **Status:** stable
-- **Gap Score:** 6.0
-- **Last Asked:** 2018
+- **Gap Score:** 0
+- **Last Asked:** 2024
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** insufficient_data
+  - Confidence: 0%
+
+#### Sequence of fault-finding activities
+
+- **Module:** Module-IV
+- **Status:** stable
+- **Gap Score:** 1.0
+- **Last Asked:** 2023
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** insufficient_data
+  - Confidence: 0%
+
+#### Relation of maintenance cost with replacement economy
+
+- **Module:** Module-II
+- **Status:** stable
+- **Gap Score:** 0
+- **Last Asked:** 2024
 
 - **Section Distribution:** A=0%, B=100%, C=0%
 - **Section Preference:** B
 - **Average Difficulty:** 3.0
 
 - **Cyclicity Pattern:** regular
-  - Appears every 2 years
-  - Next expected: 2020
+  - Appears every 1 years
+  - Next expected: 2025
+  - Confidence: 70%
+
+#### Service life of equipment
+
+- **Module:** Module-II
+- **Status:** declining
+- **Gap Score:** 0
+- **Last Asked:** 2024
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** regular
+  - Appears every 1 years
+  - Next expected: 2025
+  - Confidence: 70%
+
+#### Decision tree concept
+
+- **Module:** Module-IV
+- **Status:** stable
+- **Gap Score:** 2.0
+- **Last Asked:** 2022
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** insufficient_data
+  - Confidence: 0%
+
+#### Pressure vessels
+
+- **Module:** Module-I
+- **Status:** stable
+- **Gap Score:** 2.0
+- **Last Asked:** 2022
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** insufficient_data
+  - Confidence: 0%
+
+#### Wear - causes
+
+- **Module:** Module-III
+- **Status:** stable
+- **Gap Score:** 2.0
+- **Last Asked:** 2022
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** insufficient_data
+  - Confidence: 0%
+
+#### Steps of preventive maintenance
+
+- **Module:** Module-V
+- **Status:** stable
+- **Gap Score:** 2.0
+- **Last Asked:** 2022
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** insufficient_data
+  - Confidence: 0%
+
+#### Steps/procedure for periodic and preventive maintenance of machine tools
+
+- **Module:** Module-V
+- **Status:** emerging
+- **Gap Score:** 1.0
+- **Last Asked:** 2023
+
+- **Section Distribution:** A=0%, B=100%, C=0%
+- **Section Preference:** B
+- **Average Difficulty:** 3.0
+
+- **Cyclicity Pattern:** regular
+  - Appears every 1 years
+  - Next expected: 2024
   - Confidence: 70%
 
 ### LLM Qualitative Insight (from Trend Analysis)
 
-As an expert educational data analyst, here's an executive summary and strategic recommendations based on the provided exam trend data:
-
----
+Here's an analysis of the exam pattern shifts and recommendations:
 
 **1. Executive Summary**
 
-The historical exam trends reveal a stable core curriculum with no significant emerging or declining topics. The most prominent pattern is the statistical recurrence of several "High Gap Topics" that are overdue for inclusion in upcoming exams. These include "Issues in engineering ethics" (Gap: 8.0), "Governing factors of an individual's value system" (Gap: 6.0), "Causes of an accident and identification of the preventive measures to be taken" (Gap: 6.0), "Basic terms" (Gap: 6.0), and "Personal and professional ethics" (Gap: 6.0). While detailed taxonomy shift data is unavailable, the nature of these high-gap topics suggests a continued emphasis on conceptual understanding, ethical reasoning, and practical application within a professional context. Students should prioritize these areas for focused preparation.
+Analysis of recent exam trends reveals a significant shift towards practical and analytical application in Computer Science, particularly within maintenance and equipment management. Emerging topics emphasize preventive and periodic maintenance procedures, decision-making for electrical equipment faults, and the strategic importance of the repair cycle. Conversely, purely descriptive topics like 'service life of equipment' are declining. Several foundational concepts, including 'wear causes,' 'primary functions of maintenance department,' and 'fault tracing,' are overdue for recurrence, indicating their continued relevance. This pattern suggests a move away from rote memorization towards a deeper understanding of operational processes and problem-solving.
 
-**2. Practical/Analytical vs. Theoretical Shift**
+**2. Practical/Analytical vs. Theoretical**
 
-Without the detailed taxonomy shift statistics, it's challenging to definitively state if the exam is becoming more practical/analytical or staying theoretical. However, the "High Gap Topics" largely revolve around ethical considerations, value systems, and accident prevention. These areas typically require analytical reasoning, scenario-based problem-solving, and the application of theoretical concepts to real-world professional dilemmas, rather than purely theoretical recall or highly technical practical skills (e.g., coding). This suggests a continued emphasis on applied theory and analytical thinking within a broader professional and ethical framework.
+The exam is definitively becoming more **practical and analytical**. The rise of topics like "Draw decision tree for problems in electrical equipment," "Steps/procedure for periodic and preventive maintenance," and "Importance of repair cycle concept" clearly indicates a shift towards applying knowledge, problem-solving, and understanding operational processes rather than just theoretical recall.
 
-**3. Critical Modules or Topics**
+**3. Specific Modules or Topics Becoming Critical**
 
-The following topics are becoming critical due to their high recurrence gap:
-
-*   Issues in engineering ethics
-*   Governing factors of an individual's value system
-*   Causes of an accident and identification of the preventive measures to be taken
-*   Basic terms
-*   Personal and professional ethics
+Critical modules and topics include:
+*   **Maintenance Management & Strategy:** Emphasizing preventive, periodic, and predictive maintenance, understanding the repair cycle, and the primary functions of a maintenance department.
+*   **Fault Diagnosis & Troubleshooting:** Specifically, the application of decision trees for electrical equipment and the concepts/importance of fault tracing.
+*   **Equipment-Specific Knowledge:** Such as pressure vessels and general electrical equipment maintenance.
 
 **4. Strategic Recommendation for Students**
 
-Students should strategically prioritize a thorough and in-depth review of all "High Gap Topics." Given their historical absence, these topics are highly probable for the next exam. Beyond memorization, focus on understanding the underlying concepts, their practical implications, and be prepared to analyze scenarios, discuss ethical dilemmas, and propose solutions related to engineering ethics, personal/professional values, and accident prevention. A strong grasp of "Basic terms" is also essential. Since no topics are declining, maintaining a solid understanding of the entire curriculum remains important, but the high-gap topics warrant special attention.
+Students should shift their preparation focus from purely theoretical recall to **application and problem-solving**.
+1.  **Practice Application:** Concentrate on understanding *how* to implement maintenance procedures, *how* to draw decision trees for fault diagnosis, and *why* certain maintenance strategies are preferred.
+2.  **Deep Dive into Emerging & High Gap Topics:** Prioritize studying preventive/periodic maintenance, repair cycle concepts, and thoroughly review high-gap topics like 'wear causes,' 'primary functions of maintenance department,' and 'fault tracing.'
+3.  **Develop Analytical Skills:** Be prepared to analyze scenarios, evaluate maintenance strategies, and propose solutions rather than just defining terms.
+4.  **Focus on Procedures and Diagrams:** Expect questions requiring step-by-step procedures or graphical representations like decision trees.
 
 ## Question Generation Strategy
 
@@ -209,45 +201,45 @@ Students should strategically prioritize a thorough and in-depth review of all "
 
 | Origin Type | Count | Description |
 |-------------|-------|-------------|
-| Historical | 59 | Reused from past papers |
-| Generated Variant | 61 | LLM-rewritten variations |
-| Generated Novel | 42 | New LLM-created questions |
+| Historical | 34 | Reused from past papers |
+| Generated Variant | 21 | LLM-rewritten variations |
+| Generated Novel | 26 | New LLM-created questions |
 
 ### Section Distribution
 
 | Section | Candidates | Target Selection |
 |---------|------------|------------------|
-| A (Short) | 60 | 10 questions |
-| B (Medium) | 72 | 12 questions |
-| C (Long) | 30 | 5 questions |
+| A (Short) | 30 | 10 questions |
+| B (Medium) | 36 | 12 questions |
+| C (Long) | 15 | 5 questions |
 
 ### Temperature Distribution (Multi-Temperature Ensemble)
 
 | Temperature | Count | Purpose |
 |-------------|-------|---------|
-| 0.2 | 51 | Conservative |
-| 0.5 | 75 | Balanced |
-| 0.9 | 36 | Creative |
+| 0.2 | 26 | Conservative |
+| 0.5 | 35 | Balanced |
+| 0.9 | 20 | Creative |
 
 ## Voting & Selection Results
 
-**Selected:** 27 / 162
-**Excluded:** 135
-**Selection Rate:** 16.7%
+**Selected:** 27 / 81
+**Excluded:** 54
+**Selection Rate:** 33.3%
 
 ### Exclusion Breakdown
 
 | Category | Count | Percentage |
 |----------|-------|------------|
-| Rank Cutoff | 63 | 46.7% |
-| Low Relevance | 49 | 36.3% |
-| Section Mismatch | 15 | 11.1% |
-| Topic Cap | 8 | 5.9% |
+| Rank Cutoff | 32 | 59.3% |
+| Section Mismatch | 17 | 31.5% |
+| Low Relevance | 4 | 7.4% |
+| Topic Cap | 1 | 1.9% |
 
 ## Final Sample Paper
 
-**Paper ID:** 5c706d7b-dfe1-4c11-80f2-0f20512032f1
-**Total Marks:** 115
+**Paper ID:** e87a1e6c-b19f-426f-942b-c32d6efb5fb5
+**Total Marks:** 120
 **Total Questions:** 27
 
 ### Paper Structure
@@ -255,9 +247,9 @@ Students should strategically prioritize a thorough and in-depth review of all "
 | Section | Questions | Marks Each | Total Marks |
 |---------|-----------|------------|-------------|
 | A (Short) | 10 | 2 | 20 |
-| B (Medium) | 15 | 5 | 75 |
-| C (Long) | 2 | 10 | 20 |
-| **Total** | **27** | - | **115** |
+| B (Medium) | 14 | 5 | 70 |
+| C (Long) | 3 | 10 | 30 |
+| **Total** | **27** | - | **120** |
 
 ## Summary
 

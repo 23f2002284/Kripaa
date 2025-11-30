@@ -43,10 +43,12 @@ ORIGINAL QUESTION:
 {original_question}
 
 REQUIREMENTS:
-- Length: Problem-solving or detailed explanation question
+- Length: Appropriate length question just like questions in pyqs
 - Difficulty: MEDIUM (Level 3)
 - Bloom's Taxonomy: Apply or Analyze
 - Focus: Procedures, comparisons, applications, algorithms
+- Structure: Can be a single detailed question or split into parts (e.g., a) and b))
+- Style: Academic but direct, typical of engineering semester exams
 - Maintain the core concept but vary the scenario or parameters
 - Can include simple numerical values if appropriate
 
@@ -60,12 +62,13 @@ TOPIC: {topic_name}
 MODULE: {module_name}
 
 REQUIREMENTS:
-- Length: Requires explanation or problem-solving (5-8 sentences)
+- Length: Appropriate length question just like questions in pyqs
 - Difficulty: MEDIUM (Level 3)
 - Bloom's Taxonomy: Apply or Analyze
 - Question Types: "Explain...", "Describe the process...", "Compare and contrast...", "Solve...", "Analyze..."
 - Focus: Application of concepts, procedures, analysis
-- Can include scenarios, examples, or simple numerical problems
+- Structure: Can be split into sub-parts
+- Avoid: Overly complex case studies unless typical for the topic. Keep it solvable within exam time limits.
 
 OUTPUT: Just the question text (no explanations).
 """)

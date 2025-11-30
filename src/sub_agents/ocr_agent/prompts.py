@@ -48,15 +48,47 @@ Return the output strictly as a JSON array of objects.
 """
 
 syllabus_user_prompt = """
-Extract the syllabus topics from the following content.
-The content is in Markdown format.
+Extract ALL topics, units, modules, and chapters from the following syllabus PDF document.
 
-For each topic/unit, extract:
-- name: The title of the unit or topic.
-- description: Brief summary. Do NOT list sub-topics here; extract them as separate child nodes with a deeper level.
-- parent_name: The name of the parent unit/topic if it's a sub-topic. If it's a top-level unit, leave null.
-- level: The hierarchy level (1 for Unit/Module, 2 for Chapter/Sub-unit, 3 for Topic/Sub-point).
-- estimated_hours: Estimated teaching hours if mentioned.
+### CRITICAL INSTRUCTIONS:
+1.  **EXTRACT EVERY SINGLE ITEM:** Do not skip any unit, module, chapter, section, sub-topic, or concept. Do not summarize or merge items.
+
+2.  **IDENTIFY HIERARCHY FROM FORMATTING:**
+    - **Level 1 (Modules/Units):** Usually titled "MODULE I", "UNIT 1", "PART A" - often in bold/large font or numbered with Roman numerals (I, II, III) or numbers (1, 2, 3).
+    - **Level 2 (Main Topics/Sections):** The primary topics under a module - often bold or slightly indented. These are the main subject areas.
+    - **Level 3 (Sub-topics/Concepts):** Specific concepts, points, or details under a main topic - often bulleted, indented further, or in plain text.
+    
+3.  **HIERARCHY EXAMPLES:**
+    - "MODULE I" → Level 1 (parent_name: null)
+    - "Industrial Safety" (under MODULE I) → Level 2 (parent_name: "MODULE I")
+    - "Accidents" (under Industrial Safety) → Level 3 (parent_name: "Industrial Safety")
+    - "Causes" (under Industrial Safety) → Level 3 (parent_name: "Industrial Safety")
+    - "Types" (under Industrial Safety) → Level 3 (parent_name: "Industrial Safety")
+
+4.  **SPLIT COMPOUND TOPICS:** If you see "Mechanical/Electrical Hazards", create SEPARATE entries:
+    - "Mechanical Hazards" (Level 3, parent: relevant Level 2 topic)
+    - "Electrical Hazards" (Level 3, parent: relevant Level 2 topic)
+    
+5.  **SPLIT LISTS:** If you see "Accidents, causes, types, results and control", create SEPARATE entries for each:
+    - "Accidents"
+    - "Causes"  
+    - "Types"
+    - "Results"
+    - "Control measures"
+    Each should have the SAME parent (the main topic they belong to).
+
+6.  **VISUAL CUES FOR HIERARCHY:**
+    - **Bold/Larger text** = Usually Level 1 or Level 2
+    - **Indentation/Bullets** = Usually Level 3
+    - **Numbering** = Roman numerals (I, II) = Level 1; Letters (a, b) or numbers (1, 2) = Level 2 or 3
+    - **Context** = If a topic introduces subtopics, it's a parent (Level 1 or 2). The subtopics are children (Level 2 or 3).
+
+For each topic/unit/module/chapter, extract:
+- name: The exact title/name. Keep it concise - single concept per entry (e.g., "Accidents", not "Accidents, causes, types").
+- description: Brief summary if available. If not, use null.
+- parent_name: The name of the parent. Match the exact name you used for the parent entry.
+- level: Hierarchy level (1=Module, 2=Main Topic, 3=Sub-topic/Concept).
+- estimated_hours: Teaching hours if mentioned, otherwise null.
 
 Output Format:
 [

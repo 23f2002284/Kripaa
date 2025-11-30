@@ -10,34 +10,7 @@ from pgvector.sqlalchemy import Vector
 VECTOR_DIM = 768
 
 # Enums
-class MemoryType(str, Enum):
-    episodic = "episodic"
-    semantic = "semantic"
-    procedural = "procedural"
-    working = "working"
 
-class ExclusionReason(str, Enum):
-    redundant_variant = "redundant_variant"
-    overrepresented_topic = "overrepresented_topic"
-    low_confidence_trend = "low_confidence_trend"
-    outlier_difficulty = "outlier_difficulty"
-    syllabus_mismatch = "syllabus_mismatch"
-    insufficient_recurrence = "insufficient_recurrence"
-    composite_superseded = "composite_superseded"
-
-class ModelPhase(str, Enum):
-    ocr = "ocr"
-    normalization = "normalization"
-    mapping = "mapping"
-    trend = "trend"
-    prediction = "prediction"
-    ensemble = "ensemble"
-    report = "report"
-    evaluation = "evaluation"
-
-class VoteDecision(str, Enum):
-    include = "include"
-    exclude = "exclude"
 
 class CandidateStatus(str, Enum):
     pending = "pending"
@@ -173,23 +146,7 @@ class TrendSnapshot(SQLModel, table=True):
     
     prediction_candidates: List["PredictionCandidate"] = Relationship(back_populates="trend_snapshot")
 
-class ModelRun(SQLModel, table=True):
-    __tablename__ = "model_runs"
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    phase: ModelPhase
-    model_name: str
-    model_version: Optional[str] = None
-    provider: Optional[str] = None
-    temperature: Optional[float] = None
-    seed: Optional[int] = None
-    input_ref: Optional[UUID] = None
-    output_ref: Optional[UUID] = None
-    parameters_json: Dict[str, Any] = Field(default={}, sa_column=Column(JSONB))
-    started_at: datetime = Field(default_factory=datetime.utcnow)
-    finished_at: Optional[datetime] = None
-    duration_ms: Optional[int] = None
-    status: Optional[str] = None
-    notes: Optional[str] = None
+
 
 class PredictionCandidate(SQLModel, table=True):
     __tablename__ = "prediction_candidates"
@@ -198,36 +155,12 @@ class PredictionCandidate(SQLModel, table=True):
     trend_snapshot_id: Optional[UUID] = Field(default=None, foreign_key="trend_snapshots.id")
     scores_json: Dict[str, float] = Field(default={}, sa_column=Column(JSONB))
     status: CandidateStatus = Field(default=CandidateStatus.pending)
-    generated_by_run: Optional[UUID] = Field(default=None, foreign_key="model_runs.id")
     created_at: datetime = Field(default_factory=datetime.utcnow)
     
     normalized_question: QuestionNormalized = Relationship(back_populates="prediction_candidates")
     trend_snapshot: Optional[TrendSnapshot] = Relationship(back_populates="prediction_candidates")
-    ensemble_votes: List["EnsembleVote"] = Relationship(back_populates="candidate")
-    exclusions: List["Exclusion"] = Relationship(back_populates="candidate")
 
-class EnsembleVote(SQLModel, table=True):
-    __tablename__ = "ensemble_votes"
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    candidate_id: UUID = Field(foreign_key="prediction_candidates.id")
-    model_run_id: UUID = Field(foreign_key="model_runs.id")
-    decision: VoteDecision
-    confidence: Optional[float] = None
-    rationale: Optional[str] = None
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    
-    candidate: PredictionCandidate = Relationship(back_populates="ensemble_votes")
 
-class Exclusion(SQLModel, table=True):
-    __tablename__ = "exclusions"
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    candidate_id: UUID = Field(foreign_key="prediction_candidates.id")
-    reason: ExclusionReason
-    rationale: Optional[str] = None
-    model_run_id: Optional[UUID] = Field(default=None, foreign_key="model_runs.id")
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    
-    candidate: PredictionCandidate = Relationship(back_populates="exclusions")
 
 class SamplePaper(SQLModel, table=True):
     __tablename__ = "sample_papers"
@@ -236,7 +169,6 @@ class SamplePaper(SQLModel, table=True):
     generation_timestamp: datetime = Field(default_factory=datetime.utcnow)
     total_marks: Optional[int] = None
     coverage_metrics_json: Dict[str, float] = Field(default={}, sa_column=Column(JSONB))
-    built_by_run: Optional[UUID] = Field(default=None, foreign_key="model_runs.id")
     locked: bool = Field(default=True)
     
     items: List["SamplePaperItem"] = Relationship(back_populates="paper")
@@ -255,34 +187,4 @@ class SamplePaperItem(SQLModel, table=True):
     
     paper: SamplePaper = Relationship(back_populates="items")
 
-class MemoryArtifact(SQLModel, table=True):
-    __tablename__ = "memory_artifacts"
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    type: MemoryType
-    title: Optional[str] = None
-    content_json: Dict[str, Any] = Field(sa_column=Column(JSONB))
-    source_refs: List[UUID] = Field(default=[], sa_column=Column(ARRAY(TEXT)))
-    lineage: List[UUID] = Field(default=[], sa_column=Column(ARRAY(TEXT)))
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    hash: Optional[str] = None
-    version: int = Field(default=1)
-    
-    # Vector embedding
-    embedding: List[float] = Field(sa_column=Column(Vector(VECTOR_DIM)))
 
-class ProvenanceLink(SQLModel, table=True):
-    __tablename__ = "provenance_links"
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    source_id: UUID
-    target_id: UUID
-    relation: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-
-class EvaluationResult(SQLModel, table=True):
-    __tablename__ = "evaluation_results"
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
-    model_run_id: Optional[UUID] = Field(default=None, foreign_key="model_runs.id")
-    context_years: List[int] = Field(sa_column=Column(ARRAY(JSONB))) # or ARRAY(Integer)
-    target_year: Optional[int] = None
-    metrics_json: Dict[str, Any] = Field(sa_column=Column(JSONB))
-    created_at: datetime = Field(default_factory=datetime.utcnow)

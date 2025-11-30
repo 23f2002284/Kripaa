@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kripaa - Exam Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kripaa</h1>
+            <p>Automated Exam Generation System</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="file-input-group">
+                    <label>Previous Year Questions (PDFs)</label>
+                    <div class="drop-zone" id="pyq-drop">
+                        <input type="file" id="pyq-input" multiple accept=".pdf">
+                        <p>Drag & drop PYQs here or click to browse</p>
+                        <div class="file-list" id="pyq-list"></div>
+                    </div>
+                </div>
+
+                <div class="file-input-group">
+                    <label>Syllabus (PDF)</label>
+                    <div class="drop-zone" id="syllabus-drop">
+                        <input type="file" id="syllabus-input" accept=".pdf">
+                        <p>Drag & drop Syllabus here or click to browse</p>
+                        <div class="file-list" id="syllabus-list"></div>
+                    </div>
+                </div>
+
+                <button id="generate-btn" onclick="startProcess()">Generate Exam</button>
+            </div>
+
+            <div class="progress-section hidden" id="progress-section">
+                <div class="status-header">
+                    <span id="status-text">Initializing...</span>
+                    <span id="status-percent">0%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="log-container" id="log-container">
+                    <!-- Logs will appear here -->
+                </div>
+            </div>
+
+            <div class="result-section hidden" id="result-section">
+                <h2>Generation Complete!</h2>
+                <div class="download-links">
+                    <a href="#" id="paper-link" class="download-btn primary" target="_blank">
+                        Download Question Paper
+                    </a>
+                    <a href="#" id="report-link" class="download-btn secondary" target="_blank">
+                        Download Report
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const pyqInput = document.getElementById('pyq-input');
+        const syllabusInput = document.getElementById('syllabus-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const progressSection = document.getElementById('progress-section');
+        const resultSection = document.getElementById('result-section');
+        const progressBar = document.getElementById('progress-bar');
+        const statusText = document.getElementById('status-text');
+        const logContainer = document.getElementById('log-container');
+
+        // File List Display Logic (Simple)
+        pyqInput.addEventListener('change', () => updateFileList('pyq-list', pyqInput.files));
+        syllabusInput.addEventListener('change', () => updateFileList('syllabus-list', syllabusInput.files));
+
+        function updateFileList(elementId, files) {
+            const list = document.getElementById(elementId);
+            list.innerHTML = '';
+            Array.from(files).forEach(file => {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.textContent = file.name;
+                list.appendChild(item);
+            });
+        }
+
+        async function startProcess() {
+            if (pyqInput.files.length === 0 || syllabusInput.files.length === 0) {
+                alert("Please select both PYQs and Syllabus files.");
+                return;
+            }
+
+            // 1. Upload Files
+            generateBtn.disabled = true;
+            generateBtn.textContent = "Uploading...";
+            
+            const formData = new FormData();
+            Array.from(pyqInput.files).forEach(file => formData.append('pyqs', file));
+            formData.append('syllabus', syllabusInput.files[0]);
+
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Upload failed');
+
+                // 2. Start WebSocket
+                startGeneration();
+
+            } catch (error) {
+                alert("Error uploading files: " + error.message);
+                generateBtn.disabled = false;
+                generateBtn.textContent = "Generate Exam";
+            }
+        }
+
+        function startGeneration() {
+            generateBtn.classList.add('hidden');
+            progressSection.classList.remove('hidden');
+            
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const ws = new WebSocket(`${protocol}//${window.location.host}/api/ws`);
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                
+                if (data.error) {
+                    log("Error: " + data.error, "error");
+                    ws.close();
+                    return;
+                }
+
+                // Update Status
+                statusText.textContent = data.step;
+                log(data.step);
+
+                // Simple progress simulation based on known steps
+                const steps = [
+                    "Initializing", "OCR Processing (PYQs)", "OCR Processing (Syllabus)", 
+                    "Normalization", "Variant Detection", "Syllabus Mapping", 
+                    "Trend Analysis", "Question Generation", "Voting & Ranking", 
+                    "Paper Generation", "Report Generation", "Completed"
+                ];
+                const index = steps.indexOf(data.step);
+                if (index !== -1) {
+                    const percent = Math.round(((index + 1) / steps.length) * 100);
+                    progressBar.style.width = `${percent}%`;
+                    document.getElementById('status-percent').textContent = `${percent}%`;
+                }
+
+                if (data.completed) {
+                    resultSection.classList.remove('hidden');
+                    if (data.output) {
+                        document.getElementById('paper-link').href = data.output.paper;
+                        document.getElementById('report-link').href = data.output.report;
+                    }
+                    ws.close();
+                }
+            };
+
+            ws.onerror = (error) => {
+                console.error("WebSocket Error:", error);
+                log("Connection error occurred.", "error");
+            };
+        }
+
+        function log(message, type = "info") {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `> ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>

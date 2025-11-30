@@ -771,3 +771,731 @@ A) Global, s...' -> 'Ethical terms' (Score: 0.70 | Tier: 0.65)
 2025-11-24 19:25:35,929 - kripaa - INFO - Comprehensive Report Generated: comprehensive_report.pdf
 2025-11-24 19:43:13,579 - kripaa - INFO - Generating Comprehensive Report...
 2025-11-24 19:43:14,316 - kripaa - INFO - Comprehensive Report Generated: output\comprehensive_report.pdf
+2025-11-26 10:05:26,371 - kripaa - INFO - ============================================================
+2025-11-26 10:05:26,378 - kripaa - INFO - KRIPAA - Automated Exam Generation Pipeline
+2025-11-26 10:05:26,380 - kripaa - INFO - ============================================================
+2025-11-26 10:05:26,407 - kripaa - INFO - === Step 1: OCR Processing (PYQs) ===
+2025-11-26 10:05:26,409 - kripaa - INFO - Found 3 PYQ PDF files
+2025-11-26 10:05:26,410 - kripaa - INFO - Processing: Industrial Safety Engineering-7th-2022-23-Btech.pdf
+2025-11-26 10:05:26,412 - kripaa - INFO - Attempting Markdown Extraction for: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\pyqs\Industrial Safety Engineering-7th-2022-23-Btech.pdf
+2025-11-26 10:05:45,969 - kripaa - INFO - Markdown Extraction: Extracted 26 questions.
+2025-11-26 10:05:45,972 - kripaa - INFO - Populating database with 26 questions...
+2025-11-26 10:05:46,103 - kripaa - INFO - Database population successful.
+2025-11-26 10:05:46,105 - kripaa - INFO - Processing: INDUSTRIAL SAFETY ENGINEERING_7th_23-24_All_ RIS7B001_Btech.pdf
+2025-11-26 10:05:46,106 - kripaa - INFO - Attempting Markdown Extraction for: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\pyqs\INDUSTRIAL SAFETY ENGINEERING_7th_23-24_All_ RIS7B001_Btech.pdf
+2025-11-26 10:06:07,516 - kripaa - INFO - Markdown Extraction: Extracted 26 questions.
+2025-11-26 10:06:07,519 - kripaa - INFO - Populating database with 26 questions...
+2025-11-26 10:06:07,528 - kripaa - INFO - Database population successful.
+2025-11-26 10:06:07,531 - kripaa - INFO - Processing: INDUSTRIAL SAFETY ENGINEERING_CSE_CE_ME_7th_2024-2025.pdf
+2025-11-26 10:06:07,533 - kripaa - INFO - Attempting Markdown Extraction for: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\pyqs\INDUSTRIAL SAFETY ENGINEERING_CSE_CE_ME_7th_2024-2025.pdf
+2025-11-26 10:06:26,537 - kripaa - INFO - Markdown Extraction: Extracted 26 questions.
+2025-11-26 10:06:26,540 - kripaa - INFO - Populating database with 26 questions...
+2025-11-26 10:06:26,555 - kripaa - INFO - Database population successful.
+2025-11-26 10:06:26,557 - kripaa - INFO - PYQ OCR complete
+2025-11-26 10:06:26,564 - kripaa - INFO - === Step 2: OCR Processing (Syllabus) ===
+2025-11-26 10:06:26,567 - kripaa - INFO - Processing syllabus: MCMC3002.docx.pdf
+2025-11-26 10:06:26,754 - kripaa - INFO - Extracted text/markdown from Syllabus PDF: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:06:34,639 - kripaa - INFO - Extracted 5 syllabus topics from PDF: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:06:34,642 - kripaa - INFO - Populating database with 5 syllabus topics...
+2025-11-26 10:06:34,644 - kripaa - INFO - Syllabus database population successful. Added 0 topics.
+2025-11-26 10:06:34,647 - kripaa - INFO - Syllabus OCR complete
+2025-11-26 10:06:34,650 - kripaa - INFO - === Step 3: Question Normalization ===
+2025-11-26 10:06:34,652 - kripaa - INFO - Starting Question Preprocessing...
+2025-11-26 10:06:34,668 - kripaa - INFO - Found 78 pending raw questions.
+2025-11-26 10:06:35,692 - kripaa - INFO - Created New Normalized Q d6939b64-3a48-4625-bce6-b90b28b77723
+2025-11-26 10:06:36,629 - kripaa - INFO - Created New Normalized Q 7a5af63a-b713-493a-a828-4503b527f18c
+2025-11-26 10:06:37,566 - kripaa - INFO - Created New Normalized Q e03f168f-27ca-4515-a39b-40acd84ab5f6
+2025-11-26 10:06:38,409 - kripaa - INFO - Created New Normalized Q d7bd90d9-5d2d-4a5f-9346-49e7b959b116
+2025-11-26 10:06:39,307 - kripaa - INFO - Created New Normalized Q 70a6f77c-c7d2-437e-8238-6994909800ae
+2025-11-26 10:06:40,247 - kripaa - INFO - Created New Normalized Q 80173d95-0607-4f6a-979d-751f382e8684
+2025-11-26 10:06:40,838 - kripaa - INFO - Created New Normalized Q 6995e1d4-4e16-4649-b44c-4ae0e6e04696
+2025-11-26 10:06:41,342 - kripaa - INFO - Created New Normalized Q 7dce9d6c-458a-4a2a-a37a-485504b3ac89
+2025-11-26 10:06:41,837 - kripaa - INFO - Created New Normalized Q 066e20c4-57a6-4e73-a830-d8bcc052c29b
+2025-11-26 10:06:42,533 - kripaa - INFO - Created New Normalized Q 14939e3e-394e-4e50-8222-c38781483f9a
+2025-11-26 10:06:43,117 - kripaa - INFO - Found exact string duplicate: d7bd90d9-5d2d-4a5f-9346-49e7b959b116
+2025-11-26 10:06:43,120 - kripaa - INFO - Linked Raw Q a0830e75-259e-42e8-ba08-74f7f261e215 to Existing Normalized Q d7bd90d9-5d2d-4a5f-9346-49e7b959b116
+2025-11-26 10:06:43,637 - kripaa - INFO - Created New Normalized Q b5fdae0d-3560-412d-a2a5-4f4daf800d01
+2025-11-26 10:06:44,613 - kripaa - INFO - Created New Normalized Q c286343a-dc23-419d-8a86-8c7da7a5e5fc
+2025-11-26 10:06:45,543 - kripaa - INFO - Created New Normalized Q 2370ba37-81e3-4677-a3ca-7e8217465ae3
+2025-11-26 10:06:46,523 - kripaa - INFO - Created New Normalized Q fbb4f797-a5b1-4b42-aac5-8b91afbf8700
+2025-11-26 10:06:47,478 - kripaa - INFO - Created New Normalized Q c4892e69-3a85-4a20-a311-99a447ca9801
+2025-11-26 10:06:48,108 - kripaa - INFO - Created New Normalized Q b4e1620b-e031-408f-8770-3441011fde07
+2025-11-26 10:06:49,096 - kripaa - INFO - Created New Normalized Q 5339f8dd-8c65-4403-af88-68823d4c02be
+2025-11-26 10:06:49,689 - kripaa - INFO - Found vector duplicate: 7dce9d6c-458a-4a2a-a37a-485504b3ac89 (Distance: 0.0336)
+2025-11-26 10:06:49,692 - kripaa - INFO - Linked Raw Q e50a4156-f80e-4062-b54d-95086cc9a54c to Existing Normalized Q 7dce9d6c-458a-4a2a-a37a-485504b3ac89
+2025-11-26 10:06:50,691 - kripaa - INFO - Created New Normalized Q 9da13ff0-0991-42dd-aa35-d4c2a60cb467
+2025-11-26 10:06:51,647 - kripaa - INFO - Created New Normalized Q 80e1b42a-fbc8-4baf-a797-ef9eac4a0c43
+2025-11-26 10:06:52,127 - kripaa - INFO - Created New Normalized Q d30325ce-c954-44ad-b6b7-80c163393315
+2025-11-26 10:06:52,727 - kripaa - INFO - Created New Normalized Q 0862ed2a-e014-4890-b3b4-ab49fdf6cc02
+2025-11-26 10:06:53,733 - kripaa - INFO - Created New Normalized Q fdde8aa6-0989-435e-bf6d-3dc21d68efb3
+2025-11-26 10:06:54,372 - kripaa - INFO - Created New Normalized Q ce8d9acb-602b-48d3-a9be-f4dd2374f1b2
+2025-11-26 10:06:55,227 - kripaa - INFO - Created New Normalized Q f3ba76a5-3b9e-483b-bccc-d13e1299d23d
+2025-11-26 10:06:56,282 - kripaa - INFO - Created New Normalized Q 8ada8cc7-10d8-4f5c-9bc8-c5fadec17876
+2025-11-26 10:06:57,253 - kripaa - INFO - Created New Normalized Q 8c1dc876-05fb-47e6-a021-d2afe48273a1
+2025-11-26 10:06:57,850 - kripaa - INFO - Found exact string duplicate: 8ada8cc7-10d8-4f5c-9bc8-c5fadec17876
+2025-11-26 10:06:57,853 - kripaa - INFO - Linked Raw Q 0bcdc40a-f649-419f-8390-12eaa854e5b8 to Existing Normalized Q 8ada8cc7-10d8-4f5c-9bc8-c5fadec17876
+2025-11-26 10:06:58,700 - kripaa - INFO - Created New Normalized Q cc61022a-76ed-4eef-b5a6-0f3d4fd6ca4d
+2025-11-26 10:06:59,220 - kripaa - INFO - Created New Normalized Q 02486b72-d0b7-49f5-b79e-bd2d0bf309f8
+2025-11-26 10:07:00,081 - kripaa - INFO - Created New Normalized Q 759a7980-436a-4f62-b54c-97f6b1c8bac5
+2025-11-26 10:07:01,100 - kripaa - INFO - Created New Normalized Q 936ea450-e0b1-44ef-8829-3fd5e5c3740b
+2025-11-26 10:07:01,738 - kripaa - INFO - Created New Normalized Q b65619aa-b758-41e4-abde-1540e02351f2
+2025-11-26 10:07:02,706 - kripaa - INFO - Created New Normalized Q bba5ae49-5433-40bb-b399-1ec579c49ec5
+2025-11-26 10:07:03,322 - kripaa - INFO - Created New Normalized Q 21f33936-1d9f-4372-b1a3-016b614c03a7
+2025-11-26 10:07:03,784 - kripaa - INFO - Created New Normalized Q e3fd63eb-f7ab-45d6-aba3-a5c07cd553ba
+2025-11-26 10:07:04,627 - kripaa - INFO - Created New Normalized Q bc536295-8b5c-4cda-a84e-d43a6180d27e
+2025-11-26 10:07:05,215 - kripaa - INFO - Created New Normalized Q 81560b4e-b6c8-45c9-8110-523fcd511764
+2025-11-26 10:07:05,846 - kripaa - INFO - Created New Normalized Q 4bbf99f4-1bd0-4389-bedd-03da7169fe53
+2025-11-26 10:07:06,327 - kripaa - INFO - Created New Normalized Q f5f4b765-087e-4deb-ae4f-8c521f6a4a83
+2025-11-26 10:07:07,127 - kripaa - INFO - Created New Normalized Q 466cab88-95ab-4f58-8290-023a143f60b3
+2025-11-26 10:07:07,765 - kripaa - INFO - Created New Normalized Q 213521ff-6380-49b9-be32-fa866ecb1423
+2025-11-26 10:07:08,430 - kripaa - INFO - Created New Normalized Q 49e82781-bae1-47b0-817f-7dc5e7316bd4
+2025-11-26 10:07:08,938 - kripaa - INFO - Created New Normalized Q 8ea3b5d4-1aab-4ad9-be84-fe88182b27ee
+2025-11-26 10:07:09,845 - kripaa - INFO - Created New Normalized Q f16a2350-24d2-4d65-8895-05e84012c7c7
+2025-11-26 10:07:10,524 - kripaa - INFO - Created New Normalized Q 953c9fdb-d52b-4ac3-89c9-e6baad515399
+2025-11-26 10:07:11,376 - kripaa - INFO - Created New Normalized Q acc95344-c4e8-489f-a57a-ac6c1966e8a5
+2025-11-26 10:07:11,931 - kripaa - INFO - Created New Normalized Q 3b5d6e79-2b6b-4f56-98b5-b224f8197e96
+2025-11-26 10:07:12,929 - kripaa - INFO - Created New Normalized Q d71a4bb9-789b-4768-8ffd-a54c505a0971
+2025-11-26 10:07:13,885 - kripaa - INFO - Created New Normalized Q ac25795d-43e3-4906-9f2e-bb312c915cb0
+2025-11-26 10:07:14,807 - kripaa - INFO - Created New Normalized Q 11c69a4a-c97e-49dc-b8cc-2e6f94c12605
+2025-11-26 10:07:15,674 - kripaa - INFO - Created New Normalized Q 321c67d6-294a-4924-9932-474a8737e316
+2025-11-26 10:07:16,599 - kripaa - INFO - Created New Normalized Q 932e140a-fe65-434b-972d-a459c7c9605f
+2025-11-26 10:07:17,404 - kripaa - INFO - Created New Normalized Q a4221f33-64d2-4615-aec9-5da91e722266
+2025-11-26 10:07:18,373 - kripaa - INFO - Created New Normalized Q 894da5f2-3fc8-4e89-9efd-c1b783d83992
+2025-11-26 10:07:19,322 - kripaa - INFO - Created New Normalized Q 9297580f-4b8c-4a56-a076-ef24f5018524
+2025-11-26 10:07:20,281 - kripaa - INFO - Found vector duplicate: 759a7980-436a-4f62-b54c-97f6b1c8bac5 (Distance: 0.0000)
+2025-11-26 10:07:20,283 - kripaa - INFO - Linked Raw Q 79c8ea81-a7bd-4e19-be6a-fef4fd879acc to Existing Normalized Q 759a7980-436a-4f62-b54c-97f6b1c8bac5
+2025-11-26 10:07:21,151 - kripaa - INFO - Created New Normalized Q 25566a01-0b08-4502-912f-24a1c51c39a4
+2025-11-26 10:07:21,687 - kripaa - INFO - Created New Normalized Q 8555f990-c3e6-43eb-9f1f-63e46a7eea82
+2025-11-26 10:07:22,615 - kripaa - INFO - Created New Normalized Q 278cf1b0-aab6-446d-9b30-565d7b1de8b1
+2025-11-26 10:07:23,150 - kripaa - INFO - Created New Normalized Q 883148fd-2edc-4d66-bb98-9eefe9ed051f
+2025-11-26 10:07:24,123 - kripaa - INFO - Created New Normalized Q f5763798-1761-4cfd-af90-35f995e12bd0
+2025-11-26 10:07:25,050 - kripaa - INFO - Created New Normalized Q dd81c7af-1bf6-42e8-98f8-156a503f1d59
+2025-11-26 10:07:26,047 - kripaa - INFO - Found exact string duplicate: 81560b4e-b6c8-45c9-8110-523fcd511764
+2025-11-26 10:07:26,050 - kripaa - INFO - Linked Raw Q cbaae689-5111-43ce-9236-e4b1f4376784 to Existing Normalized Q 81560b4e-b6c8-45c9-8110-523fcd511764
+2025-11-26 10:07:26,972 - kripaa - INFO - Created New Normalized Q 71314b7d-4006-4fb7-a88b-29557238e8c4
+2025-11-26 10:07:27,974 - kripaa - INFO - Created New Normalized Q 73a366b3-557f-436a-865f-9b37b600df72
+2025-11-26 10:07:28,932 - kripaa - INFO - Created New Normalized Q 0734c655-d2fc-4abc-af12-013c9c9af6b6
+2025-11-26 10:07:29,892 - kripaa - INFO - Created New Normalized Q c7b46522-2939-4edd-8f7d-7a2eb311a774
+2025-11-26 10:07:30,722 - kripaa - INFO - Created New Normalized Q db129a3e-59c0-47d3-ace0-45d782647af2
+2025-11-26 10:07:31,635 - kripaa - INFO - Created New Normalized Q e376cfdf-87c1-4179-90ce-dc114b19bca9
+2025-11-26 10:07:32,617 - kripaa - INFO - Created New Normalized Q 059973aa-da48-4ac2-9955-8a821d494cfe
+2025-11-26 10:07:33,207 - kripaa - INFO - Created New Normalized Q 3af21094-71e5-4cea-a6fd-663d4df2dfc6
+2025-11-26 10:07:34,163 - kripaa - INFO - Created New Normalized Q 45f76325-74ce-4fdf-8dfd-6a6515fde37f
+2025-11-26 10:07:35,171 - kripaa - INFO - Created New Normalized Q 864f6d63-c72a-460e-8d6b-0a622e35c928
+2025-11-26 10:07:35,799 - kripaa - INFO - Created New Normalized Q 3d41c96a-0168-496f-9ddb-ce3fab794c1e
+2025-11-26 10:07:36,810 - kripaa - INFO - Created New Normalized Q e78d26a2-f71a-4660-8b7b-c5b4fddae4eb
+2025-11-26 10:07:37,723 - kripaa - INFO - Created New Normalized Q 558c21dd-6c24-4cf3-883c-47c4af1fe2c0
+2025-11-26 10:07:37,734 - kripaa - INFO - Preprocessing complete. Processed 78 questions.
+2025-11-26 10:07:37,737 - kripaa - INFO - ✓ Normalization complete
+2025-11-26 10:07:37,741 - kripaa - INFO - === Step 4: Variant Detection ===
+2025-11-26 10:07:37,744 - kripaa - INFO - Starting Variant Grouping...
+2025-11-26 10:07:37,777 - kripaa - INFO - Found 73 ungrouped questions.
+2025-11-26 10:07:37,792 - kripaa - INFO - Created Group a2f66265-648d-4526-8a5d-fda34432c372 with 1 variants. Stem: What is the primary function of maintenance department?
+2025-11-26 10:07:37,803 - kripaa - INFO - Created Group baf86082-f581-49a5-ba14-92f105c4fed8 with 1 variants. Stem: What are different types of maintenance?
+2025-11-26 10:07:37,810 - kripaa - INFO - Created Group 0a861029-7451-4760-8c6d-a768723666aa with 1 variants. Stem: What are the methods of fire prevention?
+2025-11-26 10:07:37,816 - kripaa - INFO - Created Group dd85bb0c-aafe-4216-86c5-948c8210c04c with 1 variants. Stem: What are the causes and effects of industrial accidents?
+2025-11-26 10:07:37,823 - kripaa - INFO - Created Group 7c3bf785-df31-4aa4-b36e-4d4274acf6c4 with 1 variants. Stem: What are 4 methods for preventing corrosion of metals?
+2025-11-26 10:07:37,831 - kripaa - INFO - Created Group 9927540f-1a6a-46b1-ae57-ccef0f04e60f with 1 variants. Stem: What are different types of wear?
+2025-11-26 10:07:37,839 - kripaa - INFO - Created Group f1aeee72-bb62-4c45-b7ef-89c8ff043c35 with 1 variants. Stem: What are the merits and demerits of preventive maintenance?
+2025-11-26 10:07:37,845 - kripaa - INFO - Created Group 3ad14ba6-8bb0-441b-8b6c-ab90e7d567cb with 1 variants. Stem: What are the two differentiations between the maintenance and repair?
+2025-11-26 10:07:37,852 - kripaa - INFO - Created Group 016011c1-92a6-4049-87c4-2d9a98be4782 with 1 variants. Stem: What are the types of accident in industrial safety?
+2025-11-26 10:07:37,859 - kripaa - INFO - Created Group ee376a9f-3ac2-4d53-9605-5d97f5324c24 with 1 variants. Stem: Examine some of the common source of mechanical hazards.
+2025-11-26 10:07:37,867 - kripaa - INFO - Created Group 6c4fde7a-9f7a-45fe-9faf-4c284d502868 with 1 variants. Stem: Organize the classification of pressure vessels.
+2025-11-26 10:07:37,873 - kripaa - INFO - Created Group d143568c-debf-4880-980d-b1fd8945c491 with 1 variants. Stem: Describe fault tree analysis.
+2025-11-26 10:07:37,879 - kripaa - INFO - Created Group cc57a10c-cc1b-4002-abea-89ee456151e7 with 1 variants. Stem: What is the corrosion and its prevention?
+2025-11-26 10:07:37,885 - kripaa - INFO - Created Group 5e6dd904-0d9e-4f83-9289-aab1cbaa9a34 with 1 variants. Stem: What are the different types of wear and causes?
+2025-11-26 10:07:37,892 - kripaa - INFO - Created Group f537f304-ec8f-49ad-95e2-28bde8d68ca1 with 1 variants. Stem: Enlist the points to be considered for safety in industries as per The
+Factories Act, 1948.
+2025-11-26 10:07:37,900 - kripaa - INFO - Created Group 0d0061cd-c5f5-4297-8873-7ce76ca19c33 with 1 variants. Stem: What is lubrication and method of lubrication?
+2025-11-26 10:07:37,906 - kripaa - INFO - Created Group f35d253d-8290-4023-aeb5-02f8839b1016 with 1 variants. Stem: Describe the importance of fault tracing.
+2025-11-26 10:07:37,911 - kripaa - INFO - Created Group 87d53bbd-28a7-4066-9c65-f80654752c69 with 1 variants. Stem: How do you draw a decision tree diagram?
+2025-11-26 10:07:37,916 - kripaa - INFO - Created Group 1328e0a9-fdc0-47dc-a57c-33bcb1ae4881 with 1 variants. Stem: What is periodic maintenance?
+2025-11-26 10:07:37,922 - kripaa - INFO - Created Group 5e2f2628-4e0a-4782-a745-0abc2453e419 with 1 variants. Stem: What are the steps in making preventive maintenance procedure?
+2025-11-26 10:07:37,928 - kripaa - INFO - Created Group 40801055-d1da-4a93-8e98-d725a856c8b4 with 1 variants. Stem: Illustrate about mechanical and electrical hazards to humans and the effect
+of current on human body for different dosage.
+2025-11-26 10:07:37,935 - kripaa - INFO - Created Group f8b68751-6fb5-4252-b088-3084b2ce9178 with 1 variants. Stem: Explain the different types of lubrication systems in detail.
+2025-11-26 10:07:37,941 - kripaa - INFO - Created Group c2e950fa-b2da-493a-b1ec-bc56e4ede425 with 1 variants. Stem: Draw decision tree for following machines
+
+I. Any one machine tool Pump
+II. Air compressor
+III. Internal combustion engine
+IV. Boiler
+
+V. Electrical motors.
+2025-11-26 10:07:37,947 - kripaa - INFO - Created Group e2413aec-c3d2-4c8b-a4ff-5211d60955dd with 1 variants. Stem: Steps for periodic and preventive maintenance of:
+
+I. Machine tools
+II. Pumps
+III. Air compressors
+IV. Diesel generating (DG) sets.
+2025-11-26 10:07:37,953 - kripaa - INFO - Created Group 189c4dbf-c713-4daa-9fe4-875afc4d9b50 with 1 variants. Stem: Which of the process is followed to stop a fire by stopping the supply of oxygen
+using blanket and sand?
+2025-11-26 10:07:37,960 - kripaa - INFO - Created Group 34653e44-53cb-4407-8ebd-1fb03b4255ea with 1 variants. Stem: What do you mean by equipment maintenance management? State the prime
+objectives fulfilled by it.
+2025-11-26 10:07:41,360 - kripaa - INFO - Created Group 5bb72ad4-ff06-4392-a38e-15c8ce58af26 with 2 variants. Stem: Describe the various types of tools utilized in maintenance operations.
+2025-11-26 10:07:41,369 - kripaa - INFO - Created Group 4116ba5a-df23-4ba9-893e-515188f11d20 with 1 variants. Stem: What is the basic difference between corrosion and wear?
+2025-11-26 10:07:41,375 - kripaa - INFO - Created Group a0ed2acd-812a-4c77-a344-2a42cf4009b4 with 1 variants. Stem: Which type of failure is generally occurred in rotating machinery due to some
+surface defects?
+2025-11-26 10:07:41,381 - kripaa - INFO - Created Group 5f86b6d4-1b56-4c50-b89a-8d446b4c4ff3 with 1 variants. Stem: State some advantages of preventive maintenance in electrical machines.
+2025-11-26 10:07:41,388 - kripaa - INFO - Created Group 61479b6b-f0e0-48e2-b33b-a18b5e0e6b31 with 1 variants. Stem: What are the factors affecting Equipment life cycle?
+2025-11-26 10:07:47,331 - kripaa - INFO - Created Group f7ab27ff-cd46-4566-9493-bce64a105b91 with 2 variants. Stem: Explain the rationale and methodologies of industrial equipment maintenance.
+2025-11-26 10:07:47,340 - kripaa - INFO - Created Group 579016cd-d908-4eec-b1b8-6d6b08419a6f with 1 variants. Stem: State and explain the criteria responsible for increase the productivity in a plant.
+2025-11-26 10:07:47,349 - kripaa - INFO - Created Group e73db191-5cb8-45c3-92ba-4d2c73410e10 with 1 variants. Stem: Service life of a tool affects the productivity. Justify.
+2025-11-26 10:07:47,356 - kripaa - INFO - Created Group 08bc70c2-cf2f-4159-bf4b-2bec20f49c6b with 1 variants. Stem: State the types of hazards and explain any three in detail with possible causes and
+remedial actions.
+2025-11-26 10:07:47,363 - kripaa - INFO - Created Group c081c128-4ed1-4bb4-ade1-f4d6673990d9 with 1 variants. Stem: What are the types of wears and corrosion? Explain one prevention method used
+in chemical plant.
+2025-11-26 10:07:47,370 - kripaa - INFO - Created Group 72b92de7-bfe1-4faa-afbd-92c1cf7fcce8 with 1 variants. Stem: What is decision tree? Draw decision tree for IC engine and explain.
+2025-11-26 10:07:47,376 - kripaa - INFO - Created Group abfe90ca-0661-49b8-aa2d-fa03ac197159 with 1 variants. Stem: Explain role of management and government in industrial safety.
+2025-11-26 10:07:47,383 - kripaa - INFO - Created Group a660cb31-ccb5-47d4-8a42-96ba6243e11e with 1 variants. Stem: What is industrial safety? How it is associated with risk?
+2025-11-26 10:07:52,929 - kripaa - INFO - Created Group 1e9aab7e-f584-45cf-b105-fa1ef1a225b4 with 2 variants. Stem: Canonical Concept Stem:
+Explain the role of the equipment life cycle in asset management.
+2025-11-26 10:07:52,944 - kripaa - INFO - Created Group 50666f36-0010-4ddc-b6cf-5a50ad6ac198 with 1 variants. Stem: Explain in brief the maintenance economics.
+2025-11-26 10:07:52,954 - kripaa - INFO - Created Group 4154ab12-6b53-4ae3-9630-f7fab0be79e7 with 1 variants. Stem: Discuss repair cycle concept and its importance in small scale industries.
+2025-11-26 10:07:52,962 - kripaa - INFO - Created Group 9e5db478-f849-493f-93db-ccf8be975ee1 with 1 variants. Stem: State and explain the significances of different colour codes used in industrial
+safety.
+2025-11-26 10:07:58,309 - kripaa - INFO - Created Group bcc5110f-bf1b-4597-a4f9-c13fb0da2e39 with 2 variants. Stem: Canonical Concept Stem:
+Describe the types, working principles, and applications of lubrication methods.
+2025-11-26 10:07:58,319 - kripaa - INFO - Created Group 562bd8da-0031-4098-b2c9-5b5e9cacdafc with 1 variants. Stem: Discuss different preventive maintenance techniques and explain the advantages
+and dis-advantages of overhauling electrical motor in DG set.
+2025-11-26 10:07:58,332 - kripaa - INFO - Created Group d491b909-0dce-4624-92a1-0491547c8ba5 with 1 variants. Stem: Highlight the characteristics of factory act and explain employee’s safety provisions
+to be made in factory. What is workman’s compensation act and explain main
+features of the same? Also narrate the possible reasons for which compensation
+may not be given to employee.
+2025-11-26 10:07:58,343 - kripaa - INFO - Created Group be0d7ca1-f238-4405-9f20-f770710b6ef1 with 1 variants. Stem: What are the primary goals of industrial safety? Why is it important for companies to
+implement effective industrial safety practices?
+2025-11-26 10:07:58,353 - kripaa - INFO - Created Group 637cd304-0b0f-4964-b921-487f9afa1a72 with 1 variants. Stem: What is the purpose of a Job Safety Analysis (JSA) in industries?
+2025-11-26 10:07:58,361 - kripaa - INFO - Created Group 9780ecc6-66d9-4866-b9d1-ffbc40e05ce9 with 1 variants. Stem: Which type of fire extinguisher is used for electrical fires?
+2025-11-26 10:07:58,367 - kripaa - INFO - Created Group 8ba5b2bf-7cd2-42b7-9276-4c432b964974 with 1 variants. Stem: The term "Lockout/Tag out" refers to which type of maintenance control in industry.
+2025-11-26 10:07:58,375 - kripaa - INFO - Created Group dd0b8828-166d-4ae1-bc13-c52943832461 with 1 variants. Stem: What are the damages encountered due to chemical reactions and physical abrasion
+in any industrial process?
+2025-11-26 10:07:58,381 - kripaa - INFO - Created Group 0423d99c-0081-4564-b7c5-122e240b68f2 with 1 variants. Stem: What is the concept for fault finding activities? How does it help in decision
+making?
+2025-11-26 10:07:58,389 - kripaa - INFO - Created Group 00134bf6-c9d5-4e7b-aaa6-05787d28a657 with 1 variants. Stem: What do you mean by fatigue failures and their causes? What does the term
+'Ergonomics' refer to in industrial safety?
+2025-11-26 10:07:58,396 - kripaa - INFO - Created Group ae3863e9-949c-4fbd-8a1b-5b869f91538c with 1 variants. Stem: What strategy is most commonly employed during the maturity stage of a product's life
+cycle? Why might a company decide to continue producing a product in the decline
+stage of its life cycle?
+2025-11-26 10:07:58,404 - kripaa - INFO - Created Group a483cb5a-74a2-428d-9a12-cb7067a94c0b with 1 variants. Stem: What is your understanding related to a product life cycle? Which stage of the Product
+Life Cycle is characterized by rapid market acceptance and increasing profits?
+2025-11-26 10:07:58,412 - kripaa - INFO - Created Group d86920ba-6b8f-41a8-86bd-8063ea96e427 with 1 variants. Stem: What type of maintenance is required for electric motor and Why? Why is regular
+lubrication important for electric motors?
+2025-11-26 10:07:58,419 - kripaa - INFO - Created Group f49f4cb9-6653-4472-8356-ee2def6097e7 with 1 variants. Stem: Discuss the role of regular maintenance in preventing industrial accidents. Provide
+examples of common maintenance practices.
+2025-11-26 10:07:58,425 - kripaa - INFO - Created Group 2589c076-1fff-4ea1-8258-3792e099270f with 1 variants. Stem: Identify the key components of an effective safety management system (SMS) in an
+industrial setting and describe how they help prevent accidents.
+2025-11-26 10:07:58,432 - kripaa - INFO - Created Group bfe60078-557b-4d37-a3c4-e1bbb8b3015f with 1 variants. Stem: What is fire triangle? Explain the different classes of fire with symbols and
+extinguishers used for them. Draw any four symbols for possible fire hazards.
+2025-11-26 10:07:58,438 - kripaa - INFO - Created Group 8d31a0a4-16c4-499d-8770-dec7d7b9ad2c with 1 variants. Stem: Identify the types of corrosion that can affect stainless steel in a chemical plant.
+Discuss a coating method used to prevent such corrosion.
+2025-11-26 10:07:58,445 - kripaa - INFO - Created Group 48ede826-722a-48b7-ab2d-8ed004419425 with 1 variants. Stem: Describe how decision trees can aid in predictive maintenance. Draw a decision tree
+for diagnosing common issues in an electric motor.
+2025-11-26 10:07:58,452 - kripaa - INFO - Created Group a528ea3f-bb25-4713-8425-ff30fd8e0c0d with 1 variants. Stem: Describe the necessary of periodic maintenance & its relation with replacement
+economy.
+2025-11-26 10:07:58,459 - kripaa - INFO - Created Group 277954ec-f643-45ab-834e-b27d2edabf54 with 1 variants. Stem: How does the Factories Act of 1948 address occupational health and safety in
+hazardous industries? Provide examples.
+2025-11-26 10:07:58,465 - kripaa - INFO - Created Group 9f6f00f5-91b8-49ad-9a92-acec557fef06 with 1 variants. Stem: Explain the types of corrosion found in industrial equipment and highlight their standard
+prevention methods.
+2025-11-26 10:07:58,471 - kripaa - INFO - Created Group 68bc8b6e-c912-4e23-b0b3-98933ca18af9 with 1 variants. Stem: A decision tree is helpful for tracing and solving problems in thermal equipments.
+Explain with some relevant examples.
+2025-11-26 10:07:58,478 - kripaa - INFO - Created Group 96bd5998-e206-46fe-b6c8-5d9f9044ead8 with 1 variants. Stem: Describe the steps involved in a typical repair cycle for industrial machinery. Why is
+each step important?
+2025-11-26 10:07:58,484 - kripaa - INFO - Created Group 75a364fd-d4ca-44ba-a4d4-ab177d547d2c with 1 variants. Stem: Discuss the different types of mechanical and electrical hazards that occur during
+industrial operations. Explain the preventive measures that can be implemented to
+minimize these risks, and highlight the role of safety training and regular maintenance
+in reducing workplace accidents.
+2025-11-26 10:07:58,490 - kripaa - INFO - Created Group 08754136-d58d-498d-a363-5f26723aa167 with 1 variants. Stem: Discuss the concept of fault tracing and significance of decision tree in sequence of
+fault finding activities. Draw a decision tree by showing the usual problems found in
+machine tools and different equipments. Explain its significance in boiler and electrical
+motors.
+2025-11-26 10:07:58,496 - kripaa - INFO - Created Group fefdf7c3-45ad-48dd-9346-73f9e0cd41ac with 1 variants. Stem: Describe the various types of maintenance strategies employed in a power plant.
+Explain the repair cycle and its importance in minimizing downtime and maximizing the
+life of mechanical and electrical equipment.
+2025-11-26 10:07:58,500 - kripaa - INFO - Grouping complete. Created 69 groups, Updated 0 groups.
+2025-11-26 10:07:58,502 - kripaa - INFO - ✓ Variant detection complete
+2025-11-26 10:07:58,504 - kripaa - INFO - === Step 5: Syllabus Mapping ===
+2025-11-26 10:07:58,506 - kripaa - INFO - Starting Syllabus Enrichment (Embeddings)...
+2025-11-26 10:07:58,516 - kripaa - INFO - Found 0 syllabus nodes needing embeddings.
+2025-11-26 10:07:58,517 - kripaa - INFO - Enriched 0 syllabus nodes.
+2025-11-26 10:07:58,519 - kripaa - INFO - Starting Variant Group Enrichment (Embeddings)...
+2025-11-26 10:07:58,523 - kripaa - INFO - Found 69 variant groups needing embeddings.
+2025-11-26 10:08:06,831 - kripaa - INFO - Enriched 10 variant groups.
+2025-11-26 10:08:14,795 - kripaa - INFO - Enriched 20 variant groups.
+2025-11-26 10:08:22,681 - kripaa - INFO - Enriched 30 variant groups.
+2025-11-26 10:08:30,840 - kripaa - INFO - Enriched 40 variant groups.
+2025-11-26 10:08:38,831 - kripaa - INFO - Enriched 50 variant groups.
+2025-11-26 10:08:46,040 - kripaa - INFO - Enriched 60 variant groups.
+2025-11-26 10:08:52,579 - kripaa - INFO - Enriched 69 variant groups.
+2025-11-26 10:08:52,588 - kripaa - INFO - Starting Question Mapping...
+2025-11-26 10:08:52,649 - kripaa - INFO - Found 69 unmapped variant groups.
+2025-11-26 10:08:52,655 - kripaa - WARNING - No enriched syllabus nodes found. Please run enrichment first.
+2025-11-26 10:08:52,659 - kripaa - INFO - ✓ Syllabus mapping complete
+2025-11-26 10:08:52,663 - kripaa - INFO - === Step 6: Enhanced Trend Analysis ===
+2025-11-26 10:08:52,666 - kripaa - INFO - Starting Trend Analysis for 2015-2024...
+2025-11-26 10:08:57,445 - kripaa - INFO - Trend Analysis Complete. Snapshot ID: 0b43b280-dc5a-41c9-8dc8-57e0d850fa75
+2025-11-26 10:08:57,450 - kripaa - INFO - Identified 0 emerging and 0 declining topics.
+2025-11-26 10:08:57,455 - kripaa - INFO - ✓ Trend analysis complete (Snapshot: 0b43b280-dc5a-41c9-8dc8-57e0d850fa75)
+2025-11-26 10:08:57,461 - kripaa - INFO - === Step 7: Multi-Temperature Question Generation ===
+2025-11-26 10:08:57,465 - kripaa - INFO - Starting Multi-Section Ensemble Generation for 2025...
+2025-11-26 10:08:57,488 - kripaa - INFO - Generating 30 candidates for Section A...
+2025-11-26 10:08:57,490 - kripaa - WARNING - No topics found in stats. Skipping generation.
+2025-11-26 10:08:57,492 - kripaa - INFO - Section A: Generated 0 candidates (strategy: {'H': 60, 'V': 25, 'N': 15}%)
+2025-11-26 10:08:57,495 - kripaa - INFO - Generating 36 candidates for Section B...
+2025-11-26 10:08:57,500 - kripaa - WARNING - No topics found in stats. Skipping generation.
+2025-11-26 10:08:57,505 - kripaa - INFO - Section B: Generated 0 candidates (strategy: {'H': 40, 'V': 35, 'N': 25}%)
+2025-11-26 10:08:57,508 - kripaa - INFO - Generating 15 candidates for Section C...
+2025-11-26 10:08:57,511 - kripaa - WARNING - No topics found in stats. Skipping generation.
+2025-11-26 10:08:57,514 - kripaa - INFO - Section C: Generated 0 candidates (strategy: {'H': 30, 'V': 30, 'N': 40}%)
+2025-11-26 10:08:57,519 - kripaa - INFO - Generated 0 total candidates across all sections.
+2025-11-26 10:08:57,521 - kripaa - INFO - Section A: 0, B: 0, C: 0
+2025-11-26 10:08:57,525 - kripaa - INFO - ✓ Question generation complete (81 candidates)
+2025-11-26 10:08:57,529 - kripaa - INFO - === Step 8: Section-Aware Voting ===
+2025-11-26 10:08:57,533 - kripaa - INFO - Starting Section-Aware Voting for Snapshot 0b43b280-dc5a-41c9-8dc8-57e0d850fa75...
+2025-11-26 10:08:57,553 - kripaa - WARNING - No candidates found.
+2025-11-26 10:08:57,556 - kripaa - INFO - ✓ Voting complete (27 questions selected)
+2025-11-26 10:08:57,562 - kripaa - INFO - === Step 9: Sample Paper Generation ===
+2025-11-26 10:08:57,566 - kripaa - INFO - Generating Sample Paper for Snapshot 0b43b280-dc5a-41c9-8dc8-57e0d850fa75...
+2025-11-26 10:08:57,588 - kripaa - WARNING - No selected candidates found.
+2025-11-26 10:08:57,958 - kripaa - INFO - ✓ Sample paper generated (Paper ID: None)
+2025-11-26 10:08:57,960 - kripaa - INFO -   - output\generated_paper.md
+2025-11-26 10:08:57,963 - kripaa - INFO -   - output\generated_paper.pdf
+2025-11-26 10:08:57,966 - kripaa - INFO - === Step 10: Comprehensive Report Generation ===
+2025-11-26 10:08:57,969 - kripaa - INFO - Generating Comprehensive Report...
+2025-11-26 10:08:58,427 - kripaa - INFO - Comprehensive Report Generated: output\comprehensive_report.pdf
+2025-11-26 10:08:58,430 - kripaa - INFO - ✓ Comprehensive report generated
+2025-11-26 10:08:58,432 - kripaa - INFO -   - output\comprehensive_report.md
+2025-11-26 10:08:58,436 - kripaa - INFO -   - output\comprehensive_report.pdf
+2025-11-26 10:08:58,443 - kripaa - INFO - 
+============================================================
+2025-11-26 10:08:58,446 - kripaa - INFO - PIPELINE COMPLETE
+2025-11-26 10:08:58,449 - kripaa - INFO - ============================================================
+2025-11-26 10:08:58,452 - kripaa - INFO - ✓ All steps completed successfully!
+2025-11-26 10:08:58,456 - kripaa - INFO - ✓ Generated paper: output/generated_paper.pdf
+2025-11-26 10:08:58,459 - kripaa - INFO - ✓ Comprehensive report: output/comprehensive_report.pdf
+2025-11-26 10:18:03,919 - kripaa - INFO - Extracted text/markdown from Syllabus PDF: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:18:11,500 - kripaa - INFO - Extracted 5 syllabus topics from PDF: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:18:11,505 - kripaa - INFO - Populating database with 5 syllabus topics...
+2025-11-26 10:18:11,508 - kripaa - INFO - Syllabus database population successful. Added 0 topics.
+2025-11-26 10:25:10,867 - kripaa - INFO - Uploading Syllabus PDF to Google AI File API: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:25:17,025 - kripaa - INFO - Syllabus file uploaded successfully: https://generativelanguage.googleapis.com/v1beta/files/c31f8yysyjlx
+2025-11-26 10:25:27,110 - kripaa - INFO - Extracted 5 syllabus topics from PDF: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:25:27,113 - kripaa - INFO - Populating database with 5 syllabus topics...
+2025-11-26 10:25:27,115 - kripaa - INFO - Syllabus database population successful. Added 0 topics.
+2025-11-26 10:41:39,490 - kripaa - INFO - Uploading Syllabus PDF to Google AI File API: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:41:45,331 - kripaa - INFO - Syllabus file uploaded successfully: https://generativelanguage.googleapis.com/v1beta/files/7wj6gxz9xx9o
+2025-11-26 10:42:19,115 - kripaa - INFO - Extracted 83 syllabus topics from PDF: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:42:19,127 - kripaa - INFO - Populating database with 83 syllabus topics...
+2025-11-26 10:42:19,207 - kripaa - INFO - Syllabus database population successful. Added 78 topics.
+2025-11-26 10:47:31,417 - kripaa - INFO - Uploading Syllabus PDF to Google AI File API: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:47:37,011 - kripaa - INFO - Syllabus file uploaded successfully: https://generativelanguage.googleapis.com/v1beta/files/wsi75gnraxqo
+2025-11-26 10:48:05,627 - kripaa - INFO - Extracted 111 syllabus topics from PDF: static\syllabus\MCMC3002.docx.pdf
+2025-11-26 10:48:05,647 - kripaa - INFO - Populating database with 111 syllabus topics...
+2025-11-26 10:48:05,720 - kripaa - INFO - Syllabus database population successful. Added 101 topics.
+2025-11-26 11:03:43,967 - kripaa - INFO - ============================================================
+2025-11-26 11:03:43,971 - kripaa - INFO - KRIPAA - Automated Exam Generation Pipeline
+2025-11-26 11:03:43,972 - kripaa - INFO - ============================================================
+2025-11-26 11:03:43,989 - kripaa - INFO - === Step 1: OCR Processing (PYQs) ===
+2025-11-26 11:03:43,991 - kripaa - INFO - Found 3 PYQ PDF files
+2025-11-26 11:03:43,992 - kripaa - INFO - Processing: Industrial Safety Engineering-7th-2022-23-Btech.pdf
+2025-11-26 11:03:43,993 - kripaa - INFO - Attempting Markdown Extraction for: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\pyqs\Industrial Safety Engineering-7th-2022-23-Btech.pdf
+2025-11-26 11:04:00,243 - kripaa - INFO - Markdown Extraction: Extracted 26 questions.
+2025-11-26 11:04:00,247 - kripaa - INFO - Populating database with 26 questions...
+2025-11-26 11:04:00,371 - kripaa - INFO - Database population successful.
+2025-11-26 11:04:00,373 - kripaa - INFO - Processing: INDUSTRIAL SAFETY ENGINEERING_7th_23-24_All_ RIS7B001_Btech.pdf
+2025-11-26 11:04:00,374 - kripaa - INFO - Attempting Markdown Extraction for: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\pyqs\INDUSTRIAL SAFETY ENGINEERING_7th_23-24_All_ RIS7B001_Btech.pdf
+2025-11-26 11:04:18,881 - kripaa - INFO - Markdown Extraction: Extracted 26 questions.
+2025-11-26 11:04:18,884 - kripaa - INFO - Populating database with 26 questions...
+2025-11-26 11:04:18,894 - kripaa - INFO - Database population successful.
+2025-11-26 11:04:18,896 - kripaa - INFO - Processing: INDUSTRIAL SAFETY ENGINEERING_CSE_CE_ME_7th_2024-2025.pdf
+2025-11-26 11:04:18,899 - kripaa - INFO - Attempting Markdown Extraction for: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\pyqs\INDUSTRIAL SAFETY ENGINEERING_CSE_CE_ME_7th_2024-2025.pdf
+2025-11-26 11:04:35,085 - kripaa - INFO - Markdown Extraction: Extracted 26 questions.
+2025-11-26 11:04:35,087 - kripaa - INFO - Populating database with 26 questions...
+2025-11-26 11:04:35,096 - kripaa - INFO - Database population successful.
+2025-11-26 11:04:35,098 - kripaa - INFO - PYQ OCR complete
+2025-11-26 11:04:35,101 - kripaa - INFO - === Step 2: OCR Processing (Syllabus) ===
+2025-11-26 11:04:35,102 - kripaa - INFO - Processing syllabus: MCMC3002.docx.pdf
+2025-11-26 11:04:35,104 - kripaa - INFO - Uploading Syllabus PDF to Google AI File API: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\syllabus\MCMC3002.docx.pdf
+2025-11-26 11:04:39,720 - kripaa - INFO - Syllabus file uploaded successfully: https://generativelanguage.googleapis.com/v1beta/files/3ewvs7kybb48
+2025-11-26 11:05:16,424 - kripaa - INFO - Extracted 111 syllabus topics from PDF: C:\Users\praty\Desktop\GSoc\kaggle_submission\Kripaa\static\syllabus\MCMC3002.docx.pdf
+2025-11-26 11:05:16,426 - kripaa - INFO - Populating database with 111 syllabus topics...
+2025-11-26 11:05:16,478 - kripaa - INFO - Syllabus database population successful. Added 101 topics.
+2025-11-26 11:05:16,480 - kripaa - INFO - Syllabus OCR complete
+2025-11-26 11:05:16,484 - kripaa - INFO - === Step 3: Question Normalization ===
+2025-11-26 11:05:16,486 - kripaa - INFO - Starting Question Preprocessing...
+2025-11-26 11:05:16,496 - kripaa - INFO - Found 78 pending raw questions.
+2025-11-26 11:05:17,631 - kripaa - INFO - Created New Normalized Q 26db109e-7fae-4a1e-a2bd-a8c2f8f808fe
+2025-11-26 11:05:18,309 - kripaa - INFO - Created New Normalized Q 66ace36b-5cc0-4a40-8726-97ae58fff33c
+2025-11-26 11:05:18,858 - kripaa - INFO - Created New Normalized Q fe484e71-9b8f-42a7-9870-fc7760e2d499
+2025-11-26 11:05:19,891 - kripaa - INFO - Created New Normalized Q e6b13a0f-82d8-4d9a-9bd3-568e66a101cb
+2025-11-26 11:05:20,459 - kripaa - INFO - Created New Normalized Q a1b15cc7-d385-42e9-89b3-5ed25d613805
+2025-11-26 11:05:21,011 - kripaa - INFO - Created New Normalized Q 6d9d9cec-8af5-4ec8-9228-69e55c2b4195
+2025-11-26 11:05:21,652 - kripaa - INFO - Created New Normalized Q 16c2357d-b8a6-4fbe-9d41-0c88ceadece3
+2025-11-26 11:05:22,242 - kripaa - INFO - Created New Normalized Q ae64469a-0901-4296-82be-e3fe3ac2f560
+2025-11-26 11:05:22,778 - kripaa - INFO - Created New Normalized Q df3b6819-97ab-4050-8174-3d65c2ae3ce5
+2025-11-26 11:05:23,256 - kripaa - INFO - Created New Normalized Q 4efb52e8-7bb5-4100-a405-ec852820f0d4
+2025-11-26 11:05:23,945 - kripaa - INFO - Found exact string duplicate: e6b13a0f-82d8-4d9a-9bd3-568e66a101cb
+2025-11-26 11:05:23,947 - kripaa - INFO - Linked Raw Q 923cd3b3-3d8c-4a78-a7ec-3195dbbae1ec to Existing Normalized Q e6b13a0f-82d8-4d9a-9bd3-568e66a101cb
+2025-11-26 11:05:24,532 - kripaa - INFO - Created New Normalized Q 6c6155fd-3571-4879-983e-062a1b2cf3ae
+2025-11-26 11:05:25,205 - kripaa - INFO - Created New Normalized Q eeed6d6c-2023-4a60-88df-307f6d9dff1d
+2025-11-26 11:05:25,849 - kripaa - INFO - Created New Normalized Q bee29e45-dc83-45bf-b79e-77b4342abba5
+2025-11-26 11:05:26,496 - kripaa - INFO - Created New Normalized Q e2f2af7b-9e99-44ff-b515-299f9431c73b
+2025-11-26 11:05:27,088 - kripaa - INFO - Created New Normalized Q fe9197cb-ba36-4cb3-97ee-524efedfbeae
+2025-11-26 11:05:27,901 - kripaa - INFO - Created New Normalized Q 6a2e2ed7-8885-4dc2-aa54-f8ede8021279
+2025-11-26 11:05:28,545 - kripaa - INFO - Created New Normalized Q dd46bb26-da94-494d-943a-0ce3a804ff08
+2025-11-26 11:05:29,171 - kripaa - INFO - Found vector duplicate: ae64469a-0901-4296-82be-e3fe3ac2f560 (Distance: 0.0336)
+2025-11-26 11:05:29,174 - kripaa - INFO - Linked Raw Q cbae4bce-662b-431a-b9cc-23a31823cfa2 to Existing Normalized Q ae64469a-0901-4296-82be-e3fe3ac2f560
+2025-11-26 11:05:29,680 - kripaa - INFO - Created New Normalized Q 8f6a5779-6cc0-4eef-95b8-3c6a14e5d1c1
+2025-11-26 11:05:30,438 - kripaa - INFO - Created New Normalized Q 676d94c9-c178-4977-b49a-19887e7281f5
+2025-11-26 11:05:31,020 - kripaa - INFO - Created New Normalized Q c0b82b35-5f33-47d2-bfd2-23ddb1d1ee05
+2025-11-26 11:05:31,543 - kripaa - INFO - Created New Normalized Q 5fd7e7bc-c5bf-4fd5-94c3-d430533eed90
+2025-11-26 11:05:32,216 - kripaa - INFO - Created New Normalized Q 0cdf2a3c-c76b-4348-906e-99658af9628b
+2025-11-26 11:05:32,715 - kripaa - INFO - Created New Normalized Q 28e319ab-93b7-4baa-b5ac-f7198bb68df9
+2025-11-26 11:05:33,699 - kripaa - INFO - Created New Normalized Q f9c40efa-dde0-421e-b99a-eb65ef2d4763
+2025-11-26 11:05:34,326 - kripaa - INFO - Created New Normalized Q e3fefd07-2c6c-4ddd-b858-13bc9457b7fc
+2025-11-26 11:05:34,959 - kripaa - INFO - Created New Normalized Q 61e535bc-c559-4ced-97e2-d2407c86a9e4
+2025-11-26 11:05:35,593 - kripaa - INFO - Found exact string duplicate: e3fefd07-2c6c-4ddd-b858-13bc9457b7fc
+2025-11-26 11:05:35,594 - kripaa - INFO - Linked Raw Q 804e0c9f-ae55-4fe3-a5c7-5a8d5d6f582a to Existing Normalized Q e3fefd07-2c6c-4ddd-b858-13bc9457b7fc
+2025-11-26 11:05:36,232 - kripaa - INFO - Created New Normalized Q 18c4bf76-f162-4d2e-a6f7-fd4b7845933e
+2025-11-26 11:05:36,697 - kripaa - INFO - Created New Normalized Q f7e59f8b-f1ef-4a61-bb69-088d813af64e
+2025-11-26 11:05:37,196 - kripaa - INFO - Created New Normalized Q bc3d9d45-d7be-4dd3-97bf-bf472d356b03
+2025-11-26 11:05:37,809 - kripaa - INFO - Created New Normalized Q 13e779a5-51be-4823-a51b-d4a1807f5429
+2025-11-26 11:05:38,457 - kripaa - INFO - Created New Normalized Q 728ff55b-238a-491e-93ea-ea80a3a52c1b
+2025-11-26 11:05:38,939 - kripaa - INFO - Created New Normalized Q 6838b9ab-3c96-4fa3-b589-5ab705e88c31
+2025-11-26 11:05:39,582 - kripaa - INFO - Created New Normalized Q 1457ae41-d042-45c1-8ad3-034ea53ec144
+2025-11-26 11:05:40,108 - kripaa - INFO - Created New Normalized Q 70674e9e-879c-42e9-9583-4de40712014d
+2025-11-26 11:05:40,693 - kripaa - INFO - Created New Normalized Q 2364c0bf-a209-4de8-8198-6e3a7a683d81
+2025-11-26 11:05:41,329 - kripaa - INFO - Created New Normalized Q 7d97c976-97ec-4ff9-9b1b-a94ab6b8e24d
+2025-11-26 11:05:41,814 - kripaa - INFO - Created New Normalized Q f29d2505-11cc-4e0a-b2d6-d1a7a59f6e2d
+2025-11-26 11:05:42,309 - kripaa - INFO - Created New Normalized Q f9621add-f1bc-4ad2-b711-63d826ffc710
+2025-11-26 11:05:42,802 - kripaa - INFO - Created New Normalized Q f8eb8934-1af9-4480-8824-8f667a8f8d2b
+2025-11-26 11:05:43,288 - kripaa - INFO - Created New Normalized Q c45aecdd-a929-4412-bb03-86978e900212
+2025-11-26 11:05:43,830 - kripaa - INFO - Created New Normalized Q 3f540626-cb29-4b4b-b784-f6835a9039bf
+2025-11-26 11:05:44,356 - kripaa - INFO - Created New Normalized Q 0f756331-6789-4b24-89f8-86b5887a2e0c
+2025-11-26 11:05:44,863 - kripaa - INFO - Created New Normalized Q 578a24e0-f53e-4005-9f7f-34bdda037349
+2025-11-26 11:05:45,490 - kripaa - INFO - Created New Normalized Q 8ca118dd-3a11-4e98-a334-9c10827ac4ea
+2025-11-26 11:05:46,059 - kripaa - INFO - Created New Normalized Q 26b3f141-6aed-4ee4-a003-01df28373ce1
+2025-11-26 11:05:46,577 - kripaa - INFO - Created New Normalized Q 3f2ba621-dd4d-449d-846c-44abc616fa37
+2025-11-26 11:05:47,251 - kripaa - INFO - Created New Normalized Q 1da2cc82-45f6-4c62-ae4b-c027daa06f11
+2025-11-26 11:05:47,754 - kripaa - INFO - Created New Normalized Q b23d2222-ba73-4798-8cad-5857e7692a7a
+2025-11-26 11:05:48,238 - kripaa - INFO - Created New Normalized Q f19ef9f4-1430-4a52-b37c-2cc6bf55b857
+2025-11-26 11:05:48,852 - kripaa - INFO - Created New Normalized Q 1f143e4c-60b8-4251-ba05-610b619f4784
+2025-11-26 11:05:49,336 - kripaa - INFO - Created New Normalized Q 1a959af6-eeb8-4873-b2db-a95bc5672826
+2025-11-26 11:05:49,971 - kripaa - INFO - Created New Normalized Q 0c21844f-13cd-4343-b6f1-587f9eb1c730
+2025-11-26 11:05:50,613 - kripaa - INFO - Created New Normalized Q 5fcf9b56-c70b-4395-b2a1-fe3c44da6e9b
+2025-11-26 11:05:51,285 - kripaa - INFO - Created New Normalized Q f3402c5d-47a3-4037-8bf8-aeb867395573
+2025-11-26 11:05:51,821 - kripaa - INFO - Found vector duplicate: bc3d9d45-d7be-4dd3-97bf-bf472d356b03 (Distance: 0.0000)
+2025-11-26 11:05:51,824 - kripaa - INFO - Linked Raw Q fac3529c-02a3-4788-8c58-72a6eceff553 to Existing Normalized Q bc3d9d45-d7be-4dd3-97bf-bf472d356b03
+2025-11-26 11:05:52,641 - kripaa - INFO - Created New Normalized Q 7cd438b4-99c0-4513-9501-6325a501e326
+2025-11-26 11:05:53,337 - kripaa - INFO - Created New Normalized Q ce924825-aa2b-42a9-b2b9-f113e12cd754
+2025-11-26 11:05:53,969 - kripaa - INFO - Created New Normalized Q a26ba177-32d4-45ca-bfc9-5640f2a50399
+2025-11-26 11:05:54,636 - kripaa - INFO - Created New Normalized Q 085e7d85-1632-4d22-9ae0-5f5a5c9f651d
+2025-11-26 11:05:55,149 - kripaa - INFO - Created New Normalized Q 1fc66255-0fc6-444f-b065-de90a7db23f4
+2025-11-26 11:05:55,729 - kripaa - INFO - Created New Normalized Q 34f6292d-735d-4e41-817b-0416f1e57819
+2025-11-26 11:05:56,248 - kripaa - INFO - Found exact string duplicate: 7d97c976-97ec-4ff9-9b1b-a94ab6b8e24d
+2025-11-26 11:05:56,251 - kripaa - INFO - Linked Raw Q 1400e7d8-eebf-4fc6-b8c4-24d7fcae31ce to Existing Normalized Q 7d97c976-97ec-4ff9-9b1b-a94ab6b8e24d
+2025-11-26 11:05:57,063 - kripaa - INFO - Created New Normalized Q 2523e6a2-bf08-4bdf-b5f9-78c2cfd4fbe9
+2025-11-26 11:05:57,976 - kripaa - INFO - Created New Normalized Q 95ff6457-38bf-4179-9634-32dd8e85890a
+2025-11-26 11:05:58,816 - kripaa - INFO - Created New Normalized Q 09e1f836-d748-4118-b467-7fc52bc62900
+2025-11-26 11:05:59,564 - kripaa - INFO - Created New Normalized Q ff23f348-d007-4582-b946-99f030ba0937
+2025-11-26 11:06:00,055 - kripaa - INFO - Created New Normalized Q bc35b0e4-5163-465e-926c-b713ade1f61f
+2025-11-26 11:06:00,725 - kripaa - INFO - Created New Normalized Q d51c91c8-8994-4858-b500-3879737aed76
+2025-11-26 11:06:01,327 - kripaa - INFO - Created New Normalized Q cbac3b9e-130d-4ef0-82c4-0f24ba4e7623
+2025-11-26 11:06:01,810 - kripaa - INFO - Created New Normalized Q b06d8e38-8991-4a35-a505-78433ea711af
+2025-11-26 11:06:02,656 - kripaa - INFO - Created New Normalized Q 2a8d107e-4475-487d-96bb-1f2040fa665f
+2025-11-26 11:06:03,294 - kripaa - INFO - Created New Normalized Q bd9554f1-1b4c-4adc-9896-88e9b00cb091
+2025-11-26 11:06:04,246 - kripaa - INFO - Created New Normalized Q 0a6488e3-50e3-4350-99d7-f8e33e4af029
+2025-11-26 11:06:04,904 - kripaa - INFO - Created New Normalized Q 784fa16e-edfd-46b2-8f55-d4a313a79fba
+2025-11-26 11:06:05,538 - kripaa - INFO - Created New Normalized Q 51e903eb-3682-419c-a8d8-7643cf5f1d4a
+2025-11-26 11:06:05,548 - kripaa - INFO - Preprocessing complete. Processed 78 questions.
+2025-11-26 11:06:05,551 - kripaa - INFO - ✓ Normalization complete
+2025-11-26 11:06:05,555 - kripaa - INFO - === Step 4: Variant Detection ===
+2025-11-26 11:06:05,556 - kripaa - INFO - Starting Variant Grouping...
+2025-11-26 11:06:05,577 - kripaa - INFO - Found 73 ungrouped questions.
+2025-11-26 11:06:05,587 - kripaa - INFO - Created Group d5d6b83b-2376-4ee0-ac76-010618a647c5 with 1 variants. Stem: What is the primary function of maintenance department?
+2025-11-26 11:06:13,694 - kripaa - INFO - Created Group e737bd9b-4a94-4cac-a606-eb02080b2b19 with 4 variants. Stem: Canonical Concept Stem: Evaluate the principles, types, and resources involved in maintenance.
+2025-11-26 11:06:13,706 - kripaa - INFO - Created Group 55b38f4d-38d4-4d1a-b605-6669a38ee718 with 1 variants. Stem: What are the methods of fire prevention?
+2025-11-26 11:06:19,756 - kripaa - INFO - Created Group cd50dafd-debe-462e-a551-cbb21ffdd955 with 2 variants. Stem: Explain the types, causes, and effects of industrial accidents.
+2025-11-26 11:06:23,805 - kripaa - INFO - Created Group 21eb791c-a5aa-4bf0-a034-1e309300a6cb with 3 variants. Stem: Canonical Concept Stem: Principles and methods of corrosion control.
+2025-11-26 11:06:31,233 - kripaa - INFO - Created Group 48ece188-1fac-4f4a-a3a9-c13dd5f64455 with 2 variants. Stem: Classification and causes of wear.
+2025-11-26 11:06:35,618 - kripaa - INFO - Created Group aad31519-ac3c-4245-9c41-915eb8d0bf2f with 2 variants. Stem: Evaluate the advantages and disadvantages of preventive maintenance.
+2025-11-26 11:06:35,627 - kripaa - INFO - Created Group 8c3872fe-335c-4c82-85c0-858a5bd21be7 with 1 variants. Stem: Examine some of the common source of mechanical hazards.
+2025-11-26 11:06:35,637 - kripaa - INFO - Created Group 76775763-5f0b-471b-9ede-a9b9ebba9908 with 1 variants. Stem: Organize the classification of pressure vessels.
+2025-11-26 11:06:35,644 - kripaa - INFO - Created Group 195df257-c567-4f01-82fb-50cc96ad2878 with 1 variants. Stem: Describe fault tree analysis.
+2025-11-26 11:06:42,010 - kripaa - INFO - Created Group 5b6d97e6-fb9d-4efb-b670-0ef6017fd721 with 2 variants. Stem: Discuss the provisions for occupational health and safety as outlined in The Factories Act, 1948.
+2025-11-26 11:06:48,257 - kripaa - INFO - Created Group a89a5511-f831-44b3-9680-f15e18a629f2 with 3 variants. Stem: Analyze the principles, types, and applications of lubrication methods and systems.
+2025-11-26 11:06:48,266 - kripaa - INFO - Created Group 4a899a45-8e70-4a4b-b918-9c756ef6943f with 1 variants. Stem: Describe the importance of fault tracing.
+2025-11-26 11:06:48,275 - kripaa - INFO - Created Group e36d88c1-bb08-4e89-9767-411ea1195ba2 with 1 variants. Stem: How do you draw a decision tree diagram?
+2025-11-26 11:06:48,283 - kripaa - INFO - Created Group 04c10e8b-e439-4ac4-9cd2-82d49d5a4f01 with 1 variants. Stem: What are the steps in making preventive maintenance procedure?
+2025-11-26 11:06:48,293 - kripaa - INFO - Created Group 2004683a-707c-49a7-85b5-8287f2b629f6 with 1 variants. Stem: Illustrate about mechanical and electrical hazards to humans and the effect
+of current on human body for different dosage.
+2025-11-26 11:06:53,167 - kripaa - INFO - Created Group 56d0271b-3b01-4365-b244-ded66e74e2b6 with 3 variants. Stem: Analyze the role and construction of decision trees for diagnosing faults in mechanical and electrical systems.
+2025-11-26 11:06:57,211 - kripaa - INFO - Created Group 38cb3923-e798-4cb3-b7de-af989f354545 with 2 variants. Stem: Explain the procedures for periodic and preventive maintenance of industrial equipment.
+2025-11-26 11:06:57,222 - kripaa - INFO - Created Group 3c091246-7c6b-4adf-8a3f-311d836b3979 with 1 variants. Stem: Which of the process is followed to stop a fire by stopping the supply of oxygen
+using blanket and sand?
+2025-11-26 11:06:57,234 - kripaa - INFO - Created Group 28e203a1-a400-411f-9922-3ae806094005 with 1 variants. Stem: What do you mean by equipment maintenance management? State the prime
+objectives fulfilled by it.
+2025-11-26 11:06:57,251 - kripaa - INFO - Joined Q 18c4bf76-f162-4d2e-a6f7-fd4b7845933e to Existing Group e737bd9b-4a94-4cac-a606-eb02080b2b19
+2025-11-26 11:06:57,259 - kripaa - INFO - Joined Q f7e59f8b-f1ef-4a61-bb69-088d813af64e to Existing Group 21eb791c-a5aa-4bf0-a034-1e309300a6cb
+2025-11-26 11:06:57,265 - kripaa - INFO - Created Group b8b9c6e3-35e0-4001-8e61-3cf5cb908e41 with 1 variants. Stem: Which type of failure is generally occurred in rotating machinery due to some
+surface defects?
+2025-11-26 11:07:04,107 - kripaa - INFO - Created Group 49bf0be8-aa99-4e1e-9abe-001f2e5732fa with 3 variants. Stem: Canonical Concept Stem: Analysis of the Equipment Life Cycle
+2025-11-26 11:07:04,118 - kripaa - INFO - Joined Q 1457ae41-d042-45c1-8ad3-034ea53ec144 to Existing Group 38cb3923-e798-4cb3-b7de-af989f354545
+2025-11-26 11:07:04,129 - kripaa - INFO - Created Group de1ecc98-07b1-4c03-9458-33d15875dc94 with 1 variants. Stem: State and explain the criteria responsible for increase the productivity in a plant.
+2025-11-26 11:07:04,136 - kripaa - INFO - Created Group 7ba55ef1-5575-4ad2-8de8-d1b421ccef47 with 1 variants. Stem: Service life of a tool affects the productivity. Justify.
+2025-11-26 11:07:04,142 - kripaa - INFO - Created Group 51b1b940-c615-40f9-a1a0-c9cd19e4a280 with 1 variants. Stem: State the types of hazards and explain any three in detail with possible causes and
+remedial actions.
+2025-11-26 11:07:04,150 - kripaa - INFO - Joined Q f9621add-f1bc-4ad2-b711-63d826ffc710 to Existing Group 21eb791c-a5aa-4bf0-a034-1e309300a6cb
+2025-11-26 11:07:04,156 - kripaa - INFO - Created Group 8c47d719-ef74-497d-969b-fdb303ad405f with 1 variants. Stem: Explain role of management and government in industrial safety.
+2025-11-26 11:07:04,165 - kripaa - INFO - Joined Q 0f756331-6789-4b24-89f8-86b5887a2e0c to Existing Group cd50dafd-debe-462e-a551-cbb21ffdd955
+2025-11-26 11:07:10,190 - kripaa - INFO - Created Group 8283c439-8271-4675-8a89-1e65bb300960 with 2 variants. Stem: Analyze the economic aspects of maintenance strategies and asset replacement decisions.
+2025-11-26 11:07:14,610 - kripaa - INFO - Created Group 517f545e-0f97-418c-8095-15fb1395dbb8 with 2 variants. Stem: Analyze the concept, stages, and importance of the repair cycle.
+2025-11-26 11:07:14,619 - kripaa - INFO - Created Group 0ab29623-886e-46f3-8c41-0baf885f7a2b with 1 variants. Stem: State and explain the significances of different colour codes used in industrial
+safety.
+2025-11-26 11:07:14,630 - kripaa - INFO - Joined Q b23d2222-ba73-4798-8cad-5857e7692a7a to Existing Group aad31519-ac3c-4245-9c41-915eb8d0bf2f
+2025-11-26 11:07:14,646 - kripaa - INFO - Created Group ec827585-89d0-4a48-a908-45b0ef1620f4 with 1 variants. Stem: Highlight the characteristics of factory act and explain employee’s safety provisions
+to be made in factory. What is workman’s compensation act and explain main
+features of the same? Also narrate the possible reasons for which compensation
+may not be given to employee.
+2025-11-26 11:07:14,655 - kripaa - INFO - Joined Q 1f143e4c-60b8-4251-ba05-610b619f4784 to Existing Group cd50dafd-debe-462e-a551-cbb21ffdd955
+2025-11-26 11:07:14,661 - kripaa - INFO - Created Group d96138e4-5bd0-4dbc-b943-5436fe0c1016 with 1 variants. Stem: What is the purpose of a Job Safety Analysis (JSA) in industries?
+2025-11-26 11:07:14,667 - kripaa - INFO - Created Group ba9786fc-b3b7-4033-be18-c419cf0c453b with 1 variants. Stem: Which type of fire extinguisher is used for electrical fires?
+2025-11-26 11:07:14,673 - kripaa - INFO - Created Group 90132085-d74b-4cd5-872c-1e276ac3e588 with 1 variants. Stem: The term "Lockout/Tag out" refers to which type of maintenance control in industry.
+2025-11-26 11:07:14,681 - kripaa - INFO - Joined Q f3402c5d-47a3-4037-8bf8-aeb867395573 to Existing Group 21eb791c-a5aa-4bf0-a034-1e309300a6cb
+2025-11-26 11:07:14,689 - kripaa - INFO - Created Group 5cdb0525-bca9-4485-8d0f-dbed0e182fa7 with 1 variants. Stem: What is the concept for fault finding activities? How does it help in decision
+making?
+2025-11-26 11:07:14,695 - kripaa - INFO - Created Group 24da1fa2-78d5-41e4-9f5d-d6232271913f with 1 variants. Stem: What do you mean by fatigue failures and their causes? What does the term
+'Ergonomics' refer to in industrial safety?
+2025-11-26 11:07:14,701 - kripaa - INFO - Created Group 0aa6c85d-5c5b-4f2f-99f0-cddf5348c3eb with 1 variants. Stem: What strategy is most commonly employed during the maturity stage of a product's life
+cycle? Why might a company decide to continue producing a product in the decline
+stage of its life cycle?
+2025-11-26 11:07:14,707 - kripaa - INFO - Created Group c975683a-95d8-46e6-beab-a31686fb3590 with 1 variants. Stem: What is your understanding related to a product life cycle? Which stage of the Product
+Life Cycle is characterized by rapid market acceptance and increasing profits?
+2025-11-26 11:07:14,715 - kripaa - INFO - Created Group 41d5e92b-4af8-48ee-8861-ef9a354d32f0 with 1 variants. Stem: What type of maintenance is required for electric motor and Why? Why is regular
+lubrication important for electric motors?
+2025-11-26 11:07:22,989 - kripaa - INFO - Created Group 1a4030bf-43b8-46de-8e3a-c556cee95994 with 2 variants. Stem: Explain the role of preventive measures in ensuring industrial safety.
+2025-11-26 11:07:22,997 - kripaa - INFO - Joined Q 34f6292d-735d-4e41-817b-0416f1e57819 to Existing Group cd50dafd-debe-462e-a551-cbb21ffdd955
+2025-11-26 11:07:23,003 - kripaa - INFO - Created Group b9172d21-658d-4fe8-b66a-02e6ff59ea22 with 1 variants. Stem: What is fire triangle? Explain the different classes of fire with symbols and
+extinguishers used for them. Draw any four symbols for possible fire hazards.
+2025-11-26 11:07:23,010 - kripaa - INFO - Joined Q 95ff6457-38bf-4179-9634-32dd8e85890a to Existing Group 21eb791c-a5aa-4bf0-a034-1e309300a6cb
+2025-11-26 11:07:23,021 - kripaa - INFO - Joined Q 09e1f836-d748-4118-b467-7fc52bc62900 to Existing Group 56d0271b-3b01-4365-b244-ded66e74e2b6
+2025-11-26 11:07:23,027 - kripaa - INFO - Joined Q b06d8e38-8991-4a35-a505-78433ea711af to Existing Group 56d0271b-3b01-4365-b244-ded66e74e2b6
+2025-11-26 11:07:23,034 - kripaa - INFO - Joined Q 0a6488e3-50e3-4350-99d7-f8e33e4af029 to Existing Group a89a5511-f831-44b3-9680-f15e18a629f2
+2025-11-26 11:07:23,040 - kripaa - INFO - Created Group bd87e0b5-986a-4eb0-ae75-a9b14e13fef6 with 1 variants. Stem: Describe the various types of maintenance strategies employed in a power plant.
+Explain the repair cycle and its importance in minimizing downtime and maximizing the
+life of mechanical and electrical equipment.
+2025-11-26 11:07:23,044 - kripaa - INFO - Grouping complete. Created 41 groups, Updated 13 groups.
+2025-11-26 11:07:23,046 - kripaa - INFO - ✓ Variant detection complete
+2025-11-26 11:07:23,048 - kripaa - INFO - === Step 5: Syllabus Mapping ===
+2025-11-26 11:07:23,049 - kripaa - INFO - Starting Syllabus Enrichment (Embeddings)...
+2025-11-26 11:07:23,056 - kripaa - INFO - Found 101 syllabus nodes needing embeddings.
+2025-11-26 11:07:29,482 - kripaa - INFO - Enriched 10 syllabus nodes.
+2025-11-26 11:07:36,719 - kripaa - INFO - Enriched 20 syllabus nodes.
+2025-11-26 11:07:44,330 - kripaa - INFO - Enriched 30 syllabus nodes.
+2025-11-26 11:07:49,967 - kripaa - INFO - Enriched 40 syllabus nodes.
+2025-11-26 11:07:55,548 - kripaa - INFO - Enriched 50 syllabus nodes.
+2025-11-26 11:08:01,677 - kripaa - INFO - Enriched 60 syllabus nodes.
+2025-11-26 11:08:07,400 - kripaa - INFO - Enriched 70 syllabus nodes.
+2025-11-26 11:08:12,989 - kripaa - INFO - Enriched 80 syllabus nodes.
+2025-11-26 11:08:18,289 - kripaa - INFO - Enriched 90 syllabus nodes.
+2025-11-26 11:08:23,881 - kripaa - INFO - Enriched 100 syllabus nodes.
+2025-11-26 11:08:24,465 - kripaa - INFO - Enriched 101 syllabus nodes.
+2025-11-26 11:08:24,483 - kripaa - INFO - Starting Variant Group Enrichment (Embeddings)...
+2025-11-26 11:08:24,666 - kripaa - INFO - Found 41 variant groups needing embeddings.
+2025-11-26 11:08:30,272 - kripaa - INFO - Enriched 10 variant groups.
+2025-11-26 11:08:36,362 - kripaa - INFO - Enriched 20 variant groups.
+2025-11-26 11:08:42,777 - kripaa - INFO - Enriched 30 variant groups.
+2025-11-26 11:08:49,648 - kripaa - INFO - Enriched 40 variant groups.
+2025-11-26 11:08:50,311 - kripaa - INFO - Enriched 41 variant groups.
+2025-11-26 11:08:50,313 - kripaa - INFO - Starting Question Mapping...
+2025-11-26 11:08:50,326 - kripaa - INFO - Found 41 unmapped variant groups.
+2025-11-26 11:08:50,354 - kripaa - INFO - Mapped Group 'State and explain the signific...' -> 'Safety color codes' (Score: 0.81 | Tier: 0.75)
+2025-11-26 11:08:50,357 - kripaa - INFO - Mapped Group 'Analyze the concept, stages, a...' -> 'Importance of repair cycle concept' (Score: 0.89 | Tier: 0.75)
+2025-11-26 11:08:50,360 - kripaa - INFO - Mapped Group 'State the types of hazards and...' -> 'Types of hazards' (Score: 0.83 | Tier: 0.75)
+2025-11-26 11:08:50,362 - kripaa - INFO - Mapped Group 'Describe fault tree analysis....' -> 'Fault tracing - concept' (Score: 0.69 | Tier: 0.65)
+2025-11-26 11:08:50,364 - kripaa - INFO - Mapped Group 'What strategy is most commonly...' -> 'Service life of equipment' (Score: 0.43 | Tier: 0.4)
+2025-11-26 11:08:50,367 - kripaa - INFO - Mapped Group 'Explain the role of preventive...' -> 'Preventive steps/procedure for hazards' (Score: 0.68 | Tier: 0.65)
+2025-11-26 11:08:50,370 - kripaa - INFO - Mapped Group 'What are the steps in making p...' -> 'Steps of preventive maintenance' (Score: 0.82 | Tier: 0.75)
+2025-11-26 11:08:50,374 - kripaa - INFO - Mapped Group 'Classification and causes of w...' -> 'Wear - causes' (Score: 0.81 | Tier: 0.75)
+2025-11-26 11:08:50,376 - kripaa - INFO - Mapped Group 'Describe the various types of ...' -> 'Types of maintenance' (Score: 0.64 | Tier: 0.6)
+2025-11-26 11:08:50,379 - kripaa - INFO - Mapped Group 'Describe the importance of fau...' -> 'Fault tracing - importance' (Score: 0.87 | Tier: 0.75)
+2025-11-26 11:08:50,385 - kripaa - INFO - Mapped Group 'What are the methods of fire p...' -> 'Fire prevention' (Score: 0.70 | Tier: 0.65)
+2025-11-26 11:08:50,387 - kripaa - INFO - Mapped Group 'Discuss the provisions for occ...' -> 'Salient points of factories act 1948 for health and safety' (Score: 0.85 | Tier: 0.75)
+2025-11-26 11:08:50,390 - kripaa - INFO - Mapped Group 'Organize the classification of...' -> 'Pressure vessels' (Score: 0.73 | Tier: 0.65)
+2025-11-26 11:08:50,394 - kripaa - INFO - Mapped Group 'Examine some of the common sou...' -> 'Mechanical hazards' (Score: 0.77 | Tier: 0.75)
+2025-11-26 11:08:50,398 - kripaa - INFO - Mapped Group 'What is the primary function o...' -> 'Primary functions of maintenance department' (Score: 0.88 | Tier: 0.75)
+2025-11-26 11:08:50,401 - kripaa - INFO - Mapped Group 'Illustrate about mechanical an...' -> 'Electrical hazards' (Score: 0.71 | Tier: 0.65)
+2025-11-26 11:08:50,403 - kripaa - INFO - Mapped Group 'Canonical Concept Stem: Princi...' -> 'Corrosion prevention methods' (Score: 0.73 | Tier: 0.65)
+2025-11-26 11:08:50,406 - kripaa - INFO - Mapped Group 'What do you mean by equipment ...' -> 'Aim of maintenance engineering' (Score: 0.76 | Tier: 0.75)
+2025-11-26 11:08:50,409 - kripaa - INFO - Mapped Group 'Explain the procedures for per...' -> 'Steps/procedure for periodic and preventive maintenance of machine tools' (Score: 0.79 | Tier: 0.75)
+2025-11-26 11:08:50,412 - kripaa - INFO - Mapped Group 'Which of the process is follow...' -> 'Firefighting methods' (Score: 0.64 | Tier: 0.6)
+2025-11-26 11:08:50,418 - kripaa - INFO - Mapped Group 'Canonical Concept Stem: Analys...' -> 'Service life of equipment' (Score: 0.60 | Tier: 0.5)
+2025-11-26 11:08:50,420 - kripaa - INFO - Mapped Group 'Service life of a tool affects...' -> 'Service life of equipment' (Score: 0.70 | Tier: 0.65)
+2025-11-26 11:08:50,423 - kripaa - INFO - Mapped Group 'Analyze the role and construct...' -> 'Draw decision tree for problems in electrical equipment' (Score: 0.74 | Tier: 0.65)
+2025-11-26 11:08:50,426 - kripaa - INFO - Mapped Group 'Analyze the economic aspects o...' -> 'Relation of maintenance cost with replacement economy' (Score: 0.71 | Tier: 0.65)
+2025-11-26 11:08:50,429 - kripaa - INFO - Mapped Group 'Explain role of management and...' -> 'Salient points of factories act 1948 for health and safety' (Score: 0.61 | Tier: 0.6)
+2025-11-26 11:08:50,433 - kripaa - INFO - Mapped Group 'Evaluate the advantages and di...' -> 'Advantages of preventive maintenance' (Score: 0.84 | Tier: 0.75)
+2025-11-26 11:08:50,436 - kripaa - INFO - Mapped Group 'Which type of fire extinguishe...' -> 'Electrical hazards' (Score: 0.56 | Tier: 0.5)
+2025-11-26 11:08:50,438 - kripaa - INFO - Mapped Group 'What is the purpose of a Job S...' -> 'Salient points of factories act 1948 for health and safety' (Score: 0.50 | Tier: 0.5)
+2025-11-26 11:08:50,441 - kripaa - INFO - Mapped Group 'What do you mean by fatigue fa...' -> 'Mechanical hazards' (Score: 0.62 | Tier: 0.6)
+2025-11-26 11:08:50,445 - kripaa - INFO - Mapped Group 'What type of maintenance is re...' -> 'Common troubles of electric motor' (Score: 0.65 | Tier: 0.6)
+2025-11-26 11:08:50,453 - kripaa - INFO - Mapped Group 'What is the concept for fault ...' -> 'Sequence of fault-finding activities' (Score: 0.69 | Tier: 0.65)
+2025-11-26 11:08:50,457 - kripaa - INFO - Mapped Group 'The term "Lockout/Tag out" ref...' -> 'Definition of maintenance engineering' (Score: 0.58 | Tier: 0.5)
+2025-11-26 11:08:50,462 - kripaa - INFO - Mapped Group 'Analyze the principles, types,...' -> 'Applications of lubrication methods' (Score: 0.80 | Tier: 0.75)
+2025-11-26 11:08:50,466 - kripaa - INFO - Mapped Group 'What is fire triangle? Explain...' -> 'Fire prevention' (Score: 0.65 | Tier: 0.65)
+2025-11-26 11:08:50,470 - kripaa - INFO - Mapped Group 'How do you draw a decision tre...' -> 'Decision tree concept' (Score: 0.67 | Tier: 0.65)
+2025-11-26 11:08:50,475 - kripaa - INFO - Mapped Group 'Which type of failure is gener...' -> 'Types of faults in machine tools' (Score: 0.69 | Tier: 0.65)
+2025-11-26 11:08:50,479 - kripaa - INFO - Mapped Group 'State and explain the criteria...' -> 'Responsibility of maintenance department' (Score: 0.49 | Tier: 0.4)
+2025-11-26 11:08:50,483 - kripaa - INFO - Mapped Group 'Canonical Concept Stem: Evalua...' -> 'Types of maintenance' (Score: 0.71 | Tier: 0.65)
+2025-11-26 11:08:50,486 - kripaa - INFO - Mapped Group 'Highlight the characteristics ...' -> 'Salient points of factories act 1948 for health and safety' (Score: 0.72 | Tier: 0.65)
+2025-11-26 11:08:50,489 - kripaa - INFO - Mapped Group 'What is your understanding rel...' -> 'Importance of repair cycle concept' (Score: 0.44 | Tier: 0.4)
+2025-11-26 11:08:50,496 - kripaa - INFO - Mapped Group 'Explain the types, causes, and...' -> 'Causes of hazards' (Score: 0.66 | Tier: 0.65)
+2025-11-26 11:08:50,502 - kripaa - INFO - Mapping complete. Mapped 41 groups. Breakdown: [>=0.75: 13, >=0.65: 16, >=0.6: 5, >=0.5: 4, >=0.4: 3, >=0.3: 0]
+2025-11-26 11:08:50,506 - kripaa - INFO - ✓ Syllabus mapping complete
+2025-11-26 11:08:50,509 - kripaa - INFO - === Step 6: Enhanced Trend Analysis ===
+2025-11-26 11:08:50,512 - kripaa - INFO - Starting Trend Analysis for 2015-2024...
+2025-11-26 11:08:59,143 - kripaa - INFO - Trend Analysis Complete. Snapshot ID: 1baad9e6-9263-444a-8625-1d4f4045387f
+2025-11-26 11:08:59,144 - kripaa - INFO - Identified 4 emerging and 1 declining topics.
+2025-11-26 11:08:59,146 - kripaa - INFO - ✓ Trend analysis complete (Snapshot: 1baad9e6-9263-444a-8625-1d4f4045387f)
+2025-11-26 11:08:59,149 - kripaa - INFO - === Step 7: Multi-Temperature Question Generation ===
+2025-11-26 11:08:59,150 - kripaa - INFO - Starting Multi-Section Ensemble Generation for 2025...
+2025-11-26 11:08:59,194 - kripaa - INFO - Generating 30 candidates for Section A...
+2025-11-26 11:09:36,736 - kripaa - INFO - Section A: 5/30 candidates generated
+2025-11-26 11:09:50,981 - kripaa - INFO - Section A: 10/30 candidates generated
+2025-11-26 11:10:20,573 - kripaa - INFO - Section A: 15/30 candidates generated
+2025-11-26 11:10:53,835 - kripaa - INFO - Section A: 20/30 candidates generated
+2025-11-26 11:11:22,288 - kripaa - INFO - Section A: 25/30 candidates generated
+2025-11-26 11:11:36,581 - kripaa - INFO - Section A: 30/30 candidates generated
+2025-11-26 11:11:36,583 - kripaa - INFO - Section A: Generated 30 candidates (strategy: {'H': 60, 'V': 25, 'N': 15}%)
+2025-11-26 11:11:36,586 - kripaa - INFO - Deduplicating 30 candidates (threshold: 0.92)...
+2025-11-26 11:11:36,587 - kripaa - ERROR - Error in multi-section generation: question
+2025-11-26 11:11:36,590 - kripaa - ERROR - Error in question generation: question
+2025-11-26 11:11:36,592 - kripaa - INFO - === Step 8: Section-Aware Voting ===
+2025-11-26 11:11:36,594 - kripaa - INFO - Starting Section-Aware Voting for Snapshot 1baad9e6-9263-444a-8625-1d4f4045387f...
+2025-11-26 11:11:36,599 - kripaa - WARNING - No candidates found.
+2025-11-26 11:11:36,601 - kripaa - INFO - ✓ Voting complete (27 questions selected)
+2025-11-26 11:11:36,603 - kripaa - INFO - === Step 9: Sample Paper Generation ===
+2025-11-26 11:11:36,606 - kripaa - INFO - Generating Sample Paper for Snapshot 1baad9e6-9263-444a-8625-1d4f4045387f...
+2025-11-26 11:11:36,760 - kripaa - WARNING - No selected candidates found.
+2025-11-26 11:11:36,936 - kripaa - INFO - ✓ Sample paper generated (Paper ID: None)
+2025-11-26 11:11:36,937 - kripaa - INFO -   - output\generated_paper.md
+2025-11-26 11:11:36,938 - kripaa - INFO -   - output\generated_paper.pdf
+2025-11-26 11:11:36,940 - kripaa - INFO - === Step 10: Comprehensive Report Generation ===
+2025-11-26 11:11:36,941 - kripaa - INFO - Generating Comprehensive Report...
+2025-11-26 11:11:37,360 - kripaa - INFO - Comprehensive Report Generated: output\comprehensive_report.pdf
+2025-11-26 11:11:37,361 - kripaa - INFO - ✓ Comprehensive report generated
+2025-11-26 11:11:37,363 - kripaa - INFO -   - output\comprehensive_report.md
+2025-11-26 11:11:37,364 - kripaa - INFO -   - output\comprehensive_report.pdf
+2025-11-26 11:11:37,366 - kripaa - INFO - 
+============================================================
+2025-11-26 11:11:37,367 - kripaa - INFO - PIPELINE COMPLETE
+2025-11-26 11:11:37,368 - kripaa - INFO - ============================================================
+2025-11-26 11:11:37,369 - kripaa - WARNING - ⚠ Completed with 1 errors:
+2025-11-26 11:11:37,370 - kripaa - WARNING -   - Question Generation: question
+2025-11-26 11:13:33,384 - kripaa - INFO - Starting Section-Aware Voting for Snapshot 1baad9e6-9263-444a-8625-1d4f4045387f...
+2025-11-26 11:13:33,466 - kripaa - WARNING - No candidates found.
+2025-11-26 11:15:14,047 - kripaa - INFO - Starting Multi-Section Ensemble Generation for 2025...
+2025-11-26 11:15:14,236 - kripaa - INFO - Generating 30 candidates for Section A...
+2025-11-26 11:15:54,609 - kripaa - INFO - Section A: 5/30 candidates generated
+2025-11-26 11:16:24,844 - kripaa - INFO - Section A: 10/30 candidates generated
+2025-11-26 11:17:09,339 - kripaa - INFO - Section A: 15/30 candidates generated
+2025-11-26 11:17:34,768 - kripaa - INFO - Section A: 20/30 candidates generated
+2025-11-26 11:17:47,140 - kripaa - INFO - Section A: 25/30 candidates generated
+2025-11-26 11:18:01,802 - kripaa - INFO - Section A: 30/30 candidates generated
+2025-11-26 11:18:01,806 - kripaa - INFO - Section A: Generated 30 candidates (strategy: {'H': 60, 'V': 25, 'N': 15}%)
+2025-11-26 11:18:01,810 - kripaa - INFO - Deduplicating 30 candidates (threshold: 0.92)...
+2025-11-26 11:18:01,815 - kripaa - ERROR - Error in multi-section generation: question
+2025-11-26 11:33:56,871 - kripaa - INFO - Starting Multi-Section Ensemble Generation for 2025...
+2025-11-26 11:33:57,090 - kripaa - INFO - Generating 30 candidates for Section A...
+2025-11-26 11:34:40,357 - kripaa - INFO - Section A: 5/30 candidates generated
+2025-11-26 11:35:07,721 - kripaa - INFO - Section A: 10/30 candidates generated
+2025-11-26 11:35:23,222 - kripaa - INFO - Section A: 15/30 candidates generated
+2025-11-26 11:36:02,893 - kripaa - INFO - Section A: 20/30 candidates generated
+2025-11-26 11:36:44,831 - kripaa - INFO - Section A: 25/30 candidates generated
+2025-11-26 11:37:09,153 - kripaa - INFO - Section A: 30/30 candidates generated
+2025-11-26 11:37:09,156 - kripaa - INFO - Section A: Generated 30 candidates (strategy: {'H': 60, 'V': 25, 'N': 15}%)
+2025-11-26 11:37:09,158 - kripaa - INFO - Deduplicating 30 candidates (threshold: 0.92)...
+2025-11-26 11:37:09,168 - kripaa - INFO - No previously selected questions to compare against, skipping deduplication
+2025-11-26 11:37:09,170 - kripaa - INFO - Generating 36 candidates for Section B...
+2025-11-26 11:37:43,281 - kripaa - INFO - Section B: 5/36 candidates generated
+2025-11-26 11:38:31,099 - kripaa - INFO - Section B: 10/36 candidates generated
+2025-11-26 11:39:23,397 - kripaa - INFO - Section B: 15/36 candidates generated
+2025-11-26 11:40:49,028 - kripaa - INFO - Section B: 20/36 candidates generated
+2025-11-26 11:41:37,151 - kripaa - INFO - Section B: 25/36 candidates generated
+2025-11-26 11:43:13,148 - kripaa - INFO - Section B: 30/36 candidates generated
+2025-11-26 11:44:07,955 - kripaa - INFO - Section B: 35/36 candidates generated
+2025-11-26 11:44:07,964 - kripaa - INFO - Section B: Generated 36 candidates (strategy: {'H': 40, 'V': 35, 'N': 25}%)
+2025-11-26 11:44:07,968 - kripaa - INFO - Deduplicating 36 candidates (threshold: 0.92)...
+2025-11-26 11:44:07,975 - kripaa - INFO - No previously selected questions to compare against, skipping deduplication
+2025-11-26 11:44:07,978 - kripaa - INFO - Generating 15 candidates for Section C...
+2025-11-26 11:44:57,469 - kripaa - INFO - Section C: 5/15 candidates generated
+2025-11-26 11:45:57,682 - kripaa - INFO - Section C: 10/15 candidates generated
+2025-11-26 11:47:08,354 - kripaa - INFO - Section C: 15/15 candidates generated
+2025-11-26 11:47:08,358 - kripaa - INFO - Section C: Generated 15 candidates (strategy: {'H': 30, 'V': 30, 'N': 40}%)
+2025-11-26 11:47:08,361 - kripaa - INFO - Deduplicating 15 candidates (threshold: 0.92)...
+2025-11-26 11:47:08,369 - kripaa - INFO - No previously selected questions to compare against, skipping deduplication
+2025-11-26 11:47:08,373 - kripaa - INFO - Generated 81 total candidates across all sections.
+2025-11-26 11:47:08,376 - kripaa - INFO - Section A: 30, B: 36, C: 15
+2025-11-26 11:47:40,648 - kripaa - INFO - Starting Section-Aware Voting for Snapshot 1baad9e6-9263-444a-8625-1d4f4045387f...
+2025-11-26 11:47:40,899 - kripaa - INFO - Total candidates: 81
+2025-11-26 11:47:40,901 - kripaa - INFO - Section distribution: A=30, B=36, C=15
+2025-11-26 11:47:40,903 - kripaa - INFO - Section A: Processing 30 candidates...
+2025-11-26 11:47:40,909 - kripaa - INFO - Generating embedding for 3ada76c1-b2d6-4710-acbd-c4a7acddb730...
+2025-11-26 11:47:41,442 - kripaa - INFO - Generating embedding for 0ea1231d-ca73-43f6-83fb-74b20c9e5738...
+2025-11-26 11:47:41,942 - kripaa - INFO - Generating embedding for 8199c31d-80aa-485a-b3d5-861983de87fe...
+2025-11-26 11:47:42,485 - kripaa - INFO - Generating embedding for 8975dee2-ca5b-4f70-944f-cbd75c647e51...
+2025-11-26 11:47:42,977 - kripaa - INFO - Generating embedding for d3b3627a-ccc6-4b08-b81f-6abb12e41ac8...
+2025-11-26 11:47:43,455 - kripaa - INFO - Generating embedding for d880a907-7993-474c-98f9-7546c56a9f3a...
+2025-11-26 11:47:44,017 - kripaa - INFO - Generating embedding for 4d2cb3e1-9935-485e-82b2-17f98f21f7b9...
+2025-11-26 11:47:44,558 - kripaa - INFO - Generating embedding for 9dc0c22a-3921-474f-a2ba-45faf3ea0c1d...
+2025-11-26 11:47:45,069 - kripaa - INFO - Generating embedding for 95460232-8387-4955-bdf4-c2215835395d...
+2025-11-26 11:47:45,938 - kripaa - INFO - Generating embedding for 52af3428-66c2-46bc-9e0d-57d5bc3d772b...
+2025-11-26 11:47:46,756 - kripaa - INFO - Generating embedding for 120b1aaa-01ca-4225-8d93-56dec4c96339...
+2025-11-26 11:47:47,701 - kripaa - INFO - Generating embedding for 7c9d3b2b-49f8-497f-a8b0-73d906f39ccc...
+2025-11-26 11:47:48,657 - kripaa - INFO - Generating embedding for 0dda975a-4423-474e-ada1-542d369edc00...
+2025-11-26 11:47:49,141 - kripaa - INFO - Section A: Selected 10/10
+2025-11-26 11:47:49,144 - kripaa - INFO - Section B: Processing 36 candidates...
+2025-11-26 11:47:49,147 - kripaa - INFO - Generating embedding for 828c5316-e63f-40c0-8e7e-863ecd31fa0a...
+2025-11-26 11:47:49,779 - kripaa - INFO - Generating embedding for cd117650-cf95-4a49-9959-0e32e5694533...
+2025-11-26 11:47:50,426 - kripaa - INFO - Generating embedding for 263f7741-e61c-41a6-9cbf-51550d7a7808...
+2025-11-26 11:47:51,068 - kripaa - INFO - Generating embedding for 1c23e876-041c-48ff-ac70-9c0bb6f98344...
+2025-11-26 11:47:51,705 - kripaa - INFO - Generating embedding for f2a42a16-2ff5-4b01-bca9-b52ea6047b9a...
+2025-11-26 11:47:52,183 - kripaa - INFO - Generating embedding for 7c4bec9b-7758-4171-bd06-b1ba35d8ad49...
+2025-11-26 11:47:53,013 - kripaa - INFO - Generating embedding for fed096e0-a08b-42ad-90ee-662f605ae450...
+2025-11-26 11:47:53,551 - kripaa - INFO - Generating embedding for 83044c42-5eef-4841-875e-a328c0b5ae20...
+2025-11-26 11:47:54,424 - kripaa - INFO - Generating embedding for 7eef1357-f79c-4b1d-ae3f-a26be85afbd3...
+2025-11-26 11:47:55,268 - kripaa - INFO - Generating embedding for a8123ac3-7d9a-4958-8e83-1b57469b581a...
+2025-11-26 11:47:56,178 - kripaa - INFO - Generating embedding for 5b54693b-2fd4-4c1e-9257-6268325ce5a3...
+2025-11-26 11:47:56,818 - kripaa - INFO - Generating embedding for 83c496bc-5f97-485a-b010-05d9e9fd203d...
+2025-11-26 11:47:57,466 - kripaa - INFO - Generating embedding for 4a186c8b-9b4d-4243-8b2b-af107681b339...
+2025-11-26 11:47:58,101 - kripaa - INFO - Generating embedding for 2a5caf45-332e-4bf2-a3fa-1f86ed34cbdc...
+2025-11-26 11:47:58,595 - kripaa - INFO - Generating embedding for cbc25562-427c-410e-bff3-db05874b9f8e...
+2025-11-26 11:47:59,218 - kripaa - INFO - Generating embedding for d8b3e658-a0a0-4b0d-89c7-2e0af8b67beb...
+2025-11-26 11:47:59,709 - kripaa - INFO - Generating embedding for d77d2cbf-c7b2-4de7-8ffe-0cc74f5bdf01...
+2025-11-26 11:48:00,257 - kripaa - INFO - Generating embedding for 91a740e4-a63b-47c5-a16c-c6746a8dd3ab...
+2025-11-26 11:48:00,818 - kripaa - INFO - Generating embedding for e1e5d024-f68b-418c-91ac-a67fb8097d76...
+2025-11-26 11:48:01,727 - kripaa - INFO - Generating embedding for 6bfd7708-8fb9-493f-9d03-fcbf6bb57d9a...
+2025-11-26 11:48:02,588 - kripaa - INFO - Generating embedding for 7c4df09f-9fdb-4cb3-a0c1-7f18d525a377...
+2025-11-26 11:48:03,226 - kripaa - INFO - Generating embedding for 6fe4af74-24b8-4600-ae8e-dee4495e89d8...
+2025-11-26 11:48:03,856 - kripaa - INFO - Generating embedding for c2232172-8abd-4cad-9b9d-23a450359323...
+2025-11-26 11:48:04,354 - kripaa - INFO - Generating embedding for 13810eff-ed40-4be3-86ea-ca8f80a91dd9...
+2025-11-26 11:48:05,300 - kripaa - INFO - Section B: Selected 12/12
+2025-11-26 11:48:05,304 - kripaa - INFO - Section C: Processing 15 candidates...
+2025-11-26 11:48:05,306 - kripaa - INFO - Generating embedding for e18b95d7-298e-4d2b-9167-8e7fc073a6aa...
+2025-11-26 11:48:05,938 - kripaa - INFO - Generating embedding for b22c34a5-8dfa-4aee-914f-c76fd95bdc09...
+2025-11-26 11:48:06,896 - kripaa - INFO - Generating embedding for 678487e1-3763-4783-875f-7d79916d8381...
+2025-11-26 11:48:07,725 - kripaa - INFO - Generating embedding for 85df6826-5ef8-42ec-968c-9d809a07b1f5...
+2025-11-26 11:48:08,338 - kripaa - INFO - Generating embedding for d6590be4-6928-4167-98ef-d84cb6bdd4e8...
+2025-11-26 11:48:08,986 - kripaa - INFO - Generating embedding for 0abccccf-d5ea-4f48-a12f-03fff7dae561...
+2025-11-26 11:48:09,617 - kripaa - INFO - Generating embedding for 87a8f1af-13c2-4346-9282-06039ab3bc71...
+2025-11-26 11:48:10,099 - kripaa - INFO - Generating embedding for c9fcca9d-49fc-4f86-bf78-63af2b219ca8...
+2025-11-26 11:48:10,578 - kripaa - INFO - Generating embedding for adc1f2a9-9c51-49b8-83f9-93db5e3478cc...
+2025-11-26 11:48:11,066 - kripaa - INFO - Generating embedding for af214f32-bfa6-4104-a735-49056d4fe6fe...
+2025-11-26 11:48:12,019 - kripaa - INFO - Section C: Selected 5/5
+2025-11-26 11:48:12,110 - kripaa - INFO - Voting Complete. Total selected: 27
+2025-11-26 11:48:12,113 - kripaa - INFO - Section A: 10, B: 12, C: 5
+2025-11-26 11:48:45,727 - kripaa - INFO - Generating Sample Paper for Snapshot 1baad9e6-9263-444a-8625-1d4f4045387f...
+2025-11-26 11:48:45,944 - kripaa - INFO - Sample Paper e87a1e6c-b19f-426f-942b-c32d6efb5fb5 (v1) generated successfully.
+2025-11-26 11:49:20,588 - kripaa - INFO - Generating Comprehensive Report...
+2025-11-26 11:49:21,316 - kripaa - INFO - Comprehensive Report Generated: output\comprehensive_report.pdf
+2025-11-26 11:50:30,345 - kripaa - INFO - Generating Comprehensive Report...
+2025-11-26 11:50:31,025 - kripaa - INFO - Comprehensive Report Generated: output\comprehensive_report.pdf

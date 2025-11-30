@@ -10,12 +10,13 @@ from utils.db import get_session
 from utils.logger import get_logger
 from utils.llm import get_default_llm
 from src.data_models.models import QuestionNormalized, VariantGroup
+from utils.settings import settings
 from src.sub_agents.question_preprocessing_agent.prompts import CONCEPT_STEM_PROMPT
 
 logger = get_logger()
 
 # Threshold for grouping (lower than deduplication)
-GROUPING_THRESHOLD = 0.85
+GROUPING_THRESHOLD = settings.variant_grouping_threshold
 
 async def generate_canonical_stem(questions: List[str]) -> str:
     """
