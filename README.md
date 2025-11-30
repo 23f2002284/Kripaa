@@ -424,3 +424,51 @@ The name comes from the Hindi word कृपया (Kripaa), meaning "please" or
 Made with ❤️ for students and educators
 
 </div>
+
+---
+
+## 🤖 Image Generation Disclaimer
+
+The following images in this documentation were generated using AI. Below are the prompts used for transparency:
+
+<details>
+<summary><strong>System Overview</strong></summary>
+
+> "A flat vector illustration of a system architecture. On the left, a stack of PDF documents labeled 'Input'. An arrow points to a central gear mechanism labeled 'Processing'. Inside the gears are icons for OCR, Analysis, and AI. An arrow points to the right to a document with a checkmark labeled 'Exam Paper' and a chart labeled 'Report'. Blue and white color palette, clean lines, white background."
+</details>
+
+<details>
+<summary><strong>Multi-Temperature Generation</strong></summary>
+
+> "A conceptual illustration of AI temperature. A single lightbulb icon on the left branches into three paths. Top path is straight and blue, labeled 'Conservative'. Middle path is slightly curved and green, labeled 'Balanced'. Bottom path is wavy and purple, labeled 'Creative'. All paths lead to a funnel on the right. White background, modern style."
+</details>
+
+<details>
+<summary><strong>Sample Paper Preview</strong></summary>
+
+> "A high resolution mockup of a printed academic exam paper lying on a wooden desk. The paper has a header reading 'Semester Examination 2025' and 'Computer Science'. It contains multiple choice and written questions. A pen is lying next to it. Photorealistic."
+</details>
+
+<details>
+<summary><strong>LangGraph Architecture</strong></summary>
+
+> "A digital flowchart diagram on a dark background. Nodes are glowing rectangles connected by glowing lines. Nodes are labeled 'OCR', 'Normalization', 'Trend Analysis', 'Generation', 'Voting', 'Paper Gen'. The flow is from left to right. Cyberpunk aesthetic but readable."
+</details>
+
+<details>
+<summary><strong>Output Preview</strong></summary>
+
+> "A screenshot of a computer file explorer window. The folder is named 'output'. Inside are four files with icons: 'generated_paper.pdf' (PDF icon), 'generated_paper.md' (Markdown icon), 'comprehensive_report.pdf' (PDF icon), 'comprehensive_report.md' (Markdown icon). Clean UI, light mode."
+</details>
+
+<details>
+<summary><strong>Innovations</strong></summary>
+
+> "A 2x2 grid infographic. Top left: A bar chart icon labeled 'Trends'. Top right: A circular cycle icon labeled 'Cyclicity'. Bottom left: Three branching arrows labeled 'Multi-Temp'. Bottom right: A funnel icon labeled 'Exclusion'. Each quadrant has a soft background color. Modern flat design."
+</details>
+
+<details>
+<summary><strong>Results Dashboard</strong></summary>
+
+> "A modern analytics dashboard interface. Top row has three metric cards: '81 Candidates', '27 Selected', '33% Rate'. Below is a bar chart showing section distribution and a pie chart showing question sources. Clean white and blue UI."
+</details>
