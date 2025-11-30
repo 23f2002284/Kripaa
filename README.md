@@ -356,8 +356,6 @@ Every excluded candidate includes:
 | C | Long | 10 | 5 | 15 | 33% |
 | **Total** | - | **130** | **27** | **81** | **33%** |
 
-![Results Dashboard](docs/images/results_dashboard.png)
-
 ### Trend Analysis Insights
 
 Example output from enhanced trends:
@@ -511,8 +509,3 @@ The following images in this documentation were generated using AI. Below are th
 > "A 2x2 grid infographic. Top left: A bar chart icon labeled 'Trends'. Top right: A circular cycle icon labeled 'Cyclicity'. Bottom left: Three branching arrows labeled 'Multi-Temp'. Bottom right: A funnel icon labeled 'Exclusion'. Each quadrant has a soft background color. Modern flat design."
 </details>
 
-<details>
-<summary><strong>Results Dashboard</strong></summary>
-
-> "A modern analytics dashboard interface. Top row has three metric cards: '81 Candidates', '27 Selected', '33% Rate'. Below is a bar chart showing section distribution and a pie chart showing question sources. Clean white and blue UI."
-</details>
