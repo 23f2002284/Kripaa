@@ -101,17 +101,61 @@ Kripaa uses a **multi-agent AI pipeline** powered by LangGraph to:
 ## 🏗️ Architecture
 
 ```mermaid
-graph TD
-    A[PYQ PDFs + Syllabus] --> B[OCR Agent]
-    B --> C[Normalization Agent]
-    C --> D[Variant Detection]
-    D --> E[Syllabus Mapping]
-    E --> F[Enhanced Trend Analysis]
-    F --> G[Multi-Temp Generation]
-    G --> H[Section-Aware Voting]
-    H --> I[Paper Generation]
-    I --> J[Report Generation]
-    J --> K[PDF Outputs]
+graph LR
+    subgraph Ingestion["📥 Data Ingestion"]
+        A1[PYQ PDFs]
+        A2[Syllabus PDFs]
+        B1[OCR Agent<br/>Hybrid Extraction]
+        B2[Syllabus Parser]
+    end
+    
+    subgraph Preprocessing["🔄 Preprocessing"]
+        C[Question<br/>Normalization]
+        D[Variant<br/>Detection]
+        E[Syllabus<br/>Mapping]
+    end
+    
+    subgraph Analysis["📊 Trend Analysis"]
+        F1[Section-Aware<br/>Tracking]
+        F2[Cyclicity<br/>Detection]
+        F3[Gap<br/>Analysis]
+    end
+    
+    subgraph Generation["🤖 Question Generation"]
+        G1[Multi-Temperature<br/>Ensemble]
+        G2[Conservative<br/>temp=0.2]
+        G3[Balanced<br/>temp=0.5]
+        G4[Creative<br/>temp=0.9]
+        H[Section-Aware<br/>Voting & Ranking]
+    end
+    
+    subgraph Output["📄 Output Generation"]
+        I[Sample Paper<br/>Generator]
+        J[Report<br/>Writer]
+        K1[Exam Paper PDF]
+        K2[Analysis Report PDF]
+    end
+    
+    A1 --> B1
+    A2 --> B2
+    B1 --> C
+    B2 --> E
+    C --> D
+    D --> E
+    E --> F1
+    F1 --> F2
+    F2 --> F3
+    F3 --> G1
+    G1 --> G2
+    G1 --> G3
+    G1 --> G4
+    G2 --> H
+    G3 --> H
+    G4 --> H
+    H --> I
+    I --> J
+    J --> K1
+    J --> K2
 ```
 
 ### LangGraph Orchestration
